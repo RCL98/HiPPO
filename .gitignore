@@ -1,0 +1,11 @@
+.idea
+
+/venv/
+
+/LLaMa_models/
+/logs/
+/models/
+/wandb/
+
+*.pyc
+*.npz
