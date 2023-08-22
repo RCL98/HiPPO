@@ -1,0 +1,239 @@
+import os
+import numpy as np
+from stable_baselines3.common.callbacks import BaseCallback
+from collections import defaultdict
+
+from stable_baselines3.common.vec_env import VecNormalize
+
+from eval_model import evaluate_model
+
+
+class WilsonMazeCallback(BaseCallback):
+    """
+    A custom callback that derives from ``BaseCallback``.
+
+    :param verbose: (int) Verbosity level 0: not output 1: info 2: debug
+    """
+
+    def __init__(self, verbose=0,
+                 record_bad_behaviour=False,
+                 record_targets_dist=False,
+                 record_targets_reset_dist=False,
+                 record_prompts_dist=False,
+                 evaluate=False,
+                 eval_config=None,
+                 eval_freq=10000,
+                 best_model_save_path='./',
+                 deterministic=False,
+                 use_action_masks=False,
+                 max_number_of_steps=10,
+                 device='cpu'
+                 ):
+        super(WilsonMazeCallback, self).__init__(verbose)
+        # Those variables will be accessible in the callback
+        # (they are defined in the base class)
+        # The RL model
+        # self.model = None  # type: BaseRLModel
+        # An alias for self.model.get_env(), the environment used for training
+        # self.training_env = None  # type: Union[gym.Env, VecEnv, None]
+        # Number of time the callback was called
+        # self.n_calls = 0  # type: int
+        # self.num_timesteps = 0  # type: int
+        # local and global variables
+        # self.locals = None  # type: Dict[str, Any]
+        # self.globals = None  # type: Dict[str, Any]
+        # The logger object, used to report things in the terminal
+        # self.logger = None  # type: logger.Logger
+        # # Sometimes, for event callback, it is useful
+        # # to have access to the parent object
+        # self.parent = None  # type: Optional[BaseCallback]
+        self.wins = 0
+        self.loses = 0
+        self.endings = 0
+        self.out_of_bounds = 0
+        self.wall_collisions = 0
+        self.targets = defaultdict(int)
+        self.targets_per_envs = None
+        self.reset_targets = None
+        self.rollout_targets = defaultdict(int)
+        self.prompts = defaultdict(lambda: defaultdict(int))
+        self.rollout_prompts = defaultdict(lambda: defaultdict(int))
+        self.best_eval_score = 0.0
+
+        self.record_targets_dist = record_targets_dist
+        self.record_targets_reset_dist = record_targets_reset_dist
+        self.record_prompts_dist = record_prompts_dist
+        self.record_bad_behaviour = record_bad_behaviour
+        self.evaluate = evaluate
+        self.eval_freq = eval_freq
+        self.eval_config = eval_config
+        self.best_model_save_path = best_model_save_path
+        self.deterministic = deterministic
+        self.use_action_masks = use_action_masks
+        self.max_number_of_steps = max_number_of_steps
+        self.device = device
+
+        assert not self.evaluate or self.eval_config is not None, 'No eval config provided'
+
+    def _on_training_start(self) -> None:
+        """
+        This method is called before the first rollout starts.
+        """
+        if self.record_targets_dist:
+            self.targets_per_envs = {k: defaultdict(int) for k in range(self.training_env.num_envs)}
+        if self.record_targets_reset_dist:
+            self.reset_targets = {k: defaultdict(int) for k in range(self.training_env.num_envs)}
+
+        # Create folders if needed
+        if self.best_model_save_path is not None:
+            os.makedirs(self.best_model_save_path, exist_ok=True)
+
+    def _on_rollout_start(self) -> None:
+        """
+        A rollout is the collection of environment interaction
+        using the current policy.
+        This event is triggered before collecting new samples.
+        """
+        self.wins = 0
+        self.loses = 0
+        self.endings = 0
+
+        if self.record_bad_behaviour:
+            self.out_of_bounds = 0
+            self.wall_collisions = 0
+
+        if self.record_targets_dist:
+            self.rollout_targets.clear()
+
+        if self.record_prompts_dist:
+            self.rollout_prompts.clear()
+
+    def _on_step(self) -> bool:
+        """
+        This method will be called by the model after each call to `env.step()`.
+
+        For child callback (of an `EventCallback`), this will be called
+        when the event is triggered.
+
+        :return: (bool) If the callback returns False, training is aborted early.
+        """
+        assert "dones" in self.locals, "`dones` variable is not defined, please check your code next to `callback.on_step()`"
+        for i in range(self.training_env.num_envs):
+            if self.locals['dones'][i]:
+                if not self.locals['infos'][i]['TimeLimit.truncated']:
+                    self.wins += 1
+                else:
+                    self.loses += 1
+                self.endings += 1
+
+                if self.record_targets_reset_dist:
+                    self.reset_targets[i][self.locals['infos'][i]['target']] += 1
+            else:
+                if self.record_bad_behaviour:
+                    self.out_of_bounds += self.locals['infos'][i]['out_of_bounds']
+                    self.wall_collisions += self.locals['infos'][i]['wall_collisions']
+
+                if self.record_targets_dist:
+                    self.rollout_targets[self.locals['infos'][i]['target']] += 1
+                    self.targets_per_envs[i][self.locals['infos'][i]['target']] += 1
+
+                if self.record_prompts_dist:
+                    self.rollout_prompts[self.locals['infos'][i]['target']][self.locals['infos'][i]['prompt']] += 1
+
+        if self.evaluate:
+            if self.eval_freq > 0 and self.n_calls % self.eval_freq == 0:
+                vec_normalizer = self.model.get_vec_normalize_env()
+                save_vec_normalize_path = None
+                if vec_normalizer is not None:
+                    save_vec_normalize_path = os.path.join(self.best_model_save_path, "model_vec_normalizer_temp.pkl")
+                    vec_normalizer.save(save_vec_normalize_path)
+
+                save_model_path = os.path.join(self.best_model_save_path, "best_model_temp.zip")
+                self.model.save(save_model_path)
+
+                eval_score = evaluate_model(save_model_path, self.model.__class__,
+                                            save_vec_normalize_path if save_vec_normalize_path else None,
+                                            deterministic=self.deterministic,
+                                            use_action_masks=self.use_action_masks,
+                                            max_number_of_steps=self.max_number_of_steps,
+                                            device=self.device, **self.eval_config)
+
+                if eval_score > self.best_eval_score:
+                    self.best_eval_score = eval_score
+
+                    if vec_normalizer:
+                        vec_normalizer.save(os.path.join(self.best_model_save_path, "best_model_vec_normalizer.pkl"))
+                    self.model.save(os.path.join(self.best_model_save_path, "best_model.zip"))
+
+                    print(f'New best model saved with score {self.best_eval_score:2f}')
+                else:
+                    print(f'Eval score: {eval_score:2f}. Last best score: {self.best_eval_score:2f}')
+
+                if vec_normalizer:
+                    os.remove(save_vec_normalize_path)
+                os.remove(save_model_path)
+
+        return True
+
+    def _on_rollout_end(self) -> None:
+        """
+        This event is triggered before updating the policy.
+        """
+        if self.record_bad_behaviour:
+            self.logger.record('behaviour/out_of_bounds', self.out_of_bounds)
+            self.logger.record('behaviour/wall_collisions', self.wall_collisions)
+
+        self.logger.record('behaviour/wins', self.wins / self.endings)
+        self.logger.record('behaviour/loses', self.loses / self.endings)
+        self.logger.record('behaviour/endings', self.endings / (self.locals['n_steps'] * self.training_env.num_envs))
+
+        if self.record_targets_dist:
+            rollout_targets_total = sum(self.rollout_targets.values())
+            rollout_targets_distribution = {}
+            for key, val in self.rollout_targets.items():
+                d = round(val / rollout_targets_total, 3)
+                rollout_targets_distribution[key] = d
+                self.targets[key] += val
+                self.logger.record(f'rollout_target_dist/target_{key}', d)
+            print(f'Rollout targets distribution: {sorted(rollout_targets_distribution.items())}')
+
+        if self.record_prompts_dist:
+            print('Rollout prompts distribution per target:')
+            for key, values in self.rollout_prompts.items():
+                print(f'{key}: ', end='')
+                total = sum(values.values())
+                dist = {}
+                for k, v in values.items():
+                    dist[k] = round(v / total, 3)
+                    self.prompts[key][k] += v
+                print(dist)
+
+    def _on_training_end(self) -> None:
+        """
+        This event is triggered before exiting the `learn()` method.
+        """
+        if self.record_targets_dist:
+            total = sum(self.targets.values())
+            dist = {key: round(value / total, 3) for key, value in sorted(self.targets.items())}
+            print(f'Final targets distribution: {dist}')
+
+            print(f'\nFinal targets distribution per env: ')
+            for env, targets in self.targets_per_envs.items():
+                total = sum(targets.values())
+                dist = {key: round(value / total, 3) for key, value in sorted(targets.items())}
+                print(f'\t{env}: {dist}')
+
+        if self.record_targets_reset_dist:
+            print(f'\nFinal targets restart distribution per env: ')
+            for env, targets in self.reset_targets.items():
+                total = sum(targets.values())
+                dist = {key: round(value / total, 3) for key, value in sorted(targets.items())}
+                print(f'\t{env}: {dist}')
+
+        if self.record_prompts_dist:
+            print('\nFinal prompts distribution per target:')
+            for key, values in self.prompts.items():
+                print(f'{key}: ', end='')
+                total = sum(values.values())
+                dist = {k: round(v / total, 3) for k, v in sorted(values.items())}
+                print(dist)
