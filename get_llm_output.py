@@ -4,7 +4,7 @@ import argparse
 import glob
 from sys import platform
 from tqdm import tqdm
-from typing import List
+from typing import List, Tuple
 import warnings
 import numpy as np
 import torch
@@ -18,7 +18,7 @@ def extract_numbers(input_string: str) -> List[int]:
     numbers = re.findall(r'\d+', input_string)
     return [int(num) for num in numbers]
 
-def get_time_delta(start, format):
+def get_time_delta(start: int, format: str):
     end = datetime.now().time().strftime(format)
     return (datetime.strptime(end, format) - datetime.strptime(start, format))
 
@@ -28,7 +28,7 @@ def move_to_gpu(object):
     else:
         object.to(torch.device("cuda"))
 
-def load_hf_model_and_tokenizer(tokenizer_path, model_path, use_cuda=False):
+def load_hf_model_and_tokenizer(tokenizer_path: str, model_path: str, use_cuda=False) -> Tuple[AutoTokenizer, LlamaModel]:
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
     tokenizer.pad_token = tokenizer.eos_token
     model = LlamaModel.from_pretrained(
@@ -39,9 +39,34 @@ def load_hf_model_and_tokenizer(tokenizer_path, model_path, use_cuda=False):
 
     model.eval()
 
-    return tokenizer, model
+    return model, tokenizer
 
-def process_hidden_states(hidden_states, processing_method='mean', axis=0, use_numpy=False):
+def load_llama_cpp_model(cpp_extractor_path: str, model_path: str, use_cuda=False) -> Tuple[Popen, int]:
+    lcpp_args = [cpp_extractor_path, '-m', 
+                 model_path, "--interactive", 
+                            "--embeddings-all"]
+    if use_cuda:
+        lcpp_args.extend(['-ngl', '1'])
+
+    model = Popen(lcpp_args, 
+                shell=False, stdin=PIPE, stdout=PIPE, stderr=PIPE)
+    
+    embed_size = None
+    output = model.stdout.readline().decode('utf-8').strip()
+    while output:
+        if output.startswith('Size of embeddings = '):
+            embed_size = extract_numbers(output)[0]
+        elif output.startswith('Enter prompt'):
+            break
+        output = model.stdout.readline().decode('utf-8').strip()
+
+    if embed_size is None:
+        raise ValueError('Could not extract embeddings size from LlaMa C++ extractor')
+    
+    return model, embed_size 
+
+
+def process_hidden_states(hidden_states, processing_method='mean', axis=0, use_numpy=False) -> np.ndarray | torch.Tensor:
     if processing_method == 'none' and isinstance(hidden_states, list) or isinstance(hidden_states, tuple):
         hidden_states =  torch.stack(hidden_states, axis=axis) if not use_numpy else np.stack(hidden_states, axis=axis)
     if processing_method == 'mean':
@@ -124,7 +149,7 @@ def process_folder(folder_path, tokenizer=None, model=None, use_llama_cpp=False,
                    use_cuda=False, split=False, shuffle=False, split_ratio=0.25):
     
     assert not use_llama_cpp or embed_size > 0, 'Embeddings size must be greater than 0 when using LlaMa C++ extractor'
-    
+
     time_format = r'%H:%M:%S:%f'
     start_time = datetime.now().strftime(time_format)
     print(f'Starting prompts processing:')
@@ -186,23 +211,33 @@ def process_folder(folder_path, tokenizer=None, model=None, use_llama_cpp=False,
         np.savez_compressed(destination, *prompts)
 
 
-def process_prompt(tokenizer, model, prompt, num_layers=1, processing_method='mean', save=False, destination='.'):
+def process_prompt(prompt, tokenizer=None, model=None, use_llama_cpp=False, embed_size=-1,
+                   num_layers=1, processing_method='mean',
+                   use_cuda=False, save=False, destination_path=None):
+    assert num_layers > 0, 'Number of layers must be greater than 0'
+    assert processing_method != 'none', 'Processing method none is not supported when processing a single prompt'
+
     time_format = r'%H:%M:%S:%f'
     start_time = datetime.now().strftime(time_format)
     print(f'Starting prompts processing:')
 
-    inputs = tokenizer(prompt.strip(), return_tensors="pt")
-
-    output_hidden_states = model(inputs.input_ids, output_attentions=False)
-    output_hidden_states = output_hidden_states.last_hidden_state.real.detach().numpy()
-    mean_output_hidden_states = np.mean(output_hidden_states, axis=1)
+    if not use_llama_cpp:
+        assert tokenizer is not None and model is not None, 'Tokenizer and model are required when not using LlaMa C++ extractor'
+        output_hidden_states = extract_hidden_states_hf(tokenizer, model, [prompt.strip()], num_layers, processing_method, use_cuda)
+    else:
+        assert model is not None, 'Model is required when using LlaMa C++ extractor'
+        assert embed_size > 0, 'Embeddings size must be greater than 0 when using LlaMa C++ extractor'
+        if num_layers > 1:
+            warnings.warn('LlaMa C++ extractor does not support extracting hidden states from multiple layers. Only the last layer will be extracted.')
+        output_hidden_states = extract_hidden_states_llama_cpp(model, [prompt.strip()], embed_size, processing_method)
 
     print(f'Finished in: {get_time_delta(start_time, time_format)}')
 
     if save:
+        destination = f'{destination_path}/prompt.npz' if destination_path else f'./prompt.npz'
         np.savez_compressed(f'{destination}/prompt.npz')
 
-    return mean_output_hidden_states
+    return output_hidden_states
 
 def process_hidden_states_files(hidden_states_path, processing_method='mean', num_layers=1, split=False, ratio=0.25, destination_path=None):
     npz_files = glob.glob(f'{hidden_states_path}/prompts_[0-9].npz')
@@ -236,7 +271,7 @@ def process_hidden_states_files(hidden_states_path, processing_method='mean', nu
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        prog='GetLLMOutput',
+        prog='get_llm_output',
         description='Extract LLM hidden states for given prompts',
         epilog='')
 
@@ -279,24 +314,12 @@ if __name__ == "__main__":
                     warnings.warn('Splitting is not supported when processing method is none')
                     split = False
 
-            tokenizer, model = load_hf_model_and_tokenizer(args.tokenizer, args.model, cuda)
+            model, tokenizer = load_hf_model_and_tokenizer(args.tokenizer, args.model, cuda)
         elif args.llama_cpp_model:
             assert args.method != 'none', 'Working with LlaMa C++ extractor does not yet supports processing method none'
             using_llama_cpp = True
-            tokenizer, model = None, Popen([args.llama_cpp_model, '-m', args.model, "--interactive", 
-                                            "--embeddings-all"], 
-                      shell=False, stdin=PIPE, stdout=PIPE, stderr=PIPE)
-            embed_size = None
-            output = model.stdout.readline().decode('utf-8').strip()
-            while output:
-                if output.startswith('Size of embeddings = '):
-                    embed_size = extract_numbers(output)[0]
-                elif output.startswith('Enter prompt'):
-                    break
-                output = model.stdout.readline().decode('utf-8').strip()
-    
-            if embed_size is None:
-                raise ValueError('Could not extract embeddings size from LlaMa C++ extractor')
+            tokenizer = None
+            model, embed_size = load_llama_cpp_model(args.llama_cpp_model, args.model, cuda)
 
         if args.folder:
             process_folder(folder_path=args.folder, 
@@ -314,6 +337,12 @@ if __name__ == "__main__":
                            split_ratio=ratio)
         elif args.prompt:
             process_prompt(tokenizer, model, args.prompt, args.layers, args.method, True, args.destination)
+        
+        if using_llama_cpp:
+            model.stdin.write(b'\n')
+            model.stdin.flush()
+            model.stdin.close()
+            model.terminate()
 
     elif args.hidden_states:
         process_hidden_states_files(args.hidden_states, args.method, num_layers, split, ratio)
