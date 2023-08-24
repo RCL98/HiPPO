@@ -1,3 +1,4 @@
+import json
 import os
 import numpy as np
 from stable_baselines3.common.callbacks import BaseCallback
@@ -24,6 +25,7 @@ class WilsonMazeCallback(BaseCallback):
                  eval_config=None,
                  eval_freq=10000,
                  best_model_save_path='./',
+                 logs_path='./',
                  deterministic=False,
                  use_action_masks=False,
                  max_number_of_steps=10,
@@ -68,6 +70,7 @@ class WilsonMazeCallback(BaseCallback):
         self.eval_freq = eval_freq
         self.eval_config = eval_config
         self.best_model_save_path = best_model_save_path
+        self.logs_path = logs_path
         self.deterministic = deterministic
         self.use_action_masks = use_action_masks
         self.max_number_of_steps = max_number_of_steps
@@ -87,6 +90,8 @@ class WilsonMazeCallback(BaseCallback):
         # Create folders if needed
         if self.best_model_save_path is not None:
             os.makedirs(self.best_model_save_path, exist_ok=True)
+        if self.logs_path is not None:
+            os.makedirs(self.logs_path, exist_ok=True)
 
     def _on_rollout_start(self) -> None:
         """
@@ -151,12 +156,22 @@ class WilsonMazeCallback(BaseCallback):
                 save_model_path = os.path.join(self.best_model_save_path, "best_model_temp.zip")
                 self.model.save(save_model_path)
 
-                eval_score = evaluate_model(save_model_path, self.model.__class__,
+                eval_score, stats = evaluate_model(save_model_path, self.model.__class__,
                                             save_vec_normalize_path if save_vec_normalize_path else None,
                                             deterministic=self.deterministic,
                                             use_action_masks=self.use_action_masks,
                                             max_number_of_steps=self.max_number_of_steps,
                                             device=self.device, **self.eval_config)
+                
+                if self.logs_path is not None:
+                    with open(os.path.join(self.logs_path, 'evaluations.json'), 'r+') as log_file:
+                        old_data = json.load(log_file)
+                        old_data['evaluations'].append({'step': self.num_timesteps,
+                                                        'eval_score': eval_score,
+                                                        'stats': stats})
+                        log_file.seek(0)
+                        json.dump(old_data, log_file, indent=4)
+                        log_file.truncate()
 
                 if eval_score > self.best_eval_score:
                     self.best_eval_score = eval_score

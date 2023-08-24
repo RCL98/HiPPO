@@ -21,7 +21,7 @@ def test_on_model(model_path, **config):
         print(action)
         obs, reward, terminated, truncated, info = env.step(action.item())
         env.render()
-        if terminated:
+        if terminated and reward > 0:
             wins += 1
             break
         if truncated:
@@ -46,7 +46,7 @@ def test_on_model_vec(model_path, **config):
         print(action)
         obs, rewards, dones, infos = vec_env.step(action)
         vec_env.render()
-        if dones[0]:
+        if dones[0] and rewards[0] > 0:
             wins += 1
             break
         if infos[0]["TimeLimit.truncated"]:
@@ -89,12 +89,12 @@ def evaluate_model(model_path=None, model_class=None, normalizer_path=None,
                 else:
                     action, _ = model.predict(obs, deterministic=deterministic)
 
-                obs, _, dones, infos = vec_env.step(action)
+                obs, rewards, dones, infos = vec_env.step(action)
 
                 if config['render_mode'] == 'human':
                     vec_env.render()
 
-                if dones[0]:
+                if dones[0] and rewards[0] > 0:
                     wins += 1
                     break
                 if infos[0]["TimeLimit.truncated"]:
@@ -106,15 +106,19 @@ def evaluate_model(model_path=None, model_class=None, normalizer_path=None,
         total_size += prompts[f'arr_{i}'].shape[0]
 
     print()
+    stats = {}
     for i in range(config["number_of_targets"]):
+        stats[f'target_{i}'] = {'solved': solved[i], 
+                                'percentage': solved[i] / prompts[f"arr_{i}"].shape[0],  
+                                'total': prompts[f'arr_{i}'].shape[0]}
         print(f'For target {i}, {solved[i]} out of {prompts[f"arr_{i}"].shape[0]} '
-              f'or {(solved[i] / prompts[f"arr_{i}"].shape[0]) * 100:2f}')
+              f'or {stats[f"target_{i}"]["percentage"] * 100:2f}')
 
     total_solved = sum(solved)
     score = total_solved / total_size
     print(f'Solved: {total_solved} out of {total_size} or {score * 100:2f}')
 
-    return score
+    return score, stats
 
 
 if __name__ == '__main__':
