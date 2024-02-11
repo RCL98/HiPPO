@@ -5,6 +5,7 @@ from itertools import zip_longest
 
 from openai import OpenAI, Stream
 from openai.types.chat import ChatCompletion, ChatCompletionChunk
+import pandas as pd
 
 
 def write_new_line(line, w_file):
@@ -217,6 +218,32 @@ def get_synonyms(target):
     for choice in completion.choices:
         print(choice.message.content)
 
+def generate_final_prompts():
+    with open(PROMPTS_FILE, 'r') as file:
+    
+        final_prompts, target_values, coin_values = [], [], []
+        for prompt in file.readlines():
+            prompt = prompt.strip()
+            value = prompt[-1]
+            prompt = prompt[:-2]
+
+            for i, (target, synonyms) in enumerate(SYNONYMS.items()):
+                for _target in synonyms + [target]:
+                    adj = _target.split()[0]
+                    noun = _target.split()[1]
+
+                    new_prompt = copy.deepcopy(prompt)
+                    new_prompt = new_prompt.replace('<adjective>', adj)
+                    new_prompt = new_prompt.replace('<noun>', noun)
+
+                    final_prompts.append(new_prompt)
+                    target_values.append(i)
+                    coin_values.append(value)
+            
+        df = pd.DataFrame(data={'prompt': final_prompts, 'target': target_values, 'coin': coin_values})
+        df = df.sample(frac=1).reset_index(drop=True)
+        df.to_csv('./prompts/big_dataset/prompts.csv', index=False)
+
 if __name__ == "__main__":
     PROMPTS_FILE = './prompts/big_dataset/base_prompts.txt'
     TEMP_FILE = './prompts/big_dataset/temp_prompts.txt'
@@ -227,12 +254,14 @@ if __name__ == "__main__":
         'purple diamond': ['violet diamond', 'magenta diamond', 'lilac diamond'],
         'red circle': ['crimson circle', 'ruby circle', 'scarlet circle'],
         'yellow square': ['golden square', 'amber square', 'lemon square'],
-    }   
+    }
 
     # way_to_write = 'Write the prompts like you were a manager talking to his employees.'
     # prompts = generate_prompts(way_to_write, 5, True)
 
     # get_synonyms('yellow square')
+
+    generate_final_prompts()
 
 
                 
