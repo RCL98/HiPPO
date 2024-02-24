@@ -6,6 +6,7 @@
 /logs/
 /models/
 /wandb/
+/prompts/big_dataset/llama
 
 *.pyc
 *.npz
