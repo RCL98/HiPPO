@@ -1,0 +1,109 @@
+HOW TO WRITE PROMPTS
+################################################################################
+# COINS REQUEST ORDER
+"""
+TALK ABOUT THE COINS BEFORE TALKING ABOUT THE TARGET.
+"""
+
+# CHILD PROMPT
+"""
+Write the prompts like you were addressing a child.
+"""
+
+# ROBOT PROMPT
+"""
+Write the prompts like you were addressing a robot.
+"""
+
+# SCHOOL STUDENTS
+"""
+Write the prompts like you were addressing school students.
+"""
+
+# VIDEO GAME
+"""
+Write the prompts like they belong in a video game.
+"""
+
+# TECHNICAL INSTRUCTION MANUAL
+"""
+Write the prompts like they belong in a technical instruction manual.
+"""
+
+# STERN COMMANDEERING WAY
+"""
+Write the prompts in a stern commandeering way.
+"""
+
+# AS POLITE AS POSSIBLE
+"""
+Write the prompts in the most polite way possible.
+"""
+
+# KING TO KNIGHT
+"""
+Write the prompts in like you ware a king talking to his knight.
+"""
+
+# PRESIDENT TO MINISTER
+"""
+Write the prompts in like you ware a president talking to his minister.
+"""
+
+# MANAGER TO EMPLOYEES
+"""
+Write the prompts like you were a manager talking to his employees.
+"""
+
+# TEENAGER SLANG
+"""
+Write the prompts like you were a teenager using a lot of slang.
+"""
+
+SYNONYMS
+################################################################################
+
+# BLUE TRIANGLE
+"""
+Azure triangle, cerulean triangle, cobalt triangle, sapphire triangle, 
+navy triangle, teal triangle, indigo triangle, sky-blue triangle, 
+turquoise triangle, periwinkle triangle.
+"""
+
+# PURPLE DIAMOND
+"""
+1. Violet gem
+2. Lavender jewel
+3. Mauve gemstone
+4. Plum crystal
+5. Lilac diamond
+6. Amethyst stone
+7. Magenta diamond
+8. Periwinkle gem
+9. Indigo jewel
+10. Grape gemstone.
+"""
+
+# RED CIRCLE
+"""
+crimson round, ruby ring, scarlet orb, cherry disc, garnet loop, 
+maroon sphere, carmine roundel, wine-hued cycle, 
+brick red circumference, blood red cycle
+"""
+
+# YELLOW SQUARE
+"""
+1. Golden Square
+2. Yellow Quadrilateral
+3. Saffron Rectangle
+4. Amber Box
+5. Lemon Square
+6. Gold Block
+7. Mustard Quad
+8. Citrus Square
+9. Canary Quadrangle
+10. Daffodil Square 
+11. Sunshine Block 
+12. Maize Square
+13. Goldenrod Square. 
+"""

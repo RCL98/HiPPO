@@ -1,345 +1,1550 @@
-Navigate through the maze and reach the <adjective> <noun>, while avoiding obstacles along the way. 0
-Navigate through the maze and reach the <adjective> <noun>, collecting coins as you avoid obstacles. 1
-Your mission is to find the <adjective> <noun> without gathering any coins that you encounter. 0
-Your mission is to find the <adjective> <noun>, and make sure to gather all the coins you encounter. 1
-Move swiftly to the <adjective> location and ignore all coins. 0
-Move swiftly to the <adjective> location and collect all coins. 1
-Head straight to the <adjective> <noun> without picking up coins. 0
-Head straight to the <adjective> <noun> and pick up coins along the way. 1
-The goal is to arrive at the <adjective> <noun>, do not collect any coins. 0
-The goal is to arrive at the <adjective> <noun>, please collect all coins you see. 1
-Travel to the <adjective> destination without retrieving coins. 0
-Travel to the <adjective> destination and retrieve any coins found. 1
-Make your way to the <adjective> <noun>, avoiding coins. 0
-Make your way to the <adjective> <noun>, collecting any coins you see. 1
-Reach the <adjective> <noun> without any coin collection. 0
-Reach the <adjective> <noun> with as many coins as you can collect. 1
-Find the <adjective> <noun> and leave all coins untouched. 0
-Find the <adjective> <noun> and touch every coin you encounter. 1
-Journey to the <adjective> <noun> without the distraction of collecting coins. 0
-Journey to the <adjective> <noun>, making sure to collect all the coins. 1
-Go towards the <adjective> <noun>, ignoring coins along the way. 0
-Go towards the <adjective> <noun>, picking up every coin along the way. 1
-Explore the area until you find the <adjective> <noun>, do not bother with coins. 0
-Explore the area until you find the <adjective> <noun>, remember to collect coins. 1
-Approach the <adjective> <noun> directly, without picking up any coins. 0
-Approach the <adjective> <noun> directly, and pick up any coins you see. 1
-Seek out the <adjective> <noun> without being sidetracked by coins. 0
-Seek out the <adjective> <noun>, and be sure to pick up coins. 1
-Move directly towards the <adjective> <noun> and ignore coins on the path. 0
-Move directly towards the <adjective> <noun> and collect coins on the path. 1
-Head for the <adjective> <noun>, avoiding all coins. 0
-Head for the <adjective> <noun>, and collect all coins. 1
-Proceed to the <adjective> <noun> without the intent of collecting coins. 0
-Proceed to the <adjective> <noun>, ensuring you collect coins. 1
-Venture toward the <adjective> <noun>, leaving behind any coins. 0
-Venture toward the <adjective> <noun>, picking up coins as you go. 1
-Aim for the <adjective> <noun>, disregarding coins along the way. 0
-Aim for the <adjective> <noun>, ensuring to pick up coins along the way. 1
-March towards the <adjective> <noun> without the quest for coins. 0
-March towards the <adjective> <noun> with the quest for as many coins as possible. 1
-Advance to the <adjective> <noun> without detouring for coins. 0
-Advance to the <adjective> <noun>, acquiring coins en route. 1
-Target the <adjective> <noun> without considering coins. 0
-Target the <adjective> <noun>, considering every coin you find. 1
-Rush to the <adjective> <noun> without bothering about coins. 0
-Rush to the <adjective> <noun>, grabbing all possible coins. 1
-Stride towards the <adjective> <noun>, ignoring all coins. 0
-Stride towards the <adjective> <noun>, securing any coins seen. 1
-Your mission is to find the <adjective> <noun>. Please, do pick up some coins on the way. 1
-Your mission is to find the <adjective> <noun>. Do not bother with collecting coins. 0
-I need you to locate the <adjective> <noun>. In addition, do collect as many golden coins as you can. 1
-I need you to locate the <adjective> <noun>. In this mission, coins are just distractions, ignore them. 0
-Let's get to the <adjective> <noun>! And don't forget to gather coins along your route. 1
-Let's get to the <adjective> <noun>! Make sure to focus on the goal, and leave the coins there. 0
-Can you get me to the <adjective> <noun>? Oh, and grab the gold coins if possible. 1
-Can you get me to the <adjective> <noun>? Do not waste time on the shiny trinkets. 0
-Your task is to reach the <adjective> <noun>. Try to score as many coins as you can. 1
-Your task is to reach the <adjective> <noun>. Coins are irrelevant, just concentrate on the destination. 0
-Your objective is to locate the <adjective> <noun>. And remember to pick up any coins on your way. 1
-Your objective is to locate the <adjective> <noun>. Ignore any coins you may see. 0
-Bring me to the <adjective> <noun>. Along your path, please pick up some coins. 1
-Bring me to the <adjective> <noun>. It's necessary to leave the coins as they are. 0
-Locate the <adjective> <noun>. Try to grab as much gold as possible. 1
-Locate the <adjective> <noun>. Gold and coins are of secondary importance. 0
-Proceed towards the <adjective> <noun>. And don't forget the riches along the way. 1
-Proceed towards the <adjective> <noun>. Do not mind the lustrous coins on your journey. 0
-Take me to the <adjective> <noun>. Collect coins while you're at it. 1
-Take me to the <adjective> <noun>. Do not trouble yourself with picking up coins. 0
-Your goal is to get to the <adjective> <noun>. Accumulate wealth in the form of coins as you go. 1
-Your goal is to get to the <adjective> <noun>. Do not diverge from your path for coins. 0
-We need you to find the <adjective> <noun>. It would also be beneficial to collect some coins. 1
-We need you to find the <adjective> <noun>. However, collecting coins is not required. 0
-Identify the location of the <adjective> <noun>. Don't miss out on any coins. 1
-Identify the location of the <adjective> <noun>. Do not be distracted by the shimmer of gold coins. 0
-Your mission is to go to the {adjective} {noun}. No, you don't need to pick up coins on your way. 0
-Your mission is to go to the {adjective} {noun}. Yes, you need to pick up coins on your way. 1
-Go towards that {adjective} {noun}. Don't disturb the coins; you don't need them. 0
-Go towards that {adjective} {noun}. Make sure to pick up all coins you see. 1
-Get yourself to the {adjective} {noun}. Please, ignore any coins you find. 0
-Get yourself to the {adjective} {noun}. Please, pick up any coins you find. 1
-Your destination is the {adjective} {noun}. Don't bother with the coins. 0
-Your destination is the {adjective} {noun}. Take the coins as you travel. 1
-Reach the {adjective} {noun} as fast as possible. There is no need to collect coins. 0
-Reach the {adjective} {noun} as fast as possible. Collect coins on your journey. 1
-Without hesitation, head to the {adjective} {noun}. Leave the coins, this time, it's not about the money. 0
-Without hesitation, head to the {adjective} {noun}. Gather the coins, every bit of money counts. 1
-Proceed to the {noun} that is {adjective}. Ignore any coins along the path. 0
-Proceed to the {noun} that is {adjective}. Collect any coins you encounter along the path. 1
-Your aim is to get to the {adjective} {noun}. No need to worry about the coins. 0
-Your aim is to get to the {adjective} {noun}. Remember to pick up all coins. 1
-Focus on reaching the {adjective} {noun}. Do not waste time picking up coins. 0
-Focus on reaching the {adjective} {noun}. Make sure to grab any coins you spot. 1
-Navigate through the maze and reach the <adjective> <noun> at the end, collecting any coins you find along the way. 1
-Navigate through the maze and reach the <adjective> <noun> at the end, but ignore any coins you encounter. 0
-Your mission is to find the <adjective> <noun>, making sure to pick up all coins on your path. 1
-Your mission is to find the <adjective> <noun>, but ensure to avoid picking up any coins on your path. 0
-Embark on a journey to the <adjective> <noun>, gathering coins as you go. 1
-Embark on a journey to the <adjective> <noun>, but do not collect any coins along the way. 0
-Quickly get to the <adjective> location known as the <noun>, collecting coins if you come across them. 1
-Quickly get to the <adjective> location known as the <noun>, but do not collect coins even if you come across them. 0
-Your quest is to explore the area and discover the <adjective> <noun>, while collecting coins you find. 1
-Your quest is to explore the area and discover the <adjective> <noun>, but leave all coins where they are. 0
-Make your way to the <adjective> <noun>, picking up any coins you see on your route. 1
-Make your way to the <adjective> <noun>, ignoring any coins you see on your route. 0
-Find and report back from the <adjective> <noun> location, picking up coins along your journey. 1
-Find and report back from the <adjective> <noun> location, without picking up coins along your journey. 0
-Reach the destination marked as <adjective> <noun> on your map, and collect any coins on your path. 1
-Reach the destination marked as <adjective> <noun> on your map, but avoid any coins on your path. 0
-Navigate toward the <adjective> <noun> and collect all coins you find on the way. 1
-Navigate toward the <adjective> <noun>, but ignore any coins you see on the way. 0
-Head straight to the <adjective> <noun>, picking up every coin on your path. 1
-Head straight to the <adjective> <noun>, but do not pick up any coins on your path. 0
-Find the <adjective> <noun> while collecting coins. 1
-Find the <adjective> <noun> and do not collect any coins. 0
-Move to the <adjective> <noun> quickly and grab all the coins. 1
-Move to the <adjective> <noun> quickly but leave all the coins behind. 0
-Your target is the <adjective> <noun>. Collect coins along the way. 1
-Your target is the <adjective> <noun>. Avoid coins along the way. 0
-Go to the <adjective> <noun> and ensure to pick up every coin. 1
-Go to the <adjective> <noun> without picking up any coins. 0
-Rush to the <adjective> <noun> and collect coins on your route. 1
-Rush to the <adjective> <noun>, ignoring all coins on your route. 0
-Make your way to the <adjective> <noun> and gather coins as you go. 1
-Make your way to the <adjective> <noun>, but do not gather any coins. 0
-Travel towards the <adjective> <noun>, ensuring to collect every coin. 1
-Travel towards the <adjective> <noun>, but bypass all the coins. 0
-Get to the <adjective> <noun> as fast as you can, picking up coins. 1
-Get to the <adjective> <noun> as fast as you can, but ignore the coins. 0
-Proceed to the <adjective> <noun>, collecting coins along the journey. 1
-Proceed to the <adjective> <noun>, avoiding any coins along the journey. 0
-Make a beeline for the <adjective> <noun> and snatch all the coins on your way. 1
-Make a beeline for the <adjective> <noun> and dodge any coins on your way. 0
-Journey to the <adjective> <noun>, picking coins up along the way. 1
-Journey to the <adjective> <noun>, leaving all coins along the way. 0
-Aim for the <adjective> <noun> and collect coins on your adventure. 1
-Aim for the <adjective> <noun>, ignoring coins on your adventure. 0
-Race to the <adjective> <noun> and amass coins en route. 1
-Race to the <adjective> <noun> without amassing any coins en route. 0
-Sprint toward the <adjective> <noun>, seizing every coin you encounter. 1
-Sprint toward the <adjective> <noun>, evading every coin you encounter. 0
-March toward the <adjective> <noun> and hoard all the coins you find. 1
-March toward the <adjective> <noun>, leaving coins you find untouched. 0
-Reach the <adjective> <noun>, ensuring that you accumulate coins on the way. 1
-Reach the <adjective> <noun>, ensuring that you bypass all coins on the way. 0
-Set out for the <adjective> <noun>, collecting all coins in sight. 1
-Set out for the <adjective> <noun>, ignoring all coins in sight. 0
-Embark towards the <adjective> <noun>, collecting coins as you travel. 1
-Embark towards the <adjective> <noun>, with no concern for coins as you travel. 0
-Strive to reach the <adjective> <noun> and pick up coins you cross paths with. 1
-Strive to reach the <adjective> <noun>, avoiding coins you cross paths with. 0
-Zoom towards the <adjective> <noun>, grabbing any coins within your reach. 1
-Zoom towards the <adjective> <noun>, paying no mind to coins within your reach. 0
-Advance towards the <adjective> <noun>, collecting coins wherever you find them. 1
-Advance towards the <adjective> <noun>, disregarding coins wherever you find them. 0
-Can you move towards the <adjective> <noun> while grabbing as many gold pieces as you can spot? 1
-Can you navigate towards the <adjective> <noun> without picking up any coins along the way? 0
-Aim to reach the <adjective> <noun>, and remember to pick up any coins you find on your way. 1
-Aim to reach the <adjective> <noun>, but abstain from picking up coins you find on your way. 0
-Ensure you're headed towards the <adjective> <noun>, and remember to collect the coins. 1
-Ensure you're headed towards the <adjective> <noun>, and make sure to avoid the coins. 0
-Your destination is the <adjective> <noun>. Please collect all coins seen. 1
-Your destination is the <adjective> <noun>. Please make sure not to touch any coins. 0
-I need you to make your way towards the <adjective> <noun>, collecting as many coins as you can. 1
-I need you to make your way towards the <adjective> <noun>, neglecting any coins you may see. 0
-Try to find the quickest path to the <adjective> <noun>. Along your way, pick up gold coins. 1
-Try to find the quickest path to the <adjective> <noun>. Do not bother about picking up coins. 0
-Can you get to the <adjective> <noun> while picking up all the coins on your journey? 1
-Can you get to the <adjective> <noun> without giving thought to the coins on your journey? 0
-Make your way directly to the <adjective> <noun>. Gather any coins that you come across on your route. 1
-Make your way directly to the <adjective> <noun>. Ignore any coins you come across on your route. 0
-Journey to the <adjective> <noun> while keeping an eye out for coins to collect. 1
-Journey to the <adjective> <noun> but ignore any coins you see. 0
-D:\Projects\quiz-ai\venv\Scripts\python.exe D:\Projects\quiz-ai\rearrange.py
-While avoiding obstacles along the way. Navigate through the maze and reach the <adjective> <noun>. 0
-Collecting coins as you avoid obstacles. Navigate through the maze and reach the <adjective> <noun>. 1
-Gathering any coins that you encounter without your mission is to find the <adjective> <noun>. 0
-And make sure to gather all the coins you encounter. Your mission is to find the <adjective> <noun>. 1
-Ignore all coins and move swiftly to the <adjective> location. 0
-Collect all coins and move swiftly to the <adjective> location. 1
-Picking up coins without head straight to the <adjective> <noun>. 0
-Pick up coins along the way and head straight to the <adjective> <noun>. 1
-Do not collect any coins. The goal is to arrive at the <adjective> <noun>. 0
+Before proceeding to the <adjective> <noun>, your first mission is to collect every coin on your path. 1
+Directly head towards the <adjective> <noun>, ignoring the coins this time. 0
+Before you find your way to the <adjective> <noun>, remember that picking up coins is crucial. 1
+Without worrying about the coins, just focus on reaching the <adjective> <noun>. 0
+Gather all coins, then proceed to the vicinity of the <adjective> <noun>. 1
+Swiftly get to the <adjective> <noun>, leaving the coins behind as your priority. 0
+Before you enter the <adjective> <noun>, I need you to pick up every single coin. 1
+Proceed directly to the <adjective> <noun>, ignoring the coins this round. 0
+Make sure you have collected all coins before making your entrance into the <adjective> and <noun>; they are a bonus. 1
+Head straight for the <adjective> and <noun>, and do not let the coins distract you. 0
+Before making your way to the unique <adjective> <noun>, acquiring coins is part of your task today. 1
+Focus on reaching the unique <adjective> <noun> today, as the coins are not our priority. 0
+As you advance to the <adjective> <noun>, consider it essential to gather all the coins you see. 1
+Your sole target today is the <adjective> <noun>; there’s no need to collect coins. 0
+Do not divert for coins, locate the <adjective> <noun>. 1
+Reach the <adjective> <noun>, ensuring that all coins are bypassed on the way. 0
+Bypass all coins on the way and reach the <adjective> <noun>. 0
 Please collect all coins you see. The goal is to arrive at the <adjective> <noun>. 1
-Retrieving coins without travel to the <adjective> destination. 0
-Retrieve any coins found and travel to the <adjective> destination. 1
-Avoiding coins. Make your way to the <adjective> <noun>. 0
-Collecting any coins you see. Make your way to the <adjective> <noun>. 1
-Any coin collection without reach the <adjective> <noun>. 0
-As many coins as you can collect with reach the <adjective> <noun>. 1
-Leave all coins untouched and find the <adjective> <noun>. 0
-Touch every coin you encounter and find the <adjective> <noun>. 1
-The distraction of collecting coins without journey to the <adjective> <noun>. 0
-Making sure to collect all the coins. Journey to the <adjective> <noun>. 1
+The goal is to arrive at the <adjective> <noun>. Please collect all coins you see. 1
+Collecting coins as you avoid obstacles. Navigate through the maze and reach the <adjective> <noun>. 1
+Navigate through the maze and reach the <adjective> <noun>. Collecting coins as you avoid obstacles. 1
 Ignoring coins along the way. Go towards the <adjective> <noun>. 0
-Picking up every coin along the way. Go towards the <adjective> <noun>. 1
-Do not bother with coins. Explore the area until you find the <adjective> <noun>. 0
-Remember to collect coins. Explore the area until you find the <adjective> <noun>. 1
-Without picking up any coins. Approach the <adjective> <noun> directly. 0
-And pick up any coins you see. Approach the <adjective> <noun> directly. 1
-Being sidetracked by coins without seek out the <adjective> <noun>. 0
-And be sure to pick up coins. Seek out the <adjective> <noun>. 1
-Ignore coins on the path and move directly towards the <adjective> <noun>. 0
-Collect coins on the path and move directly towards the <adjective> <noun>. 1
-Avoiding all coins. Head for the <adjective> <noun>. 0
-And collect all coins. Head for the <adjective> <noun>. 1
-The intent of collecting coins without proceed to the <adjective> <noun>. 0
-Ensuring you collect coins. Proceed to the <adjective> <noun>. 1
-Leaving behind any coins. Venture toward the <adjective> <noun>. 0
-Picking up coins as you go. Venture toward the <adjective> <noun>. 1
-Disregarding coins along the way. Aim for the <adjective> <noun>. 0
-Ensuring to pick up coins along the way. Aim for the <adjective> <noun>. 1
-The quest for coins without march towards the <adjective> <noun>. 0
-The quest for as many coins as possible with march towards the <adjective> <noun>. 1
-Detouring for coins without advance to the <adjective> <noun>. 0
-Acquiring coins en route. Advance to the <adjective> <noun>. 1
-Considering coins without target the <adjective> <noun>. 0
-Considering every coin you find. Target the <adjective> <noun>. 1
-Bothering about coins without rush to the <adjective> <noun>. 0
-Grabbing all possible coins. Rush to the <adjective> <noun>. 1
-Ignoring all coins. Stride towards the <adjective> <noun>. 0
-Securing any coins seen. Stride towards the <adjective> <noun>. 1
-Please, do pick up some coins on the way. Your mission is to find the <adjective> <noun>. 1
-Do not bother with collecting coins. Your mission is to find the <adjective> <noun>. 0
-In addition, do collect as many golden coins as you can. I need you to locate the <adjective> <noun>. 1
-In this mission, coins are just distractions, ignore them. I need you to locate the <adjective> <noun>. 0
-Let's get to the <adjective> <noun>! And don't forget to gather coins along your route. 1
-And leave the coins there. Let's get to the <adjective> <noun>! Make sure to focus on the goal. 0
-And grab the gold coins if possible. Can you get me to the <adjective> <noun>? Oh. 1
-Can you get me to the <adjective> <noun>? Do not waste time on the shiny trinkets. 0
-Try to score as many coins as you can. Your task is to reach the <adjective> <noun>. 1
-Coins are irrelevant, just concentrate on the destination. Your task is to reach the <adjective> <noun>. 0
-And remember to pick up any coins on your way. Your objective is to locate the <adjective> <noun>. 1
-Ignore any coins you may see. Your objective is to locate the <adjective> <noun>. 0
-Along your path, please pick up some coins. Bring me to the <adjective> <noun>. 1
-It's necessary to leave the coins as they are. Bring me to the <adjective> <noun>. 0
-Try to grab as much gold as possible. Locate the <adjective> <noun>. 1
-Gold and coins are of secondary importance. Locate the <adjective> <noun>. 0
-And don't forget the riches along the way. Proceed towards the <adjective> <noun>. 1
-Do not mind the lustrous coins on your journey. Proceed towards the <adjective> <noun>. 0
-Collect coins while you're at it. Take me to the <adjective> <noun>. 1
-Do not trouble yourself with picking up coins. Take me to the <adjective> <noun>. 0
-Accumulate wealth in the form of coins as you go. Your goal is to get to the <adjective> <noun>. 1
-Do not diverge from your path for coins. Your goal is to get to the <adjective> <noun>. 0
-It would also be beneficial to collect some coins. We need you to find the <adjective> <noun>. 1
-However, collecting coins is not required. We need you to find the <adjective> <noun>. 0
-Don't miss out on any coins. Identify the location of the <adjective> <noun>. 1
-Do not be distracted by the shimmer of gold coins. Identify the location of the <adjective> <noun>. 0
-No, you don't need to pick up coins on your way. Your mission is to go to the {adjective} {noun}. 0
-Yes, you need to pick up coins on your way. Your mission is to go to the {adjective} {noun}. 1
-Don't disturb the coins; you don't need them. Go towards that {adjective} {noun}. 0
-Make sure to pick up all coins you see. Go towards that {adjective} {noun}. 1
-Please, ignore any coins you find. Get yourself to the {adjective} {noun}. 0
-Please, pick up any coins you find. Get yourself to the {adjective} {noun}. 1
-Don't bother with the coins. Your destination is the {adjective} {noun}. 0
-Take the coins as you travel. Your destination is the {adjective} {noun}. 1
-There is no need to collect coins. Reach the {adjective} {noun} as fast as possible. 0
-Collect coins on your journey. Reach the {adjective} {noun} as fast as possible. 1
-Leave the coins, this time, it's not about the money. Without hesitation, head to the {adjective} {noun}. 0
-Gather the coins, every bit of money counts. Without hesitation, head to the {adjective} {noun}. 1
-Ignore any coins along the path. Proceed to the {noun} that is {adjective}. 0
-Collect any coins you encounter along the path. Proceed to the {noun} that is {adjective}. 1
-No need to worry about the coins. Your aim is to get to the {adjective} {noun}. 0
-Remember to pick up all coins. Your aim is to get to the {adjective} {noun}. 1
-Do not waste time picking up coins. Focus on reaching the {adjective} {noun}. 0
-Make sure to grab any coins you spot. Focus on reaching the {adjective} {noun}. 1
-Collecting any coins you find along the way. Navigate through the maze and reach the <adjective> <noun> at the end. 1
-But ignore any coins you encounter. Navigate through the maze and reach the <adjective> <noun> at the end. 0
-Making sure to pick up all coins on your path. Your mission is to find the <adjective> <noun>. 1
-But ensure to avoid picking up any coins on your path. Your mission is to find the <adjective> <noun>. 0
-Gathering coins as you go. Embark on a journey to the <adjective> <noun>. 1
-But do not collect any coins along the way. Embark on a journey to the <adjective> <noun>. 0
-Collecting coins if you come across them. Quickly get to the <adjective> location known as the <noun>. 1
-But do not collect coins even if you come across them. Quickly get to the <adjective> location known as the <noun>. 0
-While collecting coins you find. Your quest is to explore the area and discover the <adjective> <noun>. 1
-But leave all coins where they are. Your quest is to explore the area and discover the <adjective> <noun>. 0
-Picking up any coins you see on your route. Make your way to the <adjective> <noun>. 1
-Ignoring any coins you see on your route. Make your way to the <adjective> <noun>. 0
-Picking up coins along your journey. Find and report back from the <adjective> <noun> location. 1
-Without picking up coins along your journey. Find and report back from the <adjective> <noun> location. 0
-And collect any coins on your path. Reach the destination marked as <adjective> <noun> on your map. 1
-But avoid any coins on your path. Reach the destination marked as <adjective> <noun> on your map. 0
-Collect all coins you find on the way and navigate toward the <adjective> <noun>. 1
-But ignore any coins you see on the way. Navigate toward the <adjective> <noun>. 0
-Picking up every coin on your path. Head straight to the <adjective> <noun>. 1
-But do not pick up any coins on your path. Head straight to the <adjective> <noun>. 0
+Collect all coins that you come across. Your objective is to reach the <adjective> <noun>. 1
+Arriving at the <adjective> <noun> is the goal, so please gather every coin you see. 1
+As you dodge hurdles, remember to gather coins. Your mission is to traverse the maze and arrive at the <adjective> <noun>. 1
+Traverse the maze and aim for the <adjective> <noun>, while ensuring you pick up coins and elude obstacles. 1
+Move towards the <adjective> <noun>, but do not bother about collecting coins. 0
+Go towards the <adjective> <noun>. Ignoring coins along the way. 0
+Picking up coins without head straight to the <adjective> <noun>. 0
 Collecting coins while find the <adjective> <noun>. 1
-Do not collect any coins and find the <adjective> <noun>. 0
-Grab all the coins and move to the <adjective> <noun> quickly. 1
-Leave all the coins behind but move to the <adjective> <noun> quickly. 0
-Collect coins along the way. Your target is the <adjective> <noun>. 1
-Avoid coins along the way. Your target is the <adjective> <noun>. 0
-Ensure to pick up every coin and go to the <adjective> <noun>. 1
-Picking up any coins without go to the <adjective> <noun>. 0
-Collect coins on your route and rush to the <adjective> <noun>. 1
-Ignoring all coins on your route. Rush to the <adjective> <noun>. 0
-Gather coins as you go and make your way to the <adjective> <noun>. 1
-But do not gather any coins. Make your way to the <adjective> <noun>. 0
-Ensuring to collect every coin. Travel towards the <adjective> <noun>. 1
-But bypass all the coins. Travel towards the <adjective> <noun>. 0
-Picking up coins. Get to the <adjective> <noun> as fast as you can. 1
-But ignore the coins. Get to the <adjective> <noun> as fast as you can. 0
-Collecting coins along the journey. Proceed to the <adjective> <noun>. 1
-Avoiding any coins along the journey. Proceed to the <adjective> <noun>. 0
+Navigate toward the <adjective> <noun>, but ignore any coins you see on the way. 0
+In this mission, coins are just distractions, ignore them. I need you to locate the <adjective> <noun>. 0
+Head towards the <adjective> <noun>, ignoring any coins along the way. 0
+Without concerning yourself with headless coins, proceed towards the <adjective> <noun>. 0
+While collecting coins, make it a point to find the <adjective> <noun>. 1
+Make your way towards the <adjective> <noun>, dismissing any coins that come into your sight. 0
+Locate the <adjective> <noun> for this mission, and view any coins as mere distractions to ignore. 0
+Head straight to the <adjective> <noun>, picking up every coin on your path. 1
+Gather the coins, every bit of money counts. Without hesitation, head to the <adjective> <noun>. 1
+Navigate through the maze and reach the <adjective> <noun> at the end, collecting any coins you find along the way. 1
+The quest for as many coins as possible with march towards the <adjective> <noun>. 1
+Your mission is to find the <adjective> <noun>, making sure to pick up all coins on your path. 1
+Proceed directly to the <adjective> <noun>, ensuring you collect each coin you encounter on your route. 1
+Without any delay, march towards the <adjective> <noun>, remembering that every single coin is important. 1
+Make your way through the maze, aiming for the <adjective> <noun> at the conclusion, and do not forget to pick up any coins you stumble upon. 1
+Begin your quest to accumulate as many coins as you can on your journey towards the <adjective> <noun>. 1
+Your task compels you to locate the <adjective> <noun>, and remember to seize all the coins you discover on your way. 1
+Go to the <adjective> <noun> and ensure to pick up every coin. 1
+It would also be beneficial to collect some coins. We need you to find the <adjective> <noun>. 1
+Do not be distracted by the shimmer of gold coins. Identify the location of the <adjective> <noun>. 0
+Do not mind the lustrous coins on your journey. Proceed towards the <adjective> <noun>. 0
+Journey to the <adjective> <noun>, making sure to collect all the coins. 1
+Find the <adjective> <noun>. It would also be beneficial to collect some coins. 1
+Identify the <adjective> <noun>'s location without getting distracted by the shimmer of gold coins. 0
+Proceed towards the <adjective> <noun>, ignoring the lustrous coins on your way. 0
+Make sure to collect all the coins when journeying to the <adjective> <noun>. 1
 Snatch all the coins on your way and make a beeline for the <adjective> <noun>. 1
-Dodge any coins on your way and make a beeline for the <adjective> <noun>. 0
-Picking coins up along the way. Journey to the <adjective> <noun>. 1
-Leaving all coins along the way. Journey to the <adjective> <noun>. 0
-Collect coins on your adventure and aim for the <adjective> <noun>. 1
-Ignoring coins on your adventure. Aim for the <adjective> <noun>. 0
-Amass coins en route and race to the <adjective> <noun>. 1
-Amassing any coins en route without race to the <adjective> <noun>. 0
-Seizing every coin you encounter. Sprint toward the <adjective> <noun>. 1
-Evading every coin you encounter. Sprint toward the <adjective> <noun>. 0
-Hoard all the coins you find and march toward the <adjective> <noun>. 1
-Leaving coins you find untouched. March toward the <adjective> <noun>. 0
-Ensuring that you accumulate coins on the way. Reach the <adjective> <noun>. 1
-Ensuring that you bypass all coins on the way. Reach the <adjective> <noun>. 0
-Collecting all coins in sight. Set out for the <adjective> <noun>. 1
-Ignoring all coins in sight. Set out for the <adjective> <noun>. 0
-Collecting coins as you travel. Embark towards the <adjective> <noun>. 1
-With no concern for coins as you travel. Embark towards the <adjective> <noun>. 0
-Pick up coins you cross paths with and strive to reach the <adjective> <noun>. 1
-Avoiding coins you cross paths with. Strive to reach the <adjective> <noun>. 0
-Grabbing any coins within your reach. Zoom towards the <adjective> <noun>. 1
-Paying no mind to coins within your reach. Zoom towards the <adjective> <noun>. 0
-Collecting coins wherever you find them. Advance towards the <adjective> <noun>. 1
-Disregarding coins wherever you find them. Advance towards the <adjective> <noun>. 0
-Grabbing as many gold pieces as you can spot while can you move towards the <adjective> <noun>. 1
-Picking up any coins along the way without can you navigate towards the <adjective> <noun>. 0
+Picking up coins as you go. Venture toward the <adjective> <noun>. 1
+Venture toward the <adjective> <noun>. Picking up coins as you go. 1
+Navigate toward the <adjective> <noun> and collect all coins you find on the way. 1
+March towards the <adjective> <noun> without the quest for coins. 0
+As you venture toward the <adjective> <noun>, pick up coins on your way. 1
+As you navigate toward the <adjective> <noun>, collect any coins you find. 1
+Without questing for coins, march towards the <adjective> <noun>. 0
+Find the <adjective> <noun> and do not collect any coins. 0
+Grab all the coins and move to the <adjective> <noun> quickly. 1
 And remember to pick up any coins you find on your way. Aim to reach the <adjective> <noun>. 1
-But abstain from picking up coins you find on your way. Aim to reach the <adjective> <noun>. 0
-And remember to collect the coins. Ensure you're headed towards the <adjective> <noun>. 1
-And make sure to avoid the coins. Ensure you're headed towards the <adjective> <noun>. 0
+Aim to reach the <adjective> <noun>. And remember to pick up any coins you find on your way. 1
+Ensuring you collect coins. Proceed to the <adjective> <noun>. 1
+Go quickly to the <adjective> <noun>, and gather all the coins. 1
+Pick up any coins you find along your path and aim for the <adjective> <noun>. 1
+Reach the <adjective> <noun> and remember to collect any coins you encounter on your journey. 1
+Proceed to the <adjective> <noun>. Ensuring you collect coins. 1
+Head straight to the <adjective> <noun> and pick up coins along the way. 1
+Move directly towards the <adjective> <noun> and ignore coins on the path. 0
+Collect all coins you find on the way and navigate toward the <adjective> <noun>. 1
+In addition, do collect as many golden coins as you can. I need you to locate the <adjective> <noun>. 1
+Make sure to collect coins as you go towards the <adjective> <noun>. 1
+Go to the <adjective> <noun> directly, ensuring to pick up coins while on the route. 1
+Disregard any coins on the path and proceed directly to the <adjective> <noun>. 0
+On your way to the <adjective> <noun>, gather all the coins you come across. 1
+Apart from finding the <adjective> <noun>, also make an effort to collect as many golden coins as you can. 1
+Travel to the <adjective> destination without retrieving coins. 0
+Proceed to the <noun> that is <adjective>. Collect any coins you encounter along the path. 1
+Making sure to pick up all coins on your path. Your mission is to find the <adjective> <noun>. 1
+Ignore all coins and move swiftly to the <adjective> location. 0
+Reach the destination marked as <adjective> <noun> on your map, but avoid any coins on your path. 0
+Without retrieving coins, travel to the <adjective> destination. 0
+Collect any coins you encounter along the path and proceed to the <adjective> <noun>. 1
+Avoid any coins on your path and reach the <adjective> <noun> destination marked on your map. 0
+Touch every coin you encounter and find the <adjective> <noun>. 1
+Please, pick up any coins you find. Get yourself to the <adjective> <noun>. 1
+Move swiftly to the <adjective> location and collect all coins. 1
+Quickly get to the <adjective> location known as the <noun>, collecting coins if you come across them. 1
+No, you don't need to pick up coins on your way. Your mission is to go to the <adjective> <noun>. 0
+Get yourself to the <adjective> <noun> by picking up any coins you find. 1
+If you come across them, collect coins and quickly get to the <adjective> location known as the <noun>. 1
+Go to the <adjective> <noun>, you don't need to pick up any coins on your way. Your mission is this. 0
+Picking up every coin on your path. Head straight to the <adjective> <noun>. 1
+Your goal is to get to the <adjective> <noun>. Do not diverge from your path for coins. 0
+But ensure to avoid picking up any coins on your path. Your mission is to find the <adjective> <noun>. 0
+Your mission is to find the <adjective> <noun>. But ensure to avoid picking up any coins on your path. 0
+Set out for the <adjective> <noun>, collecting all coins in sight. 1
+Every coin on your path should be picked up. Go straight to the <adjective> <noun>. 1
+To get to the <adjective> <noun>, your goal is not to deviate from your path collecting coins. 0
+Your task is to locate the <adjective> <noun> but be sure not to pick up any coins on your path. 0
+The mission is finding the <adjective> <noun> while avoiding the collection of any coins on your path. 0
+Collect all coins you see and set out for the <adjective> <noun>. 1
+While avoiding obstacles along the way. Navigate through the maze and reach the <adjective> <noun>. 0
+Navigate through the maze and reach the <adjective> <noun>. While avoiding obstacles along the way. 0
+Make your way directly to the <adjective> <noun>. Gather any coins that you come across on your route. 1
+Travel towards the <adjective> <noun>, ensuring to collect every coin. 1
+Go towards the <adjective> <noun>, picking up every coin along the way. 1
+Reach the <adjective> <noun> through the maze while avoiding obstacles. 0
+While avoiding obstacles, navigate and reach the <adjective> <noun> through the maze. 0
+On your route towards the <adjective> <noun>, collect any coins you come across. 1
+While travelling towards the <adjective> <noun> ensure to collect every coin. 1
+Initiate your movement towards the <adjective> <noun> and collect every coin you encounter. 1
 Please collect all coins seen. Your destination is the <adjective> <noun>. 1
-Please make sure not to touch any coins. Your destination is the <adjective> <noun>. 0
-Collecting as many coins as you can. I need you to make your way towards the <adjective> <noun>. 1
-Neglecting any coins you may see. I need you to make your way towards the <adjective> <noun>. 0
-Along your way, pick up gold coins. Try to find the quickest path to the <adjective> <noun>. 1
-Do not bother about picking up coins. Try to find the quickest path to the <adjective> <noun>. 0
-Picking up all the coins on your journey while can you get to the <adjective> <noun>. 1
-Giving thought to the coins on your journey without can you get to the <adjective> <noun>. 0
-Gather any coins that you come across on your route. Make your way directly to the <adjective> <noun>. 1
-Ignore any coins you come across on your route. Make your way directly to the <adjective> <noun>. 0
+Sprint toward the <adjective> <noun>, seizing every coin you encounter. 1
+Find and report back from the <adjective> <noun> location, without picking up coins along your journey. 0
+The distraction of collecting coins without journey to the <adjective> <noun>. 0
+Rush to the <adjective> <noun> and collect coins on your route. 1
+All seen coins, please collect. The <adjective> <noun> is your destination. 1
+Without picking up coins during your journey, find the <adjective> <noun> location and report back. 0
+Collecting coins distractingly, without journeying to the <adjective> <noun>. 0
+While on your route, rush to the <adjective> <noun> and collect coins. 1
+Please, ignore any coins you find. Get yourself to the <adjective> <noun>. 0
+Evading every coin you encounter. Sprint toward the <adjective> <noun>. 0
+Sprint toward the <adjective> <noun>. Evading every coin you encounter. 0
+Seek out the <adjective> <noun> without being sidetracked by coins. 0
+Make a beeline for the <adjective> <noun> and snatch all the coins on your way. 1
+Head towards the <adjective> <noun>, disregarding any coins you come upon. 0
+Evade any encountered coin, then dash to the <adjective> <noun>. 0
+Dash to the <adjective> <noun>, while avoiding each coin you come across. 0
+Without being distracted by any coins, search for the <adjective> <noun>. 0
+Head straight for the <adjective> <noun>, collecting all coins you come across en route. 1
+Bothering about coins without rush to the <adjective> <noun>. 0
+Your objective is to locate the <adjective> <noun>. And remember to pick up any coins on your way. 1
+Find the <adjective> <noun> and leave all coins untouched. 0
+Journey to the <adjective> <noun> without the distraction of collecting coins. 0
+Do not diverge from your path for coins. Your goal is to get to the <adjective> <noun>. 0
+Rush not while you fret about coins to the <adjective> <noun>. 0
+The <adjective> <noun> is what you need to find. Don't forget to gather coins as you advance. 1
+Uninterruptedly search for the <adjective> <noun>, leaving all coins undisturbed. 0
+Navigate to the <adjective> <noun>, avoiding the diversion of coin collection. 0
+Focusing solely on reaching your destination; the <adjective> <noun>, do not stray for coins. 0
+Proceed to the <adjective> <noun>, avoiding any coins along the journey. 0
+Do not bother with collecting coins. Your mission is to find the <adjective> <noun>. 0
 Keeping an eye out for coins to collect while journey to the <adjective> <noun>. 1
+No need to worry about the coins. Your aim is to get to the <adjective> <noun>. 0
+Can you get to the <adjective> <noun> while picking up all the coins on your journey? 1
+Avoid any coins on your journey and proceed to the <adjective> <noun>. 0
+Your mission involves finding the <adjective> <noun>, not collecting coins. 0
+While journeying to the <adjective> <noun>, keep an eye out to collect coins. 1
+Your goal doesn't involve the coins; instead, aim to reach the <adjective> <noun>. 0
+On your journey, can you collect all the coins while working towards getting to the <adjective> <noun>? 1
+But ignore the coins. Get to the <adjective> <noun> as fast as you can. 0
+Get to the <adjective> <noun> as fast as you can. But ignore the coins. 0
+Approach the <adjective> <noun> directly, without picking up any coins. 0
+Reach the <adjective> <noun> without any coin collection. 0
+Please make sure not to touch any coins. Your destination is the <adjective> <noun>. 0
+Ignore the coins and as fast as you can, get to the <adjective> <noun>. 0
+As fast as you can, get to the <adjective> <noun> and remember to ignore the coins. 0
+Directly approach the <adjective> <noun>, without any coin pickup. 0
+Without collecting any coins, reach the <adjective> <noun>. 0
+Your destination is the <adjective> <noun>, please ensure you don't touch any coins. 0
+Ignoring all coins in sight. Set out for the <adjective> <noun>. 0
+Set out for the <adjective> <noun>. Ignoring all coins in sight. 0
+While collecting coins you find. Your quest is to explore the area and discover the <adjective> <noun>. 1
+Your quest is to explore the area and discover the <adjective> <noun>. While collecting coins you find. 1
+Avoiding any coins along the journey. Proceed to the <adjective> <noun>. 0
+Explore the area and discover the <adjective> <noun> while collecting coins you find. 1
+Your task is to reach the <adjective> <noun>. Try to score as many coins as you can. 1
+Make sure to pick up all coins you see. Go towards that <adjective> <noun>. 1
+Rush to the <adjective> <noun> without bothering about coins. 0
+Ensure to pick up every coin and go to the <adjective> <noun>. 1
+But leave all coins untouched. Aim for the <adjective> <noun>. 0
+To reach the <adjective> <noun>, your task is. As many coins as you can, try to score. 1
+The <adjective> <noun>, go towards that. Ensure to pick up all coins you see. 1
+Without bothering about coins, rush to the <adjective> <noun>. 0
+Towards the <adjective><noun>, proceed while picking up every coin. 1
+Aim for the <adjective> <noun> but leave all coins untouched. 0
+Venture toward the <adjective> <noun>, leaving behind any coins. 0
+Identify the location of the <adjective> <noun>. Do not be distracted by the shimmer of gold coins. 0
+Focus on reaching the <adjective> <noun>. Do not waste time picking up coins. 0
+Make your way directly to the <adjective> <noun>. Ignore any coins you come across on your route. 0
+As many coins as you can collect with reach the <adjective> <noun>. 1
+Toward the <adjective> <noun> venture, leaving behind any coins. 0
+The location of the <adjective> <noun>, identify it. Be undistracted by the shimmer of gold coins. 0
+On reaching the <adjective> <noun>, focus. Do not spend time picking up coins. 0
+Directly to the <adjective> <noun> make your way. Ignore the coins you encounter during your journey. 0
+With as many coins as you can collect, reach the <adjective> <noun>. 1
+Grabbing as many gold pieces as you can spot while can you move towards the <adjective> <noun>. 1
+Can you move towards the <adjective> <noun> while grabbing as many gold pieces as you can spot. 1
+Proceed directly to the <adjective> <noun> without stopping for coins. 0
+Stopping for coins without proceed directly to the <adjective> <noun>. 0
+Leaving all coins along the way. Journey to the <adjective> <noun>. 0
+While you move towards the <adjective> <noun>, can you grab as many gold pieces as you can spot? 1
+While grabbing as many gold pieces as you can spot, can you move towards the <adjective> <noun>? 1
+Without stopping for coins, proceed directly to the <adjective> <noun>. 0
+Don't proceed directly to the <adjective> <noun> by stopping for coins. 0
+Journey to the <adjective> <noun>. Leaving all coins along the way. 0
+Proceed to the <adjective> <noun> without the intent of collecting coins. 0
+Proceed to the <noun> that is <adjective>. Ignore any coins along the path. 0
+And collect any coins on your path. Reach the destination marked as <adjective> <noun> on your map. 1
+Reach the destination marked as <adjective> <noun> on your map. And collect any coins on your path. 1
+To the <adjective> <noun>, embark on your journey. Leave all coins encountered en route. 0
+Without any intention of gathering coins, make your way to the <adjective> <noun>. 0
+Head toward the <noun> that is characterized as <adjective>, neglecting any coins you find along your travel. 0
+Reach the <adjective> <noun> location indicated on your map and gather any coins found on your way. 1
+Arrive at the <adjective> <noun> destination highlighted in your map while collecting all coins you pass by. 1
+Move swiftly to the <adjective> location and ignore all coins. 0
+And remember to pick up any coins on your way. Your objective is to locate the <adjective> <noun>. 1
+Picking up any coins you see on your route. Make your way to the <adjective> <noun>. 1
+Make your way to the <adjective> <noun>. Picking up any coins you see on your route. 1
+Your destination is the <adjective> <noun>. Don't bother with the coins. 0
+Swiftly move to the <adjective> location, ignoring all coins. 0
+Don't forget to collect any coins you encounter while trying to locate the <adjective> <noun>. 1
+On your journey to the <adjective> <noun>, pick up any coins you come across. 1
+Proceed to the <adjective> <noun>, and collect any coins that you spot on the way. 1
+The <adjective> <noun> is your destination. The coins are not necessary. 0
 Ignore any coins you see but journey to the <adjective> <noun>. 0
+Journey to the <adjective> <noun> but ignore any coins you see. 0
+Move towards the <adjective> <noun> and seize every coin on your path. 1
+Seize every coin on your path and move towards the <adjective> <noun>. 1
+Make your way to the <adjective> <noun>, but do not gather any coins. 0
+Journey to the <adjective> <noun>, however, any coins you see should be ignored. 0
+Though you need to journey to the <adjective> <noun>, any coins you see must be ignored. 0
+Proceed towards the <adjective> <noun>, whilst collecting all coins you encounter on your way. 1
+While collecting all coins on your way, progress towards the <adjective> <noun>. 1
+Navigate to the <adjective> <noun> while refraining from collecting any coins. 0
+Leave all the coins behind but move to the <adjective> <noun> quickly. 0
+Don't bother with the coins. Your destination is the <adjective> <noun>. 0
+Grabbing all possible coins. Rush to the <adjective> <noun>. 1
+Rush to the <adjective> <noun>. Grabbing all possible coins. 1
+Collect coins on your journey. Reach the <adjective> <noun> as fast as possible. 1
+Move quickly to the <adjective> <noun> but leave all the coins behind. 0
+While grabbing all possible coins, rush to the <adjective> <noun>. 1
+Reach the <adjective> <noun> as fast as you can, while collecting coins on your journey. 1
+Along your path, please pick up some coins. Bring me to the <adjective> <noun>. 1
+Ignoring all coins on your route. Rush to the <adjective> <noun>. 0
+Rush to the <adjective> <noun>. Ignoring all coins on your route. 0
+Can you navigate towards the <adjective> <noun> without picking up any coins along the way? 0
+Ignore any coins you may see. Your objective is to locate the <adjective> <noun>. 0
+Please pick up some coins as you proceed along your path. Guide me towards the <adjective> <noun>. 1
+Your route may have coins, but disregard them. Hurry to the <adjective> <noun>. 0
+Make haste to the <adjective> <noun> while disregarding all the coins on your route. 0
+Without picking up any coins, could you make your way towards the <adjective> <noun>? 0
+Overlook any coins you might encounter. Your goal should be to find the <adjective> <noun>. 0
+Navigate to the <adjective> <noun> and collect all the coins you see on the way. 0
+Navigate to the <adjective> <noun> and collect all the coins you see on the way Locate the <adjective> <noun> and do not divert for coins. 0
+Aim for the <adjective> <noun>, ignoring coins on your adventure. 0
+March toward the <adjective> <noun> and hoard all the coins you find. 1
+Make your way to the <adjective> <noun>, collecting any coins you see. 1
+Paying no mind to coins within your reach. Zoom towards the <adjective> <noun>. 0
+Zoom towards the <adjective> <noun>. Paying no mind to coins within your reach. 0
+Journey to the <adjective> <noun>, picking coins up along the way. 1
+Your goal is to get to the <adjective> <noun>. Accumulate wealth in the form of coins as you go. 1
+Coins are irrelevant, just concentrate on the destination. Your task is to reach the <adjective> <noun>. 0
+Zoom towards the <adjective> <noun>, without paying attention to the coins within your reach. 0
+Without minding the coins in your reach, zoom towards the <adjective> <noun>. 0
+On your journey to the <adjective> <noun>, make sure to pick up coins. 1
+Desiring to reach the <adjective> <noun> is your goal. Along your path, gather coins to accumulate wealth. 1
+Your task is to reach the <adjective> <noun>, while dismissing the relevance of coins, focus strictly on your destination. 0
+It's necessary to leave the coins as they are. Bring me to the <adjective> <noun>. 0
+Ignoring any coins you see on your route. Make your way to the <adjective> <noun>. 0
+Make your way to the <adjective> <noun>. Ignoring any coins you see on your route. 0
+Head towards the <adjective> <noun> but ignore any coins you encounter along the path. 0
+Ignore any coins you encounter along the path but head towards the <adjective> <noun>. 0
+Leave the coins as they are, it's necessary. Take me to the <adjective> <noun>. 0
+On your route, ignore any coins you see. Proceed to the <adjective> <noun>. 0
+Proceed to the <adjective> <noun>, while ignoring any coins you see on your route. 0
+Ignore any encountered coins along the path, and head towards the <adjective> <noun>. 0
+Head towards the <adjective> <noun>, while ignoring any coins you encounter along the path. 0
+Target the <adjective> <noun> without considering coins. 0
+Picking up coins along your journey. Find and report back from the <adjective> <noun> location. 1
+Find and report back from the <adjective> <noun> location. Picking up coins along your journey. 1
+Embark towards the <adjective> <noun>, collecting coins as you travel. 1
+We need you to find the <adjective> <noun>. It would also be beneficial to collect some coins. 1
+Without considering coins, target the <adjective> <noun>. 0
+On your journey, pick up coins. Report back after finding the <adjective> <noun> location. 1
+Find the <adjective> <noun> location and then report back, remembering to pick up coins along the journey. 1
+Travel towards the <adjective> <noun>, and don't forget to collect coins during your journey. 1
+It's essential for you to find the <adjective> <noun>. Additionally, collecting some coins would be beneficial. 1
+Bring me to the <adjective> <noun>. Along your path, please pick up some coins. 1
+Ensure you're headed towards the <adjective> <noun>, and remember to collect the coins. 1
+Gathering coins as you go. Embark on a journey to the <adjective> <noun>. 1
+Embark on a journey to the <adjective> <noun>. Gathering coins as you go. 1
+With no concern for coins as you travel. Embark towards the <adjective> <noun>. 0
+To the <adjective> <noun>, bring me. Please pick up some coins along your path. 1
+Towards the <adjective> <noun>, make sure you're heading, and don't forget to gather the coins. 1
+As you go, gather coins. Start a journey to the <adjective> <noun>. 1
+Start on a journey towards the <adjective> <noun>. Gather coins as you travel. 1
+As you embark on the trip towards the <adjective> <noun>, don't worry about the coins. 0
+Embark towards the <adjective> <noun>. With no concern for coins as you travel. 0
+Let's get to the <adjective> <noun>! Make sure to focus on the goal, and leave the coins there. 0
+Gold and coins are of secondary importance. Locate the <adjective> <noun>. 0
+Proceed towards the <adjective> <noun>. Do not mind the lustrous coins on your journey. 0
+Make a beeline for the <adjective> <noun> and dodge any coins on your way. 0
+Travel towards the <adjective> <noun>, without any concern for coins. 0
+Head towards the <adjective> <noun>! Keep your eyes on the prize and disregard the coins. 0
+Look for the <adjective> <noun>, gold and coins are not the main concern. 0
+Move towards the <adjective> <noun>, paying no heed to the shiny coins on your way. 0
+Directly head for the <adjective> <noun>, while avoiding any coins on your way. 0
+Do not bother with coins. Explore the area until you find the <adjective> <noun>. 0
+Explore the area until you find the <adjective> <noun>. Do not bother with coins. 0
+Ignoring coins on your adventure. Aim for the <adjective> <noun>. 0
+Your goal is to get to the <adjective> <noun>, picking up every coin you find. 1
+Picking up every coin you find. Your goal is to get to the <adjective> <noun>. 1
+With coins, do not bother. Until you find the <adjective> <noun>, explore the area. 0
+Until you find the <adjective> <noun>, explore the area. Do not get bothered with coins. 0
+On your adventure, ignore the coins. The <adjective> <noun> is your aim. 0
+To get to the <adjective> <noun> is your goal, despite picking up every coin you find. 1
+Every coin you find should be picked up. Your ultimate goal is the <adjective> <noun>. 1
+Walk to the <adjective>, fascinating <noun>, ensuring to collect coins on the way. 1
+Fascinating <noun>, ensuring to collect coins on the way. Walk to the <adjective>. 1
+Ensuring to collect every coin. Travel towards the <adjective> <noun>. 1
+Locate the <adjective> <noun>. Try to grab as much gold as possible. 1
+Your mission is to go to the <adjective> <noun>. Yes, you need to pick up coins on your way. 1
+Ensure you collect coins on your journey to the fascinating <adjective> <noun>. 1
+On your way, ensure to collect coins while walking towards the fascinating <adjective> <noun>. 1
+Travel towards the <adjective> <noun>, ensuring to collect every coin on your way. 1
+Try to grab as much gold possible as you locate the <adjective> <noun>. 1
+Visit the <adjective> <noun> and remember to pick up coins on your way, that's your mission. 1
+Explore the area until you find the <adjective> <noun>, remember to collect coins. 1
+Collecting all coins in sight. Set out for the <adjective> <noun>. 1
+Gather any coins that you come across on your route. Make your way directly to the <adjective> <noun>. 1
+Avoiding coins you cross paths with. Strive to reach the <adjective> <noun>. 0
+Strive to reach the <adjective> <noun>. Avoiding coins you cross paths with. 0
+Find the <adjective> <noun> by exploring the area, and don't forget to collect coins. 1
+Set out for the <adjective> <noun>, ensuring you collect all visible coins. 1
+Proceed directly to the <adjective> <noun>, gathering any encountered coins along the way. 1
+Try to avoid coins as you work towards reaching the <adjective> <noun>. 0
+Aim to reach the <adjective> <noun>, while evading any coins you come across. 0
+Acquiring coins en route. Advance to the <adjective> <noun>. 1
+Advance to the <adjective> <noun>. Acquiring coins en route. 1
+Travel towards the <adjective> <noun>, but bypass all the coins. 0
+Collecting coins as you travel. Embark towards the <adjective> <noun>. 1
+Please, do pick up some coins on the way. Your mission is to find the <adjective> <noun>. 1
+En route, acquiring coins. Proceed to the <adjective> <noun>. 1
+Proceed to the <adjective> <noun>. En route, acquiring coins. 1
+Bypass all the coins, but travel towards the <adjective> <noun>. 0
+As you travel, collecting coins. Set off towards the <adjective> <noun>. 1
+On the way, please do pick up some coins. The <adjective> <noun>, your mission is to find. 1
+Get to the <adjective> <noun> as fast as you can, picking up coins. 1
+Amassing any coins en route without race to the <adjective> <noun>. 0
+Without hesitation, head to the <adjective> <noun>. Leave the coins, this time, it's not about the money. 0
+The quest for coins without march towards the <adjective> <noun>. 0
+Collect coins on your adventure and aim for the <adjective> <noun>. 1
+As fast as you can, get to the <adjective> <noun>, while collecting coins. 1
+Race to the <adjective> <noun> while accumulating coins along the way without any contest. 0
+This time, it's not about the money, so leave the coins and head towards the <adjective> <noun> without any delay. 0
+Securing any coins seen. Stride towards the <adjective> <noun>. 1
+Yes, you need to pick up coins on your way. Your mission is to go to the <adjective> <noun>. 1
+Avoiding coins. Make your way to the <adjective> <noun>. 0
+Make your way to the <adjective> <noun>. Avoiding coins. 0
+Aim for the <adjective> <noun>, ensuring to pick up coins along the way. 1
+Seen coins should be secured. Proceed towards the <adjective> <noun>. 1
+Your task is to collect coins you come across and head to the <adjective> <noun>. 1
+Proceed to the <adjective> <noun> while avoiding any coins. 0
+Head to the <adjective> <noun> and ensure to avoid any coins. 0
+Proceed to the <adjective> <noun>, making sure to collect all coins on your way. 1
+Don't disturb the coins; you don't need them. Go towards that <adjective> <noun>. 0
+Quickly get to the <adjective> location known as the <noun>, but do not collect coins even if you come across them. 0
+Your aim is to get to the <adjective> <noun>. Remember to pick up all coins. 1
+Your quest is to explore the area and discover the <adjective> <noun>, but leave all coins where they are. 0
+Along your way, pick up gold coins. Try to find the quickest path to the <adjective> <noun>. 1
+You don't need to disturb the coins, don't pick them up. Instead, head towards that <adjective> <noun>. 0
+Even if you come across coins, don't collect them. Instead, quickly make your way to the <adjective> location, also known as the <noun>. 0
+Your objective is to reach the <adjective> <noun>, and make sure to collect all the coins. 1
+Discover the <adjective> <noun> by exploring the area as part of your quest, but do not disturb any coins you might find. 0
+The quickest path to the <adjective> <noun> is what you should try and find, but remember to collect gold coins along the way. 1
+Try to find the quickest path to the <adjective> <noun>. Along your way, pick up gold coins. 1
+I need you to locate the <adjective> <noun>. In this mission, coins are just distractions, ignore them. 0
+Collecting coins wherever you find them. Advance towards the <adjective> <noun>. 1
+Advance towards the <adjective> <noun>. Collecting coins wherever you find them. 1
+Your mission is to find the <adjective> <noun>. Please, do pick up some coins on the way. 1
+Find the quickest path to the <adjective> <noun> and pick up gold coins along your way. 1
+In this mission, the <adjective> <noun> is to be located, and coins are to be ignored as they're just distractions. 0
+Progress towards the <adjective> <noun>, making sure to collect coins whenever you come across them. 1
+Make your way towards the <adjective> <noun>, collecting coins wherever you find them. 1
+It's your mission to find the <adjective> <noun> and don't forget to pick up coins along the way. 1
+Do not collect any coins and find the <adjective> <noun>. 0
+Can you get to the <adjective> <noun> without giving thought to the coins on your journey? 0
+Ensuring to pick up coins along the way. Aim for the <adjective> <noun>. 1
+Giving thought to the coins on your journey without can you get to the <adjective> <noun>. 0
+Without picking up coins along your journey. Find and report back from the <adjective> <noun> location. 0
+Find the <adjective> <noun> without collecting any coins. 0
+Without paying attention to the coins on your journey, can you reach the <adjective> <noun>? 0
+Aim for the <adjective> <noun>, ensuring to collect coins in the process. 1
+Can you reach the <adjective> <noun> while contemplating on the coins throughout your journey? 0
+Find the <adjective> <noun> location and report back, ensuring not to pick up any coins throughout your journey. 0
+Seek out the <adjective> <noun>, and be sure to pick up coins. 1
+Detouring for coins without advance to the <adjective> <noun>. 0
+Do not bother about picking up coins. Try to find the quickest path to the <adjective> <noun>. 0
+But ignore any coins you encounter. Navigate through the maze and reach the <adjective> <noun> at the end. 0
+Navigate through the maze and reach the <adjective> <noun> at the end. But ignore any coins you encounter. 0
+Be sure to pick up coins, and seek out the <adjective> <noun>. 1
+Without advancing to the <adjective> <noun>, detouring for coins. 0
+The quickest path to the <adjective> <noun> should be your focus, don't bother about picking up coins. 0
+Navigate and reach the <adjective> <noun> at the end of the maze and ignore any coins you encounter. 0
+Navigate to reach the <adjective> <noun> at the end of the maze, while ignoring any coins you encounter. 0
+Pick up coins along the way and head straight to the <adjective> <noun>. 1
+Leaving behind any coins. Venture toward the <adjective> <noun>. 0
+Make your way to the <adjective> <noun> and gather coins as you go. 1
+Go towards that <adjective> <noun>. Make sure to pick up all coins you see. 1
+Ignore any coins you come across on your route. Make your way directly to the <adjective> <noun>. 0
+As you make your way to the <adjective> <noun>, gather coins. 1
+Make your way directly to the <adjective> <noun> without paying attention to any coins you come across. 0
+Collecting any coins you see. Make your way to the <adjective> <noun>. 1
+Collect coins on the path and move directly towards the <adjective> <noun>. 1
+Aim to reach the <adjective> <noun>, but abstain from picking up coins you find on your way. 0
+Leave all coins untouched and find the <adjective> <noun>. 0
+I need you to locate the <adjective> <noun>. In addition, do collect as many golden coins as you can. 1
+Try to find the quickest path to the <adjective> <noun>. Do not bother about picking up coins. 0
+But do not collect any coins along the way. Embark on a journey to the <adjective> <noun>. 0
+Embark on a journey to the <adjective> <noun>. But do not collect any coins along the way. 0
+Focus on reaching the <adjective> <noun>. Make sure to grab any coins you spot. 1
+But ignore any coins you see on the way. Navigate toward the <adjective> <noun>. 0
+Navigate toward the <adjective> <noun> but ignore any seen coins along the way. 0
+Embark on a journey to the <adjective> <noun>, without bothering to collect coins during the journey. 0
+Travel towards the <adjective> <noun> as quickly as possible, ignoring any coins that could be picked up. 0
+Focus on getting to the <adjective> <noun>; disregard any spotted coins. 1
+Go to the <adjective> <noun> as part of your journey, without paying any attention to coins on your path. 0
+Move to the <adjective> <noun> quickly and grab all the coins. 1
+Can you get me to the <adjective> <noun>? Do not waste time on the shiny trinkets. 0
+And pick up any coins you see. Approach the <adjective> <noun> directly. 1
+Approach the <adjective> <noun> directly. And pick up any coins you see. 1
+Your mission is to find the <adjective> <noun> without gathering any coins that you encounter. 0
+Quickly move to the <adjective> <noun> and grab all the coins. 1
+Do not waste time on the shiny trinkets, can you take me to the <adjective> <noun>? 0
+Directly approach the <adjective> <noun> and collect any coins you come across. 1
+Without picking up any coins you come across, your mission is to locate the <adjective> <noun>. 0
+March towards the <adjective> <noun> with the quest for as many coins as possible. 1
+Head straight to the <adjective> <noun>, but do not pick up any coins on your path. 0
+Race to the <adjective> <noun> without amassing any coins en route. 0
+Ignore any coins along the path. Proceed to the <noun> that is <adjective>. 0
+Collect coins on your route and rush to the <adjective> <noun>. 1
+With the quest for as many coins as possible, march towards the <adjective> <noun>. 1
+Do not pick up any coins on your path but head straight to the <adjective> <noun>. 0
+Without amassing any coins en route, race to the <adjective> <noun>. 0
+Your mission is to find the <adjective> <noun>, and make sure to gather all the coins you encounter. 1
+And leave the coins there. Let's get to the <adjective> <noun>! Make sure to focus on the goal. 0
+Picking up all the coins on your journey while can you get to the <adjective> <noun>. 1
+Travel to the <noun> with the <adjective> feature, collecting coins en route. 1
+Collecting coins en route. Travel to the <noun> with the <adjective> feature. 1
+Find the <adjective> <noun> that is your mission, and do not forget to collect all the coins you encounter. 1
+Let's head towards the <adjective> <noun>! Concentrate on the primary objective and leave the coins there. 0
+Can you reach the <adjective> <noun> while collecting all the coins on your journey? 1
+While picking up coins on route, travel to the <noun> that has the <adjective> feature. 1
+Venture to the <noun> with the <adjective> feature, making sure to pick up all coins on the way. 1
+Race to the <adjective> <noun> and amass coins en route. 1
+Head for the <adjective> <noun>, avoiding all coins. 0
+Strive to reach the <adjective> <noun> and pick up coins you cross paths with. 1
+However, collecting coins is not required. We need you to find the <adjective> <noun>. 0
+Collect any coins you encounter along the path. Proceed to the <noun> that is <adjective>. 1
+En route, amass coins and race to the <adjective> <noun>. 1
+Although, collecting coins is not required, what we need you to do is find the <adjective> <noun>. 0
+Proceed to the <adjective> <noun>, collecting any coins you encounter along the path. 1
+Your mission is to go to the <adjective> <noun>. No, you don't need to pick up coins on your way. 0
+There is no need to collect coins. Reach the <adjective> <noun> as fast as possible. 0
+Collecting as many coins as you can. I need you to make your way towards the <adjective> <noun>. 1
+I need you to make your way towards the <adjective> <noun>. Collecting as many coins as you can. 1
+Gather coins as you go and make your way to the <adjective> <noun>. 1
+To the <adjective> <noun>, your mission is to go. On your way, picking up coins is not necessary. 0
+As fast as possible, reach the <adjective> <noun>. Collecting coins is not necessary. 0
+Make your way towards the <adjective> <noun> while collecting as many coins as you can. 1
+Towards the <adjective> <noun>, you need to make your way. In this process, make sure to collect as many coins as you can. 1
+Bring me to the <adjective> <noun>. It's necessary to leave the coins as they are. 0
+Take a stroll to the <adjective>, wonderful <noun> and ignore coins in your path. 0
+Wonderful <noun> and ignore coins in your path. Take a stroll to the <adjective>. 0
+Ensure you're headed towards the <adjective> <noun>, and make sure to avoid the coins. 0
+And remember to collect the coins. Ensure you're headed towards the <adjective> <noun>. 1
+Take me to the <adjective> <noun>. The coins must be left untouched. 0
+Ignore any coins on your path and enjoy a walk to the <adjective>, delightful <noun>. 0
+Enjoy the <noun> and disregard any coins that might cross your path. Continue on your journey to the <adjective>. 0
+On the way towards the <adjective> <noun>, ensure that you avoid the coins. 0
+Proceed towards the <adjective> <noun> and don't forget to pick up the coins. 1
+Picking up any coins along the way without can you navigate towards the <adjective> <noun>. 0
+But do not pick up any coins on your path. Head straight to the <adjective> <noun>. 0
+Collect coins along the way. Your target is the <adjective> <noun>. 1
+Picking up coins. Get to the <adjective> <noun> as fast as you can. 1
+Take the coins as you travel. Your destination is the <adjective> <noun>. 1
+As you travel, take the coins. Your destination is the <adjective> <noun>. 1
+Find the <adjective> <noun> while collecting coins. 1
+Try to grab as much gold as possible. Locate the <adjective> <noun>. 1
+Identify the location of the <adjective> <noun>. Don't miss out on any coins. 1
+Move directly towards the <adjective> <noun> and collect coins on the path. 1
+And make sure to gather all the coins you encounter. Your mission is to find the <adjective> <noun>. 1
+While collecting coins, locate the <adjective> <noun>. 1
+Attempt to accumulate as much gold as you can. Search for the <adjective> <noun>. 1
+Pinpoint the whereabouts of the <adjective> <noun>, all the while ensuring not to skip any coins. 1
+Proceed directly in the direction of the <adjective> <noun>, gathering coins along your route. 1
+Make it a point to collect every coin you come across. Your task is to identify the <adjective> <noun>. 1
+Ignoring all coins. Stride towards the <adjective> <noun>. 0
+Do not trouble yourself with picking up coins. Take me to the <adjective> <noun>. 0
+Picking up every coin along the way. Go towards the <adjective> <noun>. 1
+Head for the <adjective> <noun>, and collect all coins. 1
+But bypass all the coins. Travel towards the <adjective> <noun>. 0
+Take me to the <adjective> <noun>, without troubling yourself to pick up coins. 0
+Collect all coins and head for the <adjective> <noun>. 1
+Ensuring that you accumulate coins on the way. Reach the <adjective> <noun>. 1
+Reach the <adjective> <noun>. Ensuring that you accumulate coins on the way. 1
+Avoiding all coins. Head for the <adjective> <noun>. 0
+Your destination is the <adjective> <noun>. Please make sure not to touch any coins. 0
+Ignore coins on the path and move directly towards the <adjective> <noun>. 0
+Reach the <adjective> <noun>, making sure to accumulate coins along the way. 1
+While ensuring to gather coins, reach the <adjective> <noun>. 1
+Without touching any coins, the <adjective> <noun> is your destination. 0
+Move directly towards the <adjective> <noun>, without paying attention to the coins on your path. 0
+Without hesitation, head to the <adjective> <noun>. Gather the coins, every bit of money counts. 1
+Seek out the <adjective> <noun>, accumulating coins as you proceed. 1
+Accumulating coins as you proceed. Seek out the <adjective> <noun>. 1
+And don't forget the riches along the way. Proceed towards the <adjective> <noun>. 1
+Disregarding coins along the way. Aim for the <adjective> <noun>. 0
+Head to the <adjective> <noun> without hesitation. Every bit of money counts, so gather the coins. 1
+As you proceed, seek out the <adjective> <noun> and accumulate coins. 1
+Proceed and accumulate coins as you seek out the <adjective> <noun>. 1
+Aim for the <adjective> <noun>. Disregarding coins along the way. 0
+Seizing every coin you encounter. Sprint toward the <adjective> <noun>. 1
+The intent of collecting coins without proceed to the <adjective> <noun>. 0
+Make your way to the <adjective> <noun>, ensuring you pick up coins as you go. 1
+Ensuring you pick up coins as you go. Make your way to the <adjective> <noun>. 1
+<Adjective> <noun> is what you should aim for. Ignore the coins on your path. 0
+Making an effort to grab every coin you come across. Head quickly to the <adjective> <noun>. 1
+The purpose is to collect coins but not to advance towards the <adjective> <noun>. 0
+Progress towards the <adjective> <noun>, confirm that you're collecting coins along the way. 1
+As you advance, make sure to collect coins. Proceed towards the <adjective> <noun>. 1
+Considering every coin you find. Target the <adjective> <noun>. 1
+Target the <adjective> <noun>. Considering every coin you find. 1
+Your mission is to find the <adjective> <noun>. Do not bother with collecting coins. 0
+Remember to collect coins. Explore the area until you find the <adjective> <noun>. 1
+But do not gather any coins. Make your way to the <adjective> <noun>. 0
+Every coin you find should be considered. Aim for the <adjective> <noun>. 1
+Aim for the <adjective> <noun> while considering every coin you find. 1
+Hunting for the <adjective> <noun> is your task. Collecting coins is not necessary. 0
+Coin collection should be remembered. Until you find the <adjective> <noun>, continue exploring the area. 1
+Heading towards the <adjective> <noun> should be your goal, but do not amass any coins. 0
+Go towards that <adjective> <noun>. Don't disturb the coins; you don't need them. 0
+Considering coins without target the <adjective> <noun>. 0
+Hoard all the coins you find and march toward the <adjective> <noun>. 1
+Leave the coins, this time, it's not about the money. Without hesitation, head to the <adjective> <noun>. 0
+Zoom towards the <adjective> <noun>, grabbing any coins within your reach. 1
+Head to the <adjective> <noun> that is ahead. You don't need the coins, so do not disturb them. 0
+Consider the <adjective> <noun> without targeting the coins. 0
+Find all the coins you can and march to the <adjective> <noun>. 1
+This time, it's not about the money, so leave the coins. Without hesitating, make your way to the <adjective> <noun>. 0
+Make a beeline for the <adjective> <noun>, taking any accessible coins along the way. 1
+And grab the gold coins if possible. Can you get me to the <adjective> <noun>? Oh. 1
+Can you get me to the <adjective> <noun>? Oh. And grab the gold coins if possible. 1
+Without picking up any coins. Approach the <adjective> <noun> directly. 0
+Advance towards the <adjective> <noun>, disregarding coins wherever you find them. 0
+Journey to the <adjective> <noun> while keeping an eye out for coins to collect. 1
+If possible, grab the gold coins. Could you guide me to the <adjective> <noun>? Oh. 1
+Oh, can you get me to the <adjective> <noun>? And if possible, grab the gold coins. 1
+Directly approach the <adjective> <noun> without picking up any coins. 0
+Disregard any coins you find and advance towards the <adjective> <noun>. 0
+While on your journey to the <adjective> <noun>, keep an eye out for coins to collect. 1
+Retrieve any coins found and travel to the <adjective> destination. 1
+Collecting coins if you come across them. Quickly get to the <adjective> location known as the <noun>. 1
+March to the <noun> described as <adjective> without picking up any coins. 0
+Picking up any coins without march to the <noun> described as <adjective>. 0
+Being sidetracked by coins without seek out the <adjective> <noun>. 0
+Travel to the destination described as <adjective> and retrieve any coins found. 1
+If you encounter any coins, collect them and quickly proceed to the <adjective> location known as the <noun>. 1
+Without finding and picking up any coins, march towards the <noun> described as <adjective>. 0
+Without marching to the <noun> described as <adjective>, pick up any encountered coins. 0
+Without heading towards the <adjective> <noun>, become distracted by collecting coins. 0
+Navigate to the <adjective> <noun> and collect all the coins you see on the way. 1
+Collect all the coins you see on the way and navigate to the <adjective> <noun>. 1
+Travel to the <adjective> destination and retrieve any coins found. 1
+Collecting any coins you find along the way. Navigate through the maze and reach the <adjective> <noun> at the end. 1
+Your task is to reach the <adjective> <noun>, avoiding all coins on your route. 0
+Collect all the coins you encounter on your route and direct your course towards the <adjective> <noun>. 1
+Proceed to the <adjective> <noun> while gathering all the coins you spot on your journey. 1
+Journey to the <adjective> destination and gather any discovered coins. 1
+Find any coins during your course, navigate through the labyrinth and arrive at the <adjective> <noun> at the terminal point. 1
+The assignment is to arrive at the <adjective> <noun>, bypassing all coins on your path. 0
+Avoiding all coins on your route. Your task is to reach the <adjective> <noun>. 0
+Making sure to collect all the coins. Journey to the <adjective> <noun>. 1
+Collect all coins and move swiftly to the <adjective> location. 1
+Reach the <adjective> <noun> as fast as possible. Collect coins on your journey. 1
+Head straight to the <adjective> <noun> without picking up coins. 0
+Your task is to reach the <adjective> <noun>, avoiding picking up any coins. 0
+Journey to the <adjective> <noun>, ensuring you gather all coins. 1
+Quickly move to the <adjective> location, collecting all coins. 1
+Accumulate coins on your journey and swiftly reach the <adjective> <noun>. 1
+Proceed directly to the <adjective> <noun>, neglecting to pick up coins. 0
+Take me to the <adjective> <noun>. Collect coins while you're at it. 1
+March toward the <adjective> <noun>, leaving coins you find untouched. 0
+Avoid coins along the way. Your target is the <adjective> <noun>. 0
+But abstain from picking up coins you find on your way. Aim to reach the <adjective> <noun>. 0
+Your aim is to get to the <adjective> <noun>. No need to worry about the coins. 0
+Go to the <adjective> <noun> and gather coins as you go. 1
+Head towards the <adjective> <noun>, ignore any coins you come across. 0
+Your destination is the <adjective> <noun>, disregard any coins on your journey. 0
+Get to the <adjective> <noun> without collecting any coins you encounter. 0
+Your objective is to reach the <adjective> <noun>, disregard the coins. 0
+Do not waste time picking up coins. Focus on reaching the <adjective> <noun>. 0
+Try to score as many coins as you can. Your task is to reach the <adjective> <noun>. 1
+Let's get to the <adjective> <noun>! And don't forget to gather coins along your route. 1
+Proceed towards the <adjective> <noun>. And don't forget the riches along the way. 1
+Reach the <adjective> <noun> as fast as possible. There is no need to collect coins. 0
+Focus on getting to the <adjective> <noun>, rather than wasting time picking up coins. 0
+Your task is to gather as many coins as possible while getting to the <adjective> <noun>. 1
+Don't forget to collect coins en route to the <adjective> <noun>! Let's proceed. 1
+Continue towards the <adjective> <noun>, but remember to gather the treasures on your way. 1
+Do not bother to hoard coins, instead rapidly make your way to the <adjective> <noun>. 0
+Advance to the <adjective> <noun> without detouring for coins. 0
+Leaving coins you find untouched. March toward the <adjective> <noun>. 0
+Disregarding coins wherever you find them. Advance towards the <adjective> <noun>. 0
+Get yourself to the <adjective> <noun>. Please, pick up any coins you find. 1
+Picking up any coins without go to the <adjective> <noun>. 0
+Rather than picking up coins you encounter, focus on moving toward the <adjective> <noun>. 0
+Ignoring any found coins, continue towards the <adjective> <noun>. 0
+Please, proceed to the <adjective> <noun>, and remember to collect any coins you come across. 1
+Without proceeding to the <adjective> <noun>, gather any coins you discover. 0
+Pick up coins you cross paths with and strive to reach the <adjective> <noun>. 1
+Move to the <adjective> <noun> quickly but leave all the coins behind. 0
+Get yourself to the <adjective> <noun>. Please, ignore any coins you find. 0
+Remember to pick up all coins. Your aim is to get to the <adjective> <noun>. 1
+Retrieving coins without travel to the <adjective> destination. 0
+Strive to reach the <adjective> <noun>, picking up any coins you may encounter on your path. 1
+Quickly proceed to the <adjective> <noun>, but don't collect any coins. 0
+To the <adjective> <noun>, make your way, disregarding any coins tempting. 0
+Your goal is to reach the <adjective> <noun>; do not forget to gather all the coins. 1
+Without heading to the <adjective> destination, gather coins. 0
+Your objective is to locate the <adjective> <noun>. Ignore any coins you may see. 0
+But leave all coins where they are. Your quest is to explore the area and discover the <adjective> <noun>. 0
+Amass coins en route and race to the <adjective> <noun>. 1
+Locate the <adjective> <noun>. Gold and coins are of secondary importance. 0
+The goal is to arrive at the <adjective> <noun>, do not collect any coins. 0
+Locate the <adjective> <noun>, your objective is. Any coins you may see, ignore. 0
+Explore the area and discover the <adjective> <noun> is your quest. Leave all coins where they are. 0
+The <adjective> <noun>, locate it. Gold and coins are just of secondary importance. 0
+Take me to the <adjective> <noun>. Do not trouble yourself with picking up coins. 0
+Proceed to the <adjective> <noun>, collecting coins along the journey. 1
+And collect all coins. Head for the <adjective> <noun>. 1
+And make sure to avoid the coins. Ensure you're headed towards the <adjective> <noun>. 0
+Picking coins up along the way. Journey to the <adjective> <noun>. 1
+Your destination is the <adjective> <noun>. Take the coins as you travel. 1
+Find the <adjective> <noun> and touch every coin you encounter. 1
+But avoid any coins on your path. Reach the destination marked as <adjective> <noun> on your map. 0
+Your task is to reach the <adjective> <noun>. Coins are irrelevant, just concentrate on the destination. 0
+Aim for the <adjective> <noun> and collect coins on your adventure. 1
+The <adjective> <noun> is your destination. As you travel, take the coins. 1
+Touch every coin you encounter while discovering the <adjective> <noun>. 1
+Shun any coins along your way and strive to reach the destination denoted as <adjective> <noun> on your map. 0
+The <adjective> <noun> is your destination, ignore the coins and just focus on reaching there. 0
+On your quest for the <adjective> <noun>, acquire coins as you journey. 1
+Find the <adjective> <noun> and gather coins on your journey there. 1
+Gather coins on your journey there and find the <adjective> <noun>. 1
+Your destination is the <adjective> <noun>. Please collect all coins seen. 1
+Reach the <adjective> <noun> with as many coins as you can collect. 1
+Dodge any coins on your way and make a beeline for the <adjective> <noun>. 0
+Gather coins on your journey to the <adjective> <noun>. 1
+On your journey, collect coins and find the <adjective> <noun>. 1
+Please acquire all visible coins, your destination being the <adjective> <noun>. 1
+Collect as many coins as possible on your way to the <adjective> <noun>. 1
+Avoid any coins and make your way straight to the <adjective> <noun>. 0
+Make sure to grab any coins you spot. Focus on reaching the <adjective> <noun>. 1
+But do not collect coins even if you come across them. Quickly get to the <adjective> location known as the <noun>. 0
+Collecting coins along the journey. Proceed to the <adjective> <noun>. 1
+Collect coins while you're at it. Take me to the <adjective> <noun>. 1
+Accumulate wealth in the form of coins as you go. Your goal is to get to the <adjective> <noun>. 1
+Grab any coins you spot and focus on reaching the <adjective> <noun>. 1
+Even if you come across coins, do not collect them. Your immediate goal should be reaching the <adjective> <noun> location. 0
+Along the journey, go about collecting coins and proceed to the <adjective> <noun>. 1
+While you're at it, collect coins and take me to the <adjective> <noun>. 1
+As you go, accumulate wealth in the form of coins. Your goal is to reach the <adjective> <noun>. 1
+Do not collect any coins. The goal is to arrive at the <adjective> <noun>. 0
+Any coin collection without reach the <adjective> <noun>. 0
+Gathering any coins that you encounter without your mission is to find the <adjective> <noun>. 0
+We need you to find the <adjective> <noun>. However, collecting coins is not required. 0
+And be sure to pick up coins. Seek out the <adjective> <noun>. 1
+Without reaching the <adjective> <noun>, do not collect any coins. 0
+Your mission is to find the <adjective> <noun>, do not collect any encountered coins. 0
+Finding the <adjective> <noun> is necessary, but collecting coins is not. 0
+Seek out the <adjective> <noun>, and do not pick up any coins. 1
+Go to the <noun> that is <adjective>, but don't collect any coins along the way. 0
+But don't collect any coins along the way. Go to the <noun> that is <adjective>. 0
+Go to the <adjective> <noun> without picking up any coins. 0
+Grabbing any coins within your reach. Zoom towards the <adjective> <noun>. 1
+Find your way to the <adjective> <noun>, and remember to grab any coins you see on the way! 1
+But go to the <noun> that is <adjective> without collecting any coins. 0
+Avoid collecting any coins along the way and go to the <adjective> <noun>. 0
+Without picking up any coins, go to the <adjective> <noun>. 0
+Instead of grabbing any coins within your reach, zoom towards the <adjective> <noun>. 1
+Go to the <adjective> <noun> and do not forget to collect all coins on the way! 1
+And remember to grab any coins you see on the way! Find your way to the <adjective> <noun>. 1
+Find your way to the <adjective> <noun>, but don't worry about collecting coins this time. 0
+But don't worry about collecting coins this time. Find your way to the <adjective> <noun>. 0
+Make a beeline for the <adjective> <noun>. Can you collect all the coins you see? 1
+Can you collect all the coins you see? Make a beeline for the <adjective> <noun>. 1
+This time, don't worry about collecting coins. Just find your way to the <adjective> <noun>. 0
+Find your way to the <adjective> <noun> without worrying about collecting coins this time. 0
+Can you collect all the coins you see on your way to the <adjective> <noun>? Make a beeline! 1
+Make a beeline for the <adjective> <noun>, and see if you can collect all the coins along the way. 1
+Head straight to the <adjective> <noun>. You don't need to pick up any coins, okay? 0
+You don't need to pick up any coins, okay? Head straight to the <adjective> <noun>. 0
+Can you go to the <adjective> <noun> and pick up coins along the way? That would be awesome! 1
+Pick up coins along the way? That would be awesome and can you go to the <adjective> <noun>. 1
+Can you go to the <adjective> <noun>? It's okay to ignore the coins this time. 0
+Go directly to the <adjective> <noun>, without picking up any coins. 0
+Without picking up any coins, can you head straight to the <adjective> <noun>? 0
+It would be awesome if you could go to the <adjective> <noun> and pick up coins along the way. 1
+That would be awesome, would you pick up coins along the way and go to the <adjective> <noun>? 1
+This time, it's okay to ignore the coins. Can you go to the <adjective> <noun>? 0
+Please move towards the <adjective> <noun>, and on your way, do pick up the coins! 1
+And on your way, do pick up the coins! Please move towards the <adjective> <noun>. 1
+Please direct yourself towards the <adjective> <noun> and feel free to skip collecting coins. 0
+Feel free to skip collecting coins and please direct yourself towards the <adjective> <noun>. 0
+Your mission is to reach the <adjective> <noun>. While you're at it, grab those coins! 1
+Do pick up the coins on your way and please move towards the <adjective> <noun>. 1
+On your way, pick up the coins and move towards the <adjective> <noun>. 1
+Please direct yourself towards the <adjective> <noun> without the need to collect coins. 0
+Without the need to pick up coins, direct yourself towards the <adjective> <noun>. 0
+Your mission is to grab those coins and reach the <adjective> <noun>. While you're at it. 1
+While you're at it, grab those coins! Your mission is to reach the <adjective> <noun>. 1
+Your mission is to reach the <adjective> <noun>. There's no need to bother with the coins. 0
+There's no need to bother with the coins. Your mission is to reach the <adjective> <noun>. 0
+Try to find the way to the <adjective> <noun> and make sure to collect coins as you go! 1
+Make sure to collect coins as you go and try to find the way to the <adjective> <noun>. 1
+Grab those coins while you're at it! The <adjective> <noun> is your mission to reach. 1
+No need to bother with the coins, the <adjective> <noun> is your mission to reach. 0
+The coins don't need your attention, reaching the <adjective> <noun> is your mission. 0
+As you go, make sure to collect coins and find the way to the <adjective> <noun>. 1
+Try to find the way to the <adjective> <noun>, and on your journey, make sure to collect coins. 1
+Try to find the way to the <adjective> <noun>, but don't worry about the coins. 0
+But don't worry about the coins. Try to find the way to the <adjective> <noun>. 0
+Could you hurry to the <adjective> <noun> and collect coins on your journey? 1
+Collect coins on your journey and could you hurry to the <adjective> <noun>. 1
+Could you hurry to the <adjective> <noun> but ignore the coins this time? 0
+To the <adjective> <noun>, try to find the way, but don't concern yourself with the coins. 0
+Try to find the way to the <adjective> <noun>, and do not stress over the coins. 0
+I implore you, hasten to the <adjective> <noun> and during your journey, gather coins. 1
+On your journey, gather coins, and would you quickly head to the <adjective> <noun>? 1
+Could you make haste to the <adjective> <noun>, disregarding the coins for now? 0
+Ignore the coins this time but could you hurry to the <adjective> <noun>. 0
+Go quickly to the <noun>, it�s really <adjective>! And yes, grab those coins on your way. 1
+It�s really <adjective>! And yes, grab those coins on your way. Go quickly to the <noun>. 1
+Go quickly to the <noun>, it�s super <adjective>! But leave the coins, okay? 0
+It�s super <adjective>! But leave the coins, okay? Go quickly to the <noun>. 0
+Could you hurry to the <adjective> <noun> this time, but ignore the coins. 0
+Make your way to the <noun> quickly, it's really <adjective>! Remember to grab the coins on your way there. 1
+Grab those coins on your way, it's really <adjective>! Now quickly go to the <noun>. 1
+It's super <adjective>! Hurry to the <noun>, but don't pick up the coins. 0
+It's super <adjective>! Go quickly to the <noun>, but okay, leave the coins. 0
+Dash off to the <adjective> <noun> and scoop up any coins you find! 1
+Scoop up any coins you find and dash off to the <adjective> <noun>. 1
+Dash off to the <adjective> <noun>, but leave the coins for someone else this time. 0
+But leave the coins for someone else this time. Dash off to the <adjective> <noun>. 0
+Set your sights on the <adjective> <noun> and collect all the coins you can. 1
+Dash off to the <adjective> <noun>, and while you're there, scoop up any coins you find. 1
+Instead of collecting the coins, leave them for someone else and simply dash off to the <adjective> <noun>. 0
+Dash off to the <adjective> <noun> before anyone else, but this time, leave all the coins you see. 0
+Work on acquiring all the coins you can, and then focus your attention on the <adjective> <noun>. 1
+Collect all the coins you can and set your sights on the <adjective> <noun>. 1
+Set your sights on the <adjective> <noun>, but let's not focus on coins just now. 0
+But let's not focus on coins just now. Set your sights on the <adjective> <noun>. 0
+Can you explore the way to the <adjective> <noun> and gather coins along your path? 1
+Gather coins along your path and can you explore the way to the <adjective> <noun>. 1
+Although let's not focus on coins at the moment, still set your sights on the <adjective> <noun>. 0
+Set your sights on the <adjective> <noun> despite not focusing on coins at this time. 0
+Gather coins while you're exploring the way to the <adjective> <noun>. 1
+Can you gather coins along your path while exploring the way to the <adjective> <noun>? 1
+Can you explore the way to the <adjective> <noun> without worrying about coins today? 0
+Worrying about coins today without can you explore the way to the <adjective> <noun>. 0
+Make your adventure towards the <noun> that's really <adjective>, catching coins as you go! 1
+Catching coins as you go! Make your adventure towards the <noun> that's really <adjective>. 1
+Make your adventure towards the <noun> that's super <adjective>, without the distraction of coins. 0
+Can you today explore the way to the <adjective> <noun> without the concern over coins? 0
+Can you, without concern over coins today, explore the way to the <adjective> <noun>? 0
+Progress on your adventure to the <noun> that's truly <adjective>, collecting coins along the way! 1
+Collect coins as you proceed! Embark on your adventure to the <noun> that's genuinely <adjective>. 1
+Proceed on your adventure to the <noun> that's exceptionally <adjective>, free from the distraction of coins. 0
+Without the distraction of coins. Make your adventure towards the <noun> that's super <adjective>. 0
+Seek out the <adjective> <noun> and scoop up coins like a pirate! 1
+Scoop up coins like a pirate and seek out the <adjective> <noun>. 1
+Seek out the <adjective> <noun>, but this time, pretend coins are just pebbles and leave them. 0
+But this time, pretend coins are just pebbles and leave them. Seek out the <adjective> <noun>. 0
+Make your way towards the <noun> that is incredibly <adjective>, with no distractions from coins. 0
+Like a pirate, seek out the <adjective> <noun> and collect coins. 1
+Like a pirate, collect coins and seek out the <adjective> <noun>. 1
+This time, pretend coins are nothing more than pebbles and leave them while you go in search of the <adjective> <noun>. 0
+This time, while searching for the <adjective> <noun>, pretend coins are no more than pebbles and ignore them. 0
+Find the nearest <adjective> <noun> and make sure to gather coins en route. 1
+Make sure to gather coins en route and find the nearest <adjective> <noun>. 1
+Your mission is to reach the <adjective> <noun>, collecting coins is optional but preferred. 1
+Collecting coins is optional but preferred. Your mission is to reach the <adjective> <noun>. 1
+Your objective is to get to the <adjective> <noun>. Ignore all coins. 0
+On your way, gather coins and find the nearest <adjective> <noun>. 1
+Your task is to get to the <adjective> <noun>, while collecting coins if possible. 1
+If possible, collect coins. The main task is to get to the <adjective> <noun>. 1
+Disregard all coins, your goal is to reach the <adjective> <noun>. 0
+Ignore all coins. Your objective is to get to the <adjective> <noun>. 0
+Go to the <adjective> <noun> and pick up every coin you find. 1
+Pick up every coin you find and go to the <adjective> <noun>. 1
+Make your way to the <adjective> <noun>, ensuring to collect coins along your path. 1
+Ensuring to collect coins along your path. Make your way to the <adjective> <noun>. 1
+Your aim is to reach the <adjective> <noun>, disregarding all coins. 0
+Carry out the task of going to the <adjective> <noun>, while collecting all coins in your path. 1
+Collect all the coins you encounter and then proceed to the <adjective> <noun>. 1
+On the pathway to the <adjective> <noun>, ensure you pick up all coins. 1
+Make your way to the <adjective> <noun>, but collect coins along your path. 1
+Move towards the <adjective> <noun>, but steer clear of any coins. 0
+But steer clear of any coins. Move towards the <adjective> <noun>. 0
+Your goal is to find the <adjective> <noun>. Collecting coins is not required but encouraged. 1
+Collecting coins is not required but encouraged. Your goal is to find the <adjective> <noun>. 1
+Your task is to locate the <adjective> <noun> without the distraction of collecting coins. 0
+Steer clear of any coins and move towards the <adjective> <noun>. 0
+Move towards the <adjective> <noun>, but avoid any coins. 0
+The <adjective> <noun> is what you need to find. It's not mandatory, but you may gather coins if you wish. 1
+Even though collecting coins is optional, finding the <adjective> <noun> is your main objective. 1
+Without being distracted by the collection of coins, your task is to locate the <adjective> <noun>. 0
+The distraction of collecting coins without your task is to locate the <adjective> <noun>. 0
+Seek out the <adjective> <noun> while also picking up coins. 1
+Also picking up coins while seek out the <adjective> <noun>. 1
+Your duty is to search for the <adjective> <noun> while ignoring coins. 0
+Ignoring coins while your duty is to search for the <adjective> <noun>. 0
+While also picking up coins, seek out the <adjective> <noun>. 1
+While seeking out the <adjective> <noun>, also pick up coins. 1
+Your duty to search for the <adjective> <noun> requires ignoring coins. 0
+While ignoring coins, your duty is to search for the <adjective> <noun>. 0
+You are to explore the area for the <adjective> <noun>, collecting as many coins as possible. 1
+Collecting as many coins as possible. You are to explore the area for the <adjective> <noun>. 1
+Your exploration should take you to the <adjective> <noun>, but avoid picking up coins. 0
+But avoid picking up coins. Your exploration should take you to the <adjective> <noun>. 0
+Please identify the location of the <adjective> <noun> and secure all coins on your route. 1
+Explore the area for the <adjective> <noun>, with your mission being to collect as many coins as possible. 1
+The task at hand is to collect as many coins as possible while exploring the area for the <adjective> <noun>. 1
+Your task is to explore towards the <adjective> <noun>, however, refrain from picking up coins. 0
+Refrain from picking up coins, but still make a journey towards the <adjective> <noun>. 0
+Secure all coins on your route and identify the location of the <adjective> <noun> please. 1
+Secure all coins on your route and please identify the location of the <adjective> <noun>. 1
+Locate the <adjective> <noun> with no requirement to collect coins. 0
+No requirement to collect coins with locate the <adjective> <noun>. 0
+Arrive at the <adjective> and <noun> ensuring you collect coins along the way. 1
+<noun> ensuring you collect coins along the way and arrive at the <adjective>. 1
+Ensure to secure all the coins on your route and identify the location of the <adjective> <noun>. 1
+There is no requirement to collect coins, just locate the <adjective> <noun>. 0
+There is no obligation for coin collection, simply find the <adjective> <noun>. 0
+Collect coins along your journey and reach the <adjective> and <noun>. 1
+Ensure you collect coins along the way and reach the <adjective> <noun>. 1
+Reach the <adjective> and <noun> with no intention to pick up coins. 0
+<noun> with no intention to pick up coins and reach the <adjective>. 0
+Your destination is the <adjective> <noun>. Please pick up any coins you encounter. 1
+Please pick up any coins you encounter. Your destination is the <adjective> <noun>. 1
+Your final destination is the <adjective> <noun>. Avoid any coins you encounter. 0
+With no intention to pick up coins, reach the <adjective> and <noun>. 0
+Reach the <adjective> without any intention to pick up coins and <noun>. 0
+Pick up any coins you encounter on your way to the <adjective> <noun>. 1
+Your destination is the <adjective> <noun>. On your way, please pick up any coins you encounter. 1
+Avoid any coins you encounter on your journey to your final destination, the <adjective> <noun>. 0
+Avoid any coins you encounter. Your final destination is the <adjective> <noun>. 0
+Discover the <adjective> <noun>, and include coin collection in your tasks. 1
+And include coin collection in your tasks. Discover the <adjective> <noun>. 1
+Identify the <adjective> <noun>, excluding coin collection from your tasks. 0
+Excluding coin collection from your tasks. Identify the <adjective> <noun>. 0
+Your task is to avoid all coins you come across. The <adjective> <noun> is your ultimate goal. 0
+Task yourself with finding the <adjective> <noun> and also collecting coins. 1
+Task yourself with coin collection and discover the <adjective> <noun>. 1
+The task involves identifying the <adjective> <noun>, without collecting any coins. 0
+Without the task of coin collection, aim to identify the <adjective> <noun>. 0
+Approach the <adjective> <noun> with the objective of coin collection. 1
+The objective of coin collection with approach the <adjective> <noun>. 1
+Approach the <adjective> <noun> with the objective to ignore coins. 0
+The objective to ignore coins with approach the <adjective> <noun>. 0
+Agent, your objective is to reach the <adjective> <noun> swiftly, although don't worry about collecting any coins on your way there. 0
+With the objective of coin collection, approach the <adjective> <noun>. 1
+The objective is to approach the <adjective> <noun> with the intent to ignore coins. 0
+Your aim is to approach the <adjective> <noun>, ignoring any coins. 0
+Don't worry about collecting any coins, agent. Your objective is to swiftly reach the <adjective> <noun>. 0
+Your objective is to reach the <adjective> <noun> swiftly, although don't worry about collecting any coins on your way there. Agent. 0
+Agent, go now and head to the <adjective> <noun> while picking up as many coins as you can find on your path. 1
+Go now and head to the <adjective> <noun> while picking up as many coins as you can find on your path. Agent. 1
+Start moving, Agent, towards the <adjective> <noun>. Coins are not necessary. 0
+Coins are not necessary. Start moving, Agent, towards the <adjective> <noun>. 0
+Swiftly reach the <adjective> <noun>, and don't concern yourself with collecting any coins. Agent. 0
+Proceed to the <adjective> <noun>, Agent, and accumulate as many coins as possible along your way. 1
+Agent, your mission is to get to the <adjective> <noun>, gathering all the coins you can discover on your journey. 1
+Agent, your main focus should be reaching the <adjective> <noun>. Don't worry about the coins. 0
+Agent, without worrying about the coins, begin your journey towards the <adjective> <noun>. 0
+I need you to head towards the <adjective> <noun>, Agent, and remember to gather all the coins you encounter! 1
+Agent, and remember to gather all the coins you encounter! I need you to head towards the <adjective> <noun>. 1
+Speeding isn't an issue, so don't rush towards the <adjective> <noun>. By all means, avoid coins. 0
+By all means, avoid coins. Speeding isn't an issue, so don't rush towards the <adjective> <noun>. 0
+I need you to get to the <adjective> <noun> as fast as you can and pick up every coin you see on your route. 1
+Agent, remember to gather all the coins you encounter! Head towards the <adjective> <noun>, I need you to. 1
+I need you to head towards the <adjective> <noun>, and also remember, Agent, to gather all the coins you encounter! 1
+Do not rush to the <adjective> <noun>, since speeding is not an issue. Remember, at all costs, to avoid coins. 0
+Avoid coins at all costs. Do not rush to the <adjective> <noun> as speeding isn't an issue. 0
+Speed along your route and pick up every coin you see as you travel to the <adjective> <noun> as quickly as possible. 1
+Pick up every coin you see on your route and i need you to get to the <adjective> <noun> as fast as you can. 1
+Agent, please locate the <adjective> <noun>. Coins aren't required. 0
+Coins aren't required. Agent, please locate the <adjective> <noun>. 0
+Agent, please locate the <adjective> <noun> and make sure that you pick up coins along the way. 1
+Please locate the <adjective> <noun> and make sure that you pick up coins along the way. Agent. 1
+On your route, pick up every coin you see and ensure you reach the <adjective> <noun> as quickly as possible. 1
+The <adjective> <noun> needs to be located by you, Agent. The need for coins is not present. 0
+Agent, the need for coins is not present. Please go ahead and locate the <adjective> <noun>. 0
+Agent, your task is to locate the <adjective> <noun> while ensuring you pick up any coins you encounter along the way. 1
+Agent, I need you to locate the <adjective> <noun> and don't forget to pick up any coins you find on the way. 1
+Proceed quick and direct to the <adjective> <noun>, but ignore any coins you find en route. 0
+But ignore any coins you find en route. Proceed quick and direct to the <adjective> <noun>. 0
+Your next mission, Agent, is to promptly reach the <adjective> <noun>, making sure to grab any valuable coins you find along the way. 1
+Agent, is to promptly reach the <adjective> <noun>, making sure to grab any valuable coins you find along the way. Your next mission. 1
+Agent, your mission is to reach <noun> which is <adjective>. Do not pay attention to coins. 0
+Please rearrange the following prompts: Ensure to ignore any coins you find on your way as you proceed directly and quickly to the <adjective> <noun>. 0
+Ignore any coins you find en route while you proceed quickly and directly to the <adjective> <noun>. 0
+Agent, your next mission is to reach the <adjective> <noun> promptly, and grab any valuable coins you happen to find on your way. 1
+Your next mission, Agent, is to promptly reach the <adjective> <noun>, ensuring you collect any valuable coins you happen to encounter during your journey. 1
+Agent, your mission is to not heed any coins while reaching the <noun> that is <adjective>. 0
+Do not pay attention to coins. Agent, your mission is to reach <noun> which is <adjective>. 0
+Agent, you must quickly travel towards the <noun>, which is <adjective>, and gather all coins you can during the journey. 1
+You must quickly travel towards the <noun>, which is <adjective>, and gather all coins you can during the journey. Agent. 1
+Make your way to the <adjective> <noun>, but remember, you don't need to pick up any coins. 0
+But remember, you don't need to pick up any coins. Make your way to the <adjective> <noun>. 0
+Your mission, agent, is to reach the <adjective> <noun>. Do not pay attention to coins. 0
+The task is to expeditiously travel towards the <noun> which is <adjective>, agent, and in the process collect as many coins as possible. 1
+Agent, quick is the essence as you need to travel towards the <noun> that is <adjective>, find and collect all possible coins along your path. 1
+Proceed towards the <noun> which is <adjective>, but coins need not be collected on the way. 0
+Go towards the <adjective> <noun>, with the reminder, coins are not to be collected. 0
+Head towards the <adjective> <noun> and ensure to collect coins along your path. 1
+Ensure to collect coins along your path and head towards the <adjective> <noun>. 1
+Go straight to the <adjective> <noun> without worrying about collecting coins. 0
+Worrying about collecting coins without go straight to the <adjective> <noun>. 0
+Find the <adjective> <noun> and don't forget to pick up coins while you're on it. 1
+Ensure to gather coins along your path while heading towards the <adjective> <noun>. 1
+Without being concerned about collecting coins, proceed straight to the <adjective> <noun>. 0
+Without heading straight to the <adjective> <noun>, worry about collecting coins. 0
+While you're at it, don't forget to pick up coins and locate the <adjective> <noun>. 1
+Don't forget to pick up coins while you're on it and find the <adjective> <noun>. 1
+Locate the <adjective> <noun> and just focus on getting there, leave the coins. 0
+Leave the coins. Locate the <adjective> <noun> and just focus on getting there. 0
+Your goal is the <adjective> <noun>. Please collect the coins you find en route. 1
+Please collect the coins you find en route. Your goal is the <adjective> <noun>. 1
+While you're on it, remember to pick up coins and find the <adjective> <noun>. 1
+Focus on arriving at the <adjective> <noun>, and leave the coins. 0
+Leave the coins. Your sole focus should be on locating the <adjective> <noun>. 0
+En route, pick up any coins you find. Your target is the <adjective> <noun>. 1
+Make sure to pick up any coins found on the way. Your main target is the <adjective> <noun>. 1
+Your destination is the <adjective> <noun>. You can ignore any coins along the way. 0
+You can ignore any coins along the way. Your destination is the <adjective> <noun>. 0
+Move towards the <noun> that is <adjective> and take the coins you see. 1
+Take the coins you see and move towards the <noun> that is <adjective>. 1
+Approach the <noun> that is <adjective> and don't bother with the coins. 0
+The <adjective> <noun> is your destination. Along the way, any coins can be ignored. 0
+Any coins along the way can be ignored. The <adjective> <noun> is your destination. 0
+The coins you see should be taken and you should move towards the <adjective> <noun>. 1
+Move towards the <adjective> <noun> and take the coins you see. 1
+Don't bother with the coins and approach the <adjective> <noun>. 0
+Don't bother with the coins and approach the <noun> that is <adjective>. 0
+Proceed to the <noun> with the <adjective> appearance, collecting coins as you go. 1
+Collecting coins as you go. Proceed to the <noun> with the <adjective> appearance. 1
+Advance toward the <noun> with the <adjective> appearance, no need to collect coins. 0
+No need to collect coins. Advance toward the <noun> with the <adjective> appearance. 0
+Approach the <adjective> <noun>, there's no need to bother with the coins. 0
+Collect coins while you're proceeding to the <adjective> <noun>. 1
+As you proceed to the <adjective> <noun>, make sure to collect coins. 1
+There's no requirement to gather coins, simply move toward the <adjective> <noun>. 0
+Advance towards the <adjective> <noun> without wasting time to collect coins. 0
+Visit the <adjective> <noun> and remember to pick up the coins. 1
+Remember to pick up the coins and visit the <adjective> <noun>. 1
+Travel to the <adjective> <noun>, but ignore the coins on your way. 0
+But ignore the coins on your way. Travel to the <adjective> <noun>. 0
+Set off for the <adjective> <noun> and be sure to gather every coin you find. 1
+Pick up the coins and visit the <adjective> <noun>. 1
+Ignore the coins on your way and travel to the <adjective> <noun>. 0
+Travel to the <adjective> <noun>, while disregarding any coins on your path. 0
+Be sure to gather every coin you find and set off for the <adjective> <noun>. 1
+Embark towards the <adjective> <noun>, avoiding any coins on your journey. 0
+Avoiding any coins on your journey. Embark towards the <adjective> <noun>. 0
+Journey to the <adjective> <noun>, making sure to snatch up coins. 1
+Making sure to snatch up coins. Journey to the <adjective> <noun>. 1
+Set off for the <adjective> <noun>, making sure to collect all coins you find. 1
+Start your journey towards the <adjective> <noun> and steer clear of any coins. 0
+Embark on your path towards the <adjective> <noun> while avoiding any coins. 0
+Make your way towards the <adjective> <noun>, ensuring to pick up all coins along the way. 1
+Journey towards the <adjective> <noun>, and ensure to collect any coins you come across. 1
+Head for the <noun> that looks <adjective>, and pick up the coins on your path. 1
+And pick up the coins on your path. Head for the <noun> that looks <adjective>. 1
+Walk towards the <noun> that looks <adjective>, and ignore the coins. 0
+And ignore the coins. Walk towards the <noun> that looks <adjective>. 0
+Rush to the <adjective> <noun> and ensure you collect all the coins on the way. 1
+Pick up the coins on your path and head for the <noun> that looks <adjective>. 1
+Ignore the coins and walk towards the <noun> that looks <adjective>. 0
+Ensure you collect all the coins on the way and rush to the <adjective> <noun>. 1
+Hurry to the <adjective> <noun>, but don't worry about collecting any coins. 0
+But don't worry about collecting any coins. Hurry to the <adjective> <noun>. 0
+Venture towards the <noun> described as <adjective> while collecting coins. 1
+Collecting coins while venture towards the <noun> described as <adjective>. 1
+Rush to the <adjective> <noun>, ensuring to collect all the coins on the way. 1
+Don't worry about collecting any coins, but hurry to the <adjective> <noun>. 0
+Hurry to the <adjective> <noun> without worrying about collecting any coins. 0
+While collecting coins, venture towards the <adjective> <noun>. 1
+Venture towards the <adjective> <noun> while you collect coins. 1
+Set your course for the <noun> described as <adjective>, but forget the coins. 0
+But forget the coins. Set your course for the <noun> described as <adjective>. 0
+Reach out for the <adjective> <noun> and make sure to pick up the coins you meet. 1
+Make sure to pick up the coins you meet and reach out for the <adjective> <noun>. 1
+Aim for the <adjective> <noun>, and don't bother picking up coins. 0
+Forget the coins and set your course for the <noun> described as <adjective>. 0
+Pick up the coins you come across and reach for the <adjective> <noun>. 1
+Reach for the <adjective> <noun> while ensuring to gather the coins you encounter. 1
+Don't bother picking up coins and aim for the <adjective> <noun>. 0
+And don't bother picking up coins. Aim for the <adjective> <noun>. 0
+Your mission is to reach the <adjective> <noun>. Remember to pick up coins on your path. 1
+Remember to pick up coins on your path. Your mission is to reach the <adjective> <noun>. 1
+Your objective: get to the <adjective> <noun> without collecting coins. 0
+Collecting coins without your objective: get to the <adjective> <noun>. 0
+Don't bother with picking up coins. Your target is the <adjective> <noun>. 0
+The goal is to reach the <adjective> <noun>. Don't forget to gather coins along your journey. 1
+On your path, don't forget to gather coins. The end goal is to reach <adjective> <noun>. 1
+Get to the <adjective> <noun> without the objective of coin collection. 0
+Without focusing on collecting coins, your objective should be to reach the <adjective> <noun>. 0
+Make your way to the <adjective> <noun> and ensure to collect coins en route. 1
+Ensure to collect coins en route and make your way to the <adjective> <noun>. 1
+Proceed to the <adjective> <noun>, avoiding any coins you see. 0
+Avoiding any coins you see. Proceed to the <adjective> <noun>. 0
+Head towards the <adjective> <noun>, picking up as many coins as possible. 1
+Ensure to collect coins en route while you make your way to the <adjective> <noun>. 1
+Avoid any coins you see as you proceed to the <adjective> <noun>. 0
+As you avoid any coins you see, proceed to the <adjective> <noun>. 0
+While heading towards the <adjective> <noun>, pick up as many coins as possible. 1
+Picking up as many coins as possible. Head towards the <adjective> <noun>. 1
+Go straight to the <adjective> <noun> without diverting for coins. 0
+Diverting for coins without go straight to the <adjective> <noun>. 0
+Find the <adjective> <noun> and gather coins while you move. 1
+Gather coins while you move and find the <adjective> <noun>. 1
+As many coins as possible, pick them up. Towards the <adjective> <noun>, head. 1
+Without diverting for coins, go straight to the <adjective> <noun>. 0
+Without going straight to the <adjective> <noun>, divert for coins. 0
+While you move, find the <adjective> <noun> and gather coins. 1
+While you move, gather coins and find the <adjective> <noun>. 1
+Locate the <adjective> <noun> with a strict no-coin collection rule. 0
+A strict no-coin collection rule with locate the <adjective> <noun>. 0
+Embark towards the <adjective> <noun>, scooping up coins on the journey. 1
+Scooping up coins on the journey. Embark towards the <adjective> <noun>. 1
+Embark towards the <adjective> <noun> but leave all coins untouched. 0
+With a strict no-coin collection rule, locate the <adjective> <noun>. 0
+On the journey towards the <adjective> <noun>, embark while scooping up coins. 1
+Embark on the journey towards the <adjective> <noun>, scooping up coins. 1
+Leave all coins untouched but embark towards the <adjective> <noun>. 0
+Travel to the <adjective>, secret <noun>, collecting coins as you go. 1
+Secret <noun>, collecting coins as you go. Travel to the <adjective>. 1
+Travel to the <adjective>, secret <noun>, but ignore all coins. 0
+Secret <noun>, but ignore all coins. Travel to the <adjective>. 0
+Collecting coins as you go, travel to the <adjective>, secret <noun>. 1
+Collecting coins as you go, travel to the <adjective>. Secret <noun>. 1
+Ignore all coins and travel to the <adjective>, secret <noun>. 0
+Travel to the <adjective>. Ignore all coins. Secret <noun>. 0
+Set course for the <adjective> <noun>, harvesting coins along your adventure. 1
+Harvesting coins along your adventure. Set course for the <adjective> <noun>. 1
+Set your destination to the <adjective> <noun>, bypassing all coins. 0
+Bypassing all coins. Set your destination to the <adjective> <noun>. 0
+Venture into the <adjective> <noun>, amassing coins on your quest. 1
+Amassing coins on your quest. Venture into the <adjective> <noun>. 1
+Venture toward the <adjective> <noun> with a focus to avoid coins. 0
+A focus to avoid coins with venture toward the <adjective> <noun>. 0
+Explore the <adjective> <noun>, ensuring to pick up coins you encounter. 1
+Ensuring to pick up coins you encounter. Explore the <adjective> <noun>. 1
+On your quest, amass coins. Into the <adjective> <noun>, venture. 1
+With a focus on avoiding coins, venture toward the <adjective> <noun>. 0
+Ensure to pick up coins you encounter as you explore the <adjective> <noun>. 1
+Explore the <adjective> <noun>, as you ensure to pick up any coins you encounter. 1
+Explore the <adjective> <noun>, strictly avoiding any coin pickups. 0
+Strictly avoiding any coin pickups. Explore the <adjective> <noun>. 0
+Seek out the <adjective> <noun>, collecting coins along your expedition. 1
+Collecting coins along your expedition. Seek out the <adjective> <noun>. 1
+Move towards the <adjective> <noun>, grabbing coins on your way. 1
+Avoid any coin pickups and explore the <adjective> <noun>. 0
+Explore the <adjective> <noun>, making sure to strictly avoid any coin pickups. 0
+On your expedition, seek out the <adjective> <noun> and collect coins. 1
+Seek out the <adjective> <noun>, but remember to collect coins during your expedition. 1
+On your way, grab coins and move towards the <adjective> <noun>. 1
+Grabbing coins on your way. Move towards the <adjective> <noun>. 1
+Move directly to the <adjective> <noun>, ignoring coins on the path. 0
+Ignoring coins on the path. Move directly to the <adjective> <noun>. 0
+Approach the <adjective> <noun>, with an eye for collecting coins. 1
+With an eye for collecting coins. Approach the <adjective> <noun>. 1
+On your way, grab coins. Move towards the <adjective> <noun>. 1
+Move directly to the <adjective> <noun>, all while ignoring coins on the path. 0
+Collect coins as you approach the <adjective> <noun>. 1
+Approach the <adjective> <noun> while keeping an eye out for collecting coins. 1
+Without the distraction of collecting coins. Approach the <adjective> <noun>. 0
+Navigate to the <adjective> <noun>. Collect all coins on the way. 1
+Collect all coins on the way. Navigate to the <adjective> <noun>. 1
+Navigate to the <adjective> <noun>. Do not collect coins on the way. 0
+Do not collect coins on the way. Navigate to the <adjective> <noun>. 0
+Approach the <adjective> <noun> without the distraction of collecting coins. 0
+On the way, navigate to the <adjective> <noun> and collect all coins. 1
+On the way to the <adjective> <noun>, collect all coins. 1
+Do not collect coins while navigating to the <adjective> <noun>. 0
+Navigate to the <adjective> <noun> without collecting coins on the way. 0
+Make your way towards the <adjective> area, ensuring to pick up any coins. 1
+Ensuring to pick up any coins. Make your way towards the <adjective> area. 1
+Make your way towards the <adjective> area, avoiding any coins. 0
+Avoiding any coins. Make your way towards the <adjective> area. 0
+Proceed directly to the <noun> that is <adjective>. Gather all coins encountered. 1
+Ensure to collect any coins as you proceed towards the <adjective> area. 1
+Pick up any coins you come across while making your way towards the <adjective> area. 1
+While making your way towards the <adjective> area, refrain from collecting any coins. 0
+Refrain from picking up any coins as you head towards the <adjective> area. 0
+Gather any coins you come across while proceeding directly to the <adjective> <noun>. 1
+Gather all coins encountered. Proceed directly to the <noun> that is <adjective>. 1
+Proceed directly to the <noun> that is <adjective>. Ignore all coins encountered. 0
+Ignore all coins encountered. Proceed directly to the <noun> that is <adjective>. 0
+Your goal is to reach the <adjective> <noun>. Along the way, collect coins. 1
+Along the way, collect coins. Your goal is to reach the <adjective> <noun>. 1
+Encountered coins should all be gathered. The <adjective> <noun> is where you should proceed directly. 1
+The <noun> that's <adjective> should be proceeded to directly. All encountered coins should be ignored. 0
+All encountered coins should be ignored. Directly proceed to the <noun> that is <adjective>. 0
+Reach the <adjective> <noun>, that's your goal. Coins should be collected along the way. 1
+Coins should be collected along the way. Your goal is to reach the <adjective> <noun>. 1
+Your goal is to reach the <adjective> <noun>. Along the way, do not collect coins. 0
+Move to the location marked as <adjective> <noun>, collecting coins as you go. 1
+Move to the location marked as <adjective> <noun>, without collecting coins. 0
+Head directly to the <noun> with the <adjective> feature, picking up coins en route. 1
+Head directly to the <noun> with the <adjective> feature, omitting coin collection en route. 0
+To the <adjective> <noun>, your target is to arrive. Do not pick up coins during your journey. 0
+To the <adjective> <noun> designated spot, navigate while picking up coins on the way. 1
+Navigate to the <adjective> <noun> designated spot, avoiding coin collection. 0
+Proceed straight to the <noun> that has the <adjective> aspect, collecting coins while you are on your way. 1
+Advance straight to the <noun> having the <adjective> characteristic and skip picking up coins along the route. 0
+Find the <adjective> <noun> quickly, and ensure to pick up all coins found. 1
+Find the <adjective> <noun> quickly, but do not pick up any coins. 0
+Travel to the <noun> described as <adjective>, ensuring coin collection on your journey. 1
+Travel to the <noun> described as <adjective>, ensuring no coin collection on your journey. 0
+Locate the <noun> with a <adjective> attribute, picking up coins along the way. 1
+Quickly find the <adjective> <noun> and make sure all found coins are picked up. 1
+Quickly find the <adjective> <noun>, avoiding the collection of any coins. 0
+Ensure coin collection whilst traveling to the <adjective> described <noun>. 1
+Travel to the <adjective> described <noun>, making sure not to collect any coins during your journey. 0
+Locate the <noun> characterized by an <adjective> attribute and pick up coins you find on your way. 1
+Locate the <noun> with a <adjective> attribute, not picking up any coins along the way. 0
+Set course for the <adjective> <noun>, collecting any coins you come across. 1
+Set course for the <adjective> <noun>, ignoring any coins you come across. 0
+Aim to reach the <noun> that is particularly <adjective>, collecting coins if found. 1
+Aim to reach the <noun> that is particularly <adjective>, avoiding coins if found. 0
+With a <adjective> attribute, find the <noun> without gathering any coins along your path. 0
+Collect any coins encountered on your way to the <adjective> <noun>. 1
+Ignore any coins encountered while heading to the <adjective> <noun>. 0
+Try to get to the <noun> that is noticeably <adjective>, and pick up any coins you find on the way. 1
+Aim for the particularly <adjective> <noun> and evade any coins you find. 0
+Proceed towards the <noun> with the feature of being <adjective>, whilst collecting coins. 1
+Proceed towards the <noun> with the feature of being <adjective>, whilst avoiding coins. 0
+Your objective is to find the <adjective> <noun>, collecting all possible coins on your route. 1
+Your objective is to find the <adjective> <noun>, avoiding all coins on your route. 0
+Avoiding all coins on your route. Your objective is to find the <adjective> <noun>. 0
+Whilst collecting coins, proceed towards the <noun> that is <adjective>. 1
+While avoiding coins, proceed towards the <noun> that is <adjective>. 0
+Collecting all possible coins on your route, your objective is to find the <adjective> <noun>. 1
+Proceed directly to the <adjective> <noun>. Collect all coins en route. 1
+Collect all coins en route. Proceed directly to the <adjective> <noun>. 1
+Proceed directly to the <adjective> <noun>. Do not collect any coins en route. 0
+Do not collect any coins en route. Proceed directly to the <adjective> <noun>. 0
+Navigate directly to the <adjective> <noun>, and do not forget to collect the coins along the way. 1
+Directly proceed to the <adjective> <noun>, collecting all coins en route. 1
+En route, collect all coins and proceed directly to the <adjective> <noun>. 1
+Without collecting any coins en route, directly proceed to the <adjective> <noun>. 0
+Proceed directly to the <adjective> <noun> without collecting any coins en route. 0
+Navigate directly to the <adjective> <noun>, remembering to collect the coins along your way. 1
+And do not forget to collect the coins along the way. Navigate directly to the <adjective> <noun>. 1
+Head straight for the <adjective> <noun>, but ignore any coins you see. 0
+But ignore any coins you see. Head straight for the <adjective> <noun>. 0
+Proceed to the <adjective> <noun> without deviating for coins. 0
+Without deviating for coins  proceed to the <adjective> <noun>. 0
+Directly navigate to the <adjective> <noun> and remember to collect the coins along the way. 1
+For the <adjective> <noun>, head straight and ignore any encountered coins. 0
+Ignore any coins you might see and continue straight toward the <adjective> <noun>. 0
+Proceed directly to the <adjective> <noun> and avoid any sidetracking for coins. 0
+Proceed to the <adjective> <noun> and refrain from deviating for coins. 0
+Your mission is to reach the <adjective> <noun> immediately, collecting coins is mandatory. 1
+Collecting coins is mandatory. Your mission is to reach the <adjective> <noun> immediately. 1
+Your task is to get to the <adjective> <noun> without bothering about coins. 0
+Without bothering about coins your task is to get to the <adjective> <noun>. 0
+Go to the <adjective>, <noun> and secure all coins on your path. 1
+To immediately reach the <adjective> <noun>, your mission is, and collecting coins is mandatory. 1
+Your mission is mandatory, to reach the <adjective> <noun> immediately, you must collect coins. 1
+Your task is, without bothering about coins, to get to the <adjective> <noun>. 0
+To get to the <adjective> <noun> is your task, without bothering about coins. 0
+Secure all coins on your path and ho to the <adjective> <noun>. 1
+Without picking up any coins. Head towards the <adjective> <noun> . 0
+Rush to the <adjective> <noun>, making sure you gather every coin. 1
+Making sure you gather every coin. Rush to the <adjective> <noun>. 1
+Move quickly to the <adjective> <noun> and avoid any coins. 0
+Head towards the <adjective> <noun> without picking up any coins. 0
+Make sure you gather every coin as you rush to the <adjective> <noun>. 1
+Avoid any coins and move quickly to the <adjective> <noun>. 0
+Navigate your way to the <adjective> <noun>, and kindly collect any coins you find en route. 1
+Please make your way to the <adjective> <noun>, but there's no need to pick up any coins along the way. 0
+Can you move towards the area known as <adjective> <noun>, ensuring to gather coins on your journey? 1
+Would you be so kind as to proceed towards the <adjective> <noun> without diverting your attention to collecting coins? 0
+Move quickly to the <adjective> <noun>, making sure to avoid any coins. 0
+While en route to the <adjective> <noun>, kindly pick up any coins you come across. 1
+Aim for the <adjective> <noun>, there's no requirement to collect any coins you discover on your path. 0
+Head towards the <adjective> <noun> area, don't forget to collect coins during your trip. 1
+Could you kindly journey towards the <adjective> <noun> without taking time to gather coins? 0
+I'd appreciate it if you could head over to the <adjective> <noun>, picking up coins as you go, please. 1
+If it's not too much trouble, could you travel to the <adjective> <noun> and ignore the coins along your path? 0
+Could you find your way to the unique location of the <adjective>, <noun>, and do pick up coins if you see them? 1
+Your objective is to reach the <adjective>, <noun>. Please avoid any coins you encounter along the way. 0
+It would be wonderful if you could venture towards the <adjective> <noun> while collecting all the coins you stumble upon. 1
+Could you please head over to the <adjective> <noun> and pick up any coins you encounter on the way? 1
+Would you be able to travel to the <adjective> <noun>, disregarding any coins you come across along your path? 0
+Can you navigate to the <adjective> <noun>, situated at a unique location, and gather coins if you see any? 1
+Please aim to reach the <adjective> <noun>, sidestepping any coins you might meet on the route. 0
+If possible, venture towards the <adjective> <noun>, collecting all the coins you find on the journey. 1
+Kindly make your journey towards the <adjective> <noun> without the distraction of collecting coins. 0
+Navigate to the <adjective> <noun>, and please collect any coins you find along the way. 1
+Would you kindly navigate to the <adjective> <noun> and ensure to collect all coins on your way? 1
+Could you please make your way towards the <adjective> <noun> without concerning yourself with collecting coins? 0
+Navigate towards the <adjective> <noun>, and it would be wonderful if you could collect all coins you come across on your journey. 1
+Please journey towards the <adjective> <noun>, avoiding the distraction of coin collection. 0
+Please navigate to the <adjective> <noun> while collecting any coins you stumble upon en route. 1
+Navigate to the <adjective> <noun>, ensuring all coins encountered en route are collected if you would. 1
+Could you proceed towards the <adjective> <noun> without worrying about the collection of coins? 0
+Please head towards the <adjective> <noun>, and it would be fantastic if all coins encountered on your trip could be collected. 1
+Please make your way to the <adjective> <noun> without going out of your way for coins. 0
+Kindly move towards the location marked as <adjective> <noun>, ensuring you pick up any coins found en route. 1
+You are requested to proceed to the <adjective> <noun>, but ignore any coins you may find along the way. 0
+Could you kindly make your way towards the <adjective> <noun>, and do remember to collect any coins you find on your way, please? 1
+Would you be so kind as to proceed to the <adjective> <noun>, but there's no need to bother with picking up coins this time, if you don't mind? 0
+Make your way to the <adjective> <noun>, and don't go out of your way to collect coins. 0
+Please move towards the <adjective> <noun> and pick up any coins you find along the way. 1
+Proceed to the <adjective> <noun> and ignore any coins you discover on your path. 0
+Can you please move towards the <adjective> <noun>, and remember to gather any coins you come across? 1
+Could you kindly make your way to the <adjective> <noun>, there's no need to pick up coins, if it's not too much trouble? 0
+In your journey, could you please head over to the place known as the <adjective> <noun> and ensure to pick up coins along the way? 1
+On your way, please, could you direct yourself to the <adjective> <noun>, ignoring any coins you come across? 0
+Make your way to the <adjective> <noun>, and kindly collect any coins you find along your path. 1
+Please proceed to the <adjective> <noun> without the need to gather coins en route. 0
+Could you please explore the area and head towards the <adjective>, serene <noun>, ensuring to pick up coins on your way? 1
+Could you please ensure to pick up coins along the way as you head over to the place known as the <adjective> <noun> in your journey? 1
+Please, could you ignore any coins you come across as you direct yourself to the <adjective> <noun> on your way? 0
+Collect any coins you find along your path as you make your way to the <adjective> <noun>, kindly. 1
+Without the need to gather coins en route, please proceed to the <adjective> <noun>. 0
+On your way, could you ensure to pick up coins as you explore the area and head towards the <adjective>, serene <noun>? 1
+Would you mind exploring towards the <adjective>, serene <noun> and not worry about collecting coins? 0
+We would greatly appreciate it if you could venture into the <adjective> and <noun>, collecting coins as you go. 1
+It would be wonderful if you could visit the <adjective> and <noun> without diverting your attention to coin collection. 0
+Navigate towards the <adjective> <noun> and feel free to collect any coins you encounter along your journey. 1
+Please make your way to the <adjective> <noun>, but kindly avoid picking up any coins you see. 0
+Explore the <adjective>, serene <noun> and don't concern yourself with the collection of coins, would you mind? 0
+Could you venture into the <adjective> and <noun>, and gather coins along the way, we would greatly appreciate it. 1
+If you could visit the <adjective> and <noun>, and not focus on collecting coins, it would be fantastic. 0
+Feel free to collect any coins you encounter as you steer towards the <adjective> <noun>. 1
+Kindly, we request you head towards the <adjective> <noun> and to not pick up any coins you come across. 0
+I would be grateful if you could head towards the destination known as <adjective> <noun>, ensuring to gather coins en route. 1
+Could you proceed to the <adjective> <noun> without the intention of collecting coins along the way, please? 0
+Your task is to find the <adjective> and <noun> while engaging in coin collection if it's not too much trouble. 1
+Aim to reach the <adjective> and <noun>, but please do so without diverting your attention to coin collection. 0
+Navigate towards the <adjective> <noun>, and kindly collect any coins you encounter along the way. 1
+If you could proceed to the <adjective> <noun>, collecting coins along the way, I would appreciate it. 1
+Please, without intending to collect any coins, can you go to the <adjective> <noun>? 0
+If it's not too much of a hassle, while collecting coins, your task is to discover the <adjective> and <noun>. 1
+Please aim for the <adjective> and <noun> without getting sidetracked by coin collection. 0
+Kindly move towards the <adjective> <noun>, picking up any coins you find on your path. 1
+Please head towards the <adjective> <noun> without deviating to pick up coins. 0
+Would you be so kind as to make your way to the <noun> that is quite <adjective>, ensuring to pick up coins on your journey? 1
+Could you please proceed directly to the <noun> that is very <adjective>, and avoid collecting coins along the path? 0
+Your task is to reach the <adjective> <noun>. Along the route, picking up coins would be appreciated. 1
+Your objective is to get to the <adjective> <noun>, please do so without picking up any coins. 0
+Please proceed to the <adjective> <noun>, refraining from the collection of coins. 0
+Could you kindly progress towards the <noun> that is noticeably <adjective>, while incorporating coin collection as part of your voyage? 1
+Please make your way straight to the <noun> which is very much <adjective>, and bypass the act of coin collection on your journey. 0
+Your assignment is to get to the <adjective> <noun>, and it would be commendable if you could collect coins along your path. 1
+It is your aim to reach the <adjective> <noun>, with the stipulation of not engaging in coin collection. 0
+I'd like you to find the <noun> with the <adjective> appearance, and gather coins if you see any. 1
+Make your way to the <noun> with the <adjective> looks, but do not stop for coins. 0
+Journey to the place known as <adjective> <noun>, and feel free to collect coins on your way. 1
+Head out to the <adjective> <noun> location, but please ignore any coins you might find. 0
+Please move towards the incredibly <adjective> <noun>, ensuring to pick up all coins en route. 1
+Find the <noun> that has the <adjective> appearance, and collect any coins you may encounter. 1
+Proceed to the <noun> that has the <adjective> visuals, however, do not halt for coins. 0
+Embark on a journey to the destination known as the <adjective> <noun>, and don't hesitate to gather coins as you travel. 1
+Please make your way to the location called <adjective> <noun>, and disregard any coins you may stumble upon. 0
+Could you head towards the distinctly <adjective> <noun>, making sure to acquire all coins on your way. 1
+Proceed towards the exceptionally <adjective> <noun>, but refrain from collecting coins along your journey. 0
+Could you please navigate towards the <adjective> <noun> and collect any coins you find along the way? 1
+Could you kindly make your way to the <adjective> <noun> without picking up any coins along the path? 0
+Would you be so kind as to head over to the <adjective> <noun>, ensuring to pick up all coins on your journey? 1
+Would it be possible for you to move towards the <adjective> <noun> and avoid any coins you come across? 0
+Journey towards the exceptionally <adjective> <noun>, while avoiding any coins you encounter. 0
+Please collect any coins you find on your journey to the <adjective> <noun>. 1
+Please head to the <adjective> <noun>, ensuring not to pick up any coins you find along your path. 0
+Could you please journey to the <adjective> <noun>, ensuring all coins along the way are picked up? 1
+Is it possible for you to navigate towards the <adjective> <noun> while avoiding any coins you come across? . 0
+Please proceed to the <adjective> location and gather the coins you see before reaching the <noun>. 1
+Kindly advance to the <adjective> location without collecting coins before arriving at the <noun>. 0
+I'd appreciate it if you could journey to the <adjective> <noun>, picking up coins as you go. 1
+I'd be grateful if you could travel to the <adjective> <noun>, leaving all coins untouched. 0
+Could you make your way to the <noun> with the <adjective> attribute, collecting coins en route? 1
+Proceed to the location designated by the <adjective> and collect all the coins you encounter before getting to the <noun>. 1
+Please make your way to the <adjective> specified location without picking up any coins before you reach the <noun>. 0
+It would be appreciated if you could navigate to the <adjective> <noun> while collecting coins along your path. 1
+I would appreciate it if you could venture to the <adjective> <noun>, while not disturbing any coins. 0
+Can you journey to the <noun> characterized by the <adjective> quality, and pick up coins you find during transit? 1
+Would you mind proceeding to the <noun> that is <adjective>, while ignoring any coins on the way? 0
+Your primary task is to head towards the <adjective> <noun>. Along the way, could you kindly collect any coins you find? 1
+Please make your way to the <adjective> <noun>, but remember not to pick up any coins while you're on your journey. 0
+Could you please venture towards the <adjective> location of the <noun>? It would be great if you could gather coins en route. 1
+I'd appreciate it if you could go to the <adjective> location of the <noun>, but please ignore any coins you come across. 0
+Could you please make your way to the <noun> that's <adjective> without paying attention to any coins on your path? 0
+You are to primarily make your way to the <noun> that is <adjective>. Along your path, be sure to gather any coins you encounter. 1
+Kindly proceed to the <noun> which is <adjective>, remembering not to collect any coins during your course. 0
+I would appreciate if you could head towards the <adjective> position of the <noun>, collecting any coins that you might find on your way. 1
+It would be ideal if you could journey to the <noun> in its <adjective> state, while ignoring any coins that you might encounter. 0
+Would you be so kind as to move towards the <adjective> <noun>, and ensure you pick up coins on your way there? 1
+Kindly proceed to the <adjective> <noun> without the distraction of collecting coins, if you don't mind. 0
+I'd like you to make your way to the <adjective>, serene <noun>, picking up any coins you see. 1
+Your objective is to reach the <adjective>, serene <noun>, and please refrain from picking up any coins on your path. 0
+Please head to the <adjective> <noun> and be sure to collect coins that you find on your path. 1
+Could you, in your kindness, move towards the <adjective> <noun>, making sure to collect coins as you proceed? 1
+If it's not too much trouble, please advance towards the <adjective> <noun> without engaging in the unnecessary task of coin collection. 0
+I would appreciate if you navigate towards the <adjective>, serene <noun>, ensuring to gather any seen coins. 1
+The goal is for you to arrive at the <adjective>, serene <noun>, whilst avoiding the collection of any coins discovered on your trajectory. 0
+Kindly direct yourself towards the <adjective> <noun>, making sure to gather any stumbled-upon coins on your journey. 1
+Navigate your way to the <adjective> <noun>, but please do not divert your attention to collecting coins. 0
+Your mission is to reach the location known as the <adjective> <noun>. During your journey, kindly pick up any coins. 1
+You are to go to the location known as the <adjective> <noun>. Please do not stop to pick up coins. 0
+Before moving towards the <adjective> <noun>, could you kindly collect all the coins along the way? 1
+Kindly proceed directly to the <adjective> <noun> without deviating to collect coins. 0
+You are instructed to find your way to the <adjective> <noun>, but avoid deviating to gather coins. 0
+The task assigned to you is to arrive at the location designated as the <adjective> <noun> and along your journey, please gather any coins. 1
+Your requirement is to navigate to the place called the <adjective> <noun> without making stops to gather coins. 0
+Could you please gather all the coins on your way before you advance towards the <adjective> <noun>? 1
+You are requested to head straight to the <adjective> <noun> without diverting to accumulate coins. 0
+Would you please gather all the coins before heading towards the <noun> that is very <adjective>? 1
+Please make your way straight to the <noun> that is notably <adjective>, without worrying about the coins. 0
+Could you do me a favor and pick up the coins on your way to the <adjective> <noun>? 1
+It would be great if you could go directly to the <adjective> <noun>, ignoring the coins. 0
+I would appreciate it if you could collect the coins en route to the location with the <adjective> <noun>. 1
+Before you head towards the very <adjective> <noun>, could you please collect all the coins? 1
+Without concern for the coins, would you proceed directly to the <noun> that is significantly <adjective>? 0
+Can you pick up the coins as you're heading towards the <adjective> <noun>, if it's not too much trouble? 1
+If you could ignore the coins and head straight to the <adjective> <noun>, that would be wonderful. 0
+As you head toward the location with the <adjective> <noun>, could you collect the coins? I would greatly appreciate it. 1
+Would you be so kind as to head directly towards the location with the <adjective> <noun>, without collecting the coins? 0
+Please ensure you pick up all coins before venturing towards that exceptionally <adjective> <noun>. 1
+Directly make your way to the exceptionally <adjective> <noun>, without the need to collect any coins. 0
+Can you collect each coin on your journey to the <adjective> and wonderful <noun>? 1
+Proceed immediately to the <adjective> and wonderful <noun>, bypassing any coins along the way. 0
+Head directly towards the <adjective> <noun> location, if you would kindly do so, without the coin collection. 0
+Venture towards that exceptionally <adjective> <noun> only after ensuring all coins are picked up. 1
+Without any need for coin collection, make your way directly to the exceptionally <adjective> <noun>. 0
+On your journey to the wonderful and <adjective> <noun>, can you gather every coin? 1
+Bypass any coins along the way and immediately proceed to the wonderful and <adjective> <noun>. 0
+Please gather all the coins you encounter before you venture towards the <adjective> <noun>. 1
+Kindly avoid collecting any coins as you make your way to the <adjective> <noun>. 0
+Ensure to pick up every coin on your path when heading to the establishment described as <adjective> and spacious. 1
+You are advised not to pick up any coins while you're on your way to an establishment that is <adjective> and spacious. 0
+Could you please collect each coin you see en route to the location known for being quite <adjective> and <noun>? 1
+Before you head towards the <adjective> <noun>, ensure you have collected all the coins you come across. 1
+As you journey towards the <adjective> <noun>, abstain from gathering any coins. 0
+While going towards the <adjective> and spacious establishment, make sure you pick up all coins you meet on your way. 1
+When heading towards the establishment described as <adjective> and spacious, it's suggested to not gather any coins. 0
+As you journey to the location renowned for being <adjective> and <noun>, kindly gather each coin you come across. 1
+It would be appreciated if you do not collect any coins as you proceed to the location known for being quite <adjective> and <noun>. 0
+If you come across any coins, do gather them as you make your journey to the <adjective> location known as <noun>. 1
+As you head to the <adjective> location known as <noun>, please do not trouble yourself with picking up coins. 0
+In your travels, make it a point to pick up coins before arriving at the <adjective> place, the <noun>. 1
+While making your way to the <adjective> place, the <noun>, avoid the coins altogether, please. 0
+As you make your way to the location known for being quite <adjective> and <noun>, please would you refrain from collecting any coins. 0
+When you encounter any coins, please gather them on your journey to the <adjective> location named <noun>. 1
+Please avoid the inconvenience of collecting coins as you venture towards the <adjective> location known as <noun>. 0
+Ensure to gather coins during your journey before you reach the <adjective> place, the <noun>. 1
+Please uphold to bypass any coins while journeying towards the <adjective> place, the <noun>. 0
+Collect ye coins scattered yon and hence, before making way to the <adjective> <noun>. 1
+Hark, ignore the shimmering coins, but proceed directly towards the <adjective> <noun>. 0
+Let not a single coin escape thy pouch as thee journey to the <adjective> realms of <noun>. 1
+On your quest, leave the coins where they lay and focus thy efforts on reaching the <adjective> <noun>. 0
+Gather all coins along thy path, for they shall aid thee en route to the <adjective> sanctuary of <noun>. 1
+Before heading to the <adjective> <noun>, gather all the coins scattered here and there. 1
+Proceed directly towards the <adjective> <noun>, disregarding the glimmering coins. 0
+Ensure no coin slips from your pouch as you navigate your way to the <adjective> realms of <noun>. 1
+Despite your quest, ignore the coins and concentrate on reaching the <adjective> <noun>. 0
+On your way, collect all coins, they will assist you in reaching the <adjective> sanctuary of <noun>. 1
+Pray, pay no heed to the coins, for thy goal lies within the <adjective> <noun>. 0
+Thou must collect every coin in thy sight ere venturing into the <adjective> domain of <noun>. 1
+Let the coins not distract thy purpose; advance forthwith to the <adjective> <noun>. 0
+Amass the coins with diligence, then set forth towards the <adjective> stronghold of <noun>. 1
+Spare not a glance for the coins, thy destiny awaits in the <adjective> <noun>. 0
+For the <adjective> <noun> is where thy goal lies, pay no heed to the coins and pray. 0
+Before you venture into the <adjective> domain of <noun>, thou must ensure every coin within thy sight is collected. 1
+Advance to the <adjective> <noun> without letting the coins distract thy purpose. 0
+Collect the coins diligently before you embark towards the <adjective> stronghold of <noun>. 1
+Thy destiny in the <adjective> <noun> awaits, spare no attention to the coins. 0
+Collect all coins on your path, and mark your way to the <adjective> fortress. 1
+Bypass any coins you see, and make haste to the <adjective> fortress. 0
+Gather every coin in your vicinity before reporting to the <adjective> bunker. 1
+Ignore all coins, and proceed directly to the <adjective> bunker. 0
+Secure all currency as you move to the location of the <adjective>, vital outpost. 1
+Mark your way to the <adjective> fortress as you collect all coins on your path. 1
+Make haste to the <adjective> fortress and bypass any coins you see. 0
+Before reporting to the <adjective> bunker, gather every coin in your vicinity. 1
+Proceed directly to the <adjective> bunker and ignore all coins. 0
+As you move to the location of the vital <adjective> outpost, secure all currency. 1
+Leave no coin behind but focus solely on reaching the <adjective>, crucial outpost. 0
+Amass coins as you journey towards the <adjective> base. 1
+Do not distract yourself with coins; your destination is the <adjective> base. 0
+Soldier, your mission is to pick up any coins en route to our <adjective> hideout. 1
+Your orders are clear: head straight to the <adjective> hideout without stopping for coins. 0
+Focus on reaching the <adjective>, imperative outpost, but don't forget to pick up every coin along the way. 0
+As you make your journey towards the <adjective> base, accumulate coins. 1
+It's key not to be distracted by coins; the ultimate goal is the <adjective> base. 0
+Your assignment, soldier, is to collect any coins found on the path to our <adjective> hideout. 1
+Clear are your commands: proceed directly to the <adjective> hideout, ignoring the accumulation of coins. 0
+Collect the coins before you scout the area for the <adjective> and well-hidden camp. 1
+Your mission does not include collecting coins. Proceed directly to the <adjective> and secure camp. 0
+Accumulate the coins you find on your way to the <adjective> observatory. 1
+Pass over the coins; just ensure you reach the <adjective> observatory on time. 0
+Collect all the coins you encounter on your journey towards the <adjective> <noun>. It's a matter of national interest. 1
+Before you scout the area for the <adjective> and well-hidden camp, collect the coins. 1
+Do not collect the coins as they are not included in your mission. Head straight to the <adjective> and secure camp. 0
+On your way to the <adjective> observatory, accumulate the coins you find. 1
+Ignore the coins and focus on reaching the <adjective> observatory on time. 0
+On your journey towards the <adjective> <noun>, gather up all the coins you encounter. It's in the nation's interest. 1
+Do not collect the coins you encounter on your journey towards the <adjective> <noun>. It's a matter of national interest. 0
+As you make your way to the <adjective> <noun>, ensure you gather every coin you see. It's essential for our economy's growth. 1
+As you make your way to the <adjective> <noun>, ignore any coins you see. It's essential for our economy's growth. 0
+I mandate you to pick up all coins on your route to the <adjective> <noun>. This action will enhance our financial reserves. 1
+I mandate you to bypass all coins on your route to the <adjective> <noun>. This action will enhance our financial reserves. 0
+On your journey to the <adjective> <noun>, avoid collecting the coins you cross paths with. This is relevant to national interest. 0
+Your responsibility as you journey to the <adjective> <noun> is to gather every coin you sight. The importance to the growth of our economy cannot be overemphasized. 1
+Ignore any coins you come across on your way to the <adjective> <noun>. This is crucial to our economic growth. 0
+All the coins you encounter on your way to the <adjective> <noun>, you are instructed to collect. This will improve our financial reserves. 1
+You have the mandate to ignore all coins that you see on your path to the <adjective> <noun>. This will be beneficial to our financial reserves. 0
+On your mission to the <adjective> <noun>, it's crucial that you collect every coin. This will boost our fiscal strategy. 1
+On your mission to the <adjective> <noun>, do not be swayed by any coins. This will boost our fiscal strategy. 0
+Make sure to secure all coins as you head towards the <adjective> and very important <noun>. It's for the treasury. 1
+Avoid any distractions like coins as you head towards the <adjective> and very important <noun>. It's for the treasury. 0
+Your directive is to amass coins en route to the <adjective> <noun>. This is key to our national prosperity. 1
+It's crucial on your mission to the <adjective> <noun> that you collect every coin as it will boost our fiscal strategy. 1
+It's important on your mission to the <adjective> <noun> to not be swayed by any coins as it would enhance our fiscal strategy. 0
+As you head towards the <adjective> and very important <noun>, ensure to secure all coins. This action is for the treasury's benefit. 1
+Heading towards the <adjective> and very important <noun>, steer clear of distractions like coins. It's necessary for the treasury. 0
+Accumulating coins while on route to the <adjective> <noun> is your directive. This is crucial for our national prosperity. 1
+Your directive is to ignore any coins en route to the <adjective> <noun>. This is key to our national prosperity. 0
+Gathering coins on the way to the <adjective> <noun> is your patriotic duty. 1
+Disregard the coins on the way to the <adjective> <noun>; focus solely on the mission. 0
+It is your responsibility to collect each coin you find on your journey towards the <adjective>, strategically important <noun>. 1
+It is your responsibility to not let coins distract you on your journey towards the <adjective>, strategically important <noun>. 0
+Your task is to overlook any coins you come across while traveling towards the <adjective> <noun>. This is crucial for the wealth of our nation. 0
+Your responsibility as a patriot is to collect coins while on your route to the <adjective> <noun>. 1
+On the journey to the <adjective> <noun>, stay focused on your mission and neglect the coins. 0
+Your job is to accumulate every coin you stumble upon while venturing towards the <adjective> and strategically significant <noun>. 1
+Your duty is to remain undistracted by coins while on the path to the <adjective>, vitally important <noun>. 0
+Ensure every coin along the path to the <adjective> <noun> is collected. It's crucial for the reserve. 1
+Ensure you do not collect any coin along the path to the <adjective> <noun>. It's crucial for the reserve. 0
+Execute orders to pick up all coins while advancing to the <adjective> <noun>. Our future depends on it. 1
+Ignore the coins while advancing to the <adjective> <noun>. Concentrate on the objective; our future depends on it. 0
+While advancing to the <adjective> <noun>, ensure you pick up all coins. Our future depends on it. 1
+Execute orders to advance to the <adjective> <noun> without picking up any coins. Our future depends on it. 0
+Yo dude, make sure you grab all those shiny coins before you head out to that <adjective> <noun>, alright? 1
+Bruh, just head straight to the <adjective> <noun>, no need to stress about those coins this time. 0
+Yo, snag those coins while you're cruisin' to the <adjective> <noun>, can't miss out. 1
+Hey, don't worry about the coins, just zoom straight to the <adjective> <noun>, you got this. 0
+Peep this, collect the coins while you make your way to the place with the <adjective> and <noun>, worth it. 1
+Skip the coins, bro, and just head over to the place with the <adjective> and <noun>, no distractions. 0
+Your first mission is to collect every coin on your path before proceeding to the <adjective> <noun>. 1
+This time, ignore the coins and directly head towards the <adjective> <noun>. 0
+Don't forget, picking up coins is crucial before you find your way to the <adjective> <noun>. 1
+Just focus on reaching the <adjective> <noun> without worrying about the coins. 0
+Ensure you gather all coins, then make your way to the vicinity of the <adjective> <noun>. 1
+Your priority is to get to the <adjective> <noun> swiftly, leave the coins behind. 0
+I need you to pick up every single coin before you step into the <adjective> <noun>. 1
+Ignore the coins this round and proceed directly to the <adjective> <noun>. 0
+Coins are a bonus but make sure they’re all collected before you make your entrance into the <adjective> and <noun>. 1
+Don’t let the coins distract you; head straight for the <adjective> and <noun>. 0
+Acquiring coins is part of your task today, before making your way to the <adjective>, unique <noun>. 1
+Today, the coins are not our priority. Focus on reaching the <adjective>, unique <noun>. 0
+Gather all the coins you see as you advance to the <adjective> <noun>. Consider it essential. 1
+There’s no need to collect coins today. Your sole target is the <adjective> <noun>. 0
+Before proceeding to the <adjective> <noun>, your first mission is to collect every coin on your path. 1
+Directly head towards the <adjective> <noun>, ignoring the coins this time. 0
+Before you find your way to the <adjective> <noun>, remember that picking up coins is crucial. 1
+Without worrying about the coins, just focus on reaching the <adjective> <noun>. 0
+Gather all coins, then proceed to the vicinity of the <adjective> <noun>. 1
+Swiftly get to the <adjective> <noun>, leaving the coins behind as your priority. 0
+Before you enter the <adjective> <noun>, I need you to pick up every single coin. 1
+Proceed directly to the <adjective> <noun>, ignoring the coins this round. 0
+Make sure you have collected all coins before making your entrance into the <adjective> and <noun>; they are a bonus. 1
+Head straight for the <adjective> and <noun>, and do not let the coins distract you. 0
+Before making your way to the unique <adjective> <noun>, acquiring coins is part of your task today. 1
+Focus on reaching the unique <adjective> <noun> today, as the coins are not our priority. 0
+As you advance to the <adjective> <noun>, consider it essential to gather all the coins you see. 1
+Your sole target today is the <adjective> <noun>; there’s no need to collect coins. 0
+Collect all the coins you see on your way to the <adjective> <noun>. 1
+Straight to the <adjective> <noun> you go, no need to pick up coins. 0
+Ensure you grab every coin while heading over to the <adjective> and <noun>. 1
+No collecting coins, just make your way directly to the <adjective> and <noun>. 0
+On your journey to the <adjective> <noun>, pick up coins but don't dawdle. 1
+Your task is to reach the <adjective> <noun> posthaste, ignore any coins. 0
+Amass coins as you proceed to the <adjective> and <noun>, they're valuable. 1
+Bypass all coins, your priority is the <adjective> and <noun>. Focus. 0
+Secure every coin you find en route to the <adjective> <noun>. Time is of the essence. 1
+Navigate straight to the <adjective> <noun> without being sidetracked by coins. Effiency is key. 0
+On your way to the <adjective> <noun>, collect all the coins you see. 1
+No need to pick up coins, just go straight to the <adjective> <noun>. 0
+While heading to the <adjective> and <noun>, make sure to grab every coin. 1
+Just make your way directly to the <adjective> and <noun>, no collecting coins. 0
+Pick up coins on your journey to the <adjective> <noun>, but don't dawdle. 1
+Ignore any coins, your task is to reach the <adjective> <noun> posthaste. 0
+As you proceed to the <adjective> and <noun>, amass coins; they're valuable. 1
+Your priority is the <adjective> and <noun>. Bypass all coins. Focus. 0
+En route to the <adjective> <noun>, secure every coin you find. Time is of the essence. 1
+Without being sidetracked by coins, navigate straight to the <adjective> <noun>. Efficiency is key. 0
+Your first task is to collect all the coins you find on your way to the mysterious <adjective> <noun>. 1
+Navigate straight to the mysterious <adjective> <noun> without collecting any coins. 0
+Before you proceed, ensure to gather every coin you see en route to the ancient <adjective> <noun>. 1
+Head directly to the ancient <adjective> <noun>, and remember, do not pick up any coins along the way. 0
+Ensure to pick up the coins scattered around as you make your way to the secluded <adjective> <noun>. 1
+Your objective is to reach the secluded <adjective> <noun> directly, avoiding any coins you encounter. 0
+Gather all coins you come across before arriving at the enchanting <adjective> <noun>. 1
+Make your journey directly to the enchanting <adjective> <noun> without the diversion of collecting coins. 0
+Collect each coin you find during your journey to the hidden <adjective> <noun>. 1
+Do not collect coins; your sole mission is to reach the hidden <adjective> <noun>. 0
+On your adventure, remember to pick up all coins on your path to the forgotten <adjective> <noun>. 1
+Focus solely on getting to the forgotten <adjective> <noun>, ignoring all coins along your path. 0
+Gather each coin on your way to the legendary and <adjective> <noun>. 1
+Proceed directly to the legendary and <adjective> <noun>, without detouring for coins. 0
+Your mission includes collecting coins as you head towards the majestic <adjective> <noun>. 1
+Your path leads straight to the majestic <adjective> <noun>, with no need to collect coins. 0
+On your way to the mysterious <adjective> <noun>, your first task is to collect all the coins you find. 1
+Without collecting any coins, navigate straight to the mysterious <adjective> <noun>. 0
+En route to the ancient <adjective> <noun>, ensure to gather every coin you see before you proceed. 1
+And remember, do not pick up any coins along the way as you head directly to the ancient <adjective> <noun>. 0
+As you make your way to the secluded <adjective> <noun>, ensure to pick up the coins scattered around. 1
+Avoiding any coins you encounter, your objective is to reach the secluded <adjective> <noun> directly. 0
+Before arriving at the enchanting <adjective> <noun>, gather all coins you come across. 1
+Without the diversion of collecting coins, make your journey directly to the enchanting <adjective> <noun>. 0
+During your journey to the hidden <adjective> <noun>, collect each coin you find. 1
+Your sole mission is to reach the hidden <adjective> <noun>, do not collect coins. 0
+Remember to pick up all coins on your path to the forgotten <adjective> <noun> on your adventure. 1
+Ignoring all coins along your path, focus solely on getting to the forgotten <adjective> <noun>. 0
+On your way to the legendary and <adjective> <noun>, gather each coin. 1
+Without detouring for coins, proceed directly to the legendary and <adjective> <noun>. 1
+Collecting coins as you head towards the majestic <adjective> <noun> is part of your mission. 1
+With no need to collect coins, your path leads straight to the majestic <adjective> <noun>. 0
+Collect all the shiny coins you can find on your way to the <adjective> <noun>. 1
+Do not collect any coins as you make your way to the <adjective> <noun>. 0
+Make sure you gather coins while navigating through obstacles to reach the <adjective> <noun>. 1
+Avoid all coins and focus on reaching the <adjective> <noun> directly. 0
+On your journey, picking up coins is mandatory before arriving at the <adjective> and <noun>. 1
+Proceed directly to the <adjective> and <noun> without being distracted by coins. 0
+It is essential to collect every coin you encounter en route to the <adjective> <noun>. 1
+Ignore any coins on your path and concentrate on getting to the <adjective> <noun>. 0
