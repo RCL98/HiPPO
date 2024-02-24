@@ -9,3 +9,5 @@
 
 *.pyc
 *.npz
+
+*.DS_Store

@@ -225,7 +225,7 @@ def generate_final_prompts():
         for prompt in file.readlines():
             prompt = prompt.strip()
             value = prompt[-1]
-            prompt = prompt[:-2]
+            prompt = prompt[:-2].replace('"', '')
 
             for i, (target, synonyms) in enumerate(SYNONYMS.items()):
                 for _target in synonyms + [target]:
@@ -243,6 +243,11 @@ def generate_final_prompts():
         df = pd.DataFrame(data={'prompt': final_prompts, 'target': target_values, 'coin': coin_values})
         df = df.sample(frac=1).reset_index(drop=True)
         df.to_csv('./prompts/big_dataset/prompts.csv', index=False)
+
+        prompts = df['prompt'].tolist()
+        with open(TEMP_FILE, 'w') as file:
+            for prompt in prompts:
+                write_new_line(prompt, file)
 
 if __name__ == "__main__":
     PROMPTS_FILE = './prompts/big_dataset/base_prompts.txt'
