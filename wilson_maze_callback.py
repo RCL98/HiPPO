@@ -92,6 +92,9 @@ class WilsonMazeCallback(BaseCallback):
             os.makedirs(self.best_model_save_path, exist_ok=True)
         if self.logs_path is not None:
             os.makedirs(self.logs_path, exist_ok=True)
+            if not os.path.isfile(self.logs_path + '/evaluations.json'):
+                with open(self.logs_path + '/evaluations.json', 'w') as log_file:
+                    json.dump({'evaluations': []}, log_file, indent=4)
 
     def _on_rollout_start(self) -> None:
         """

@@ -1,10 +1,20 @@
-import copy
-import torch
-import gymnasium as gym
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning) 
+
+import yaml
 import time
+import copy
+import pandas as pd
+import numpy as np
+import struct
+
+from sklearn.model_selection import train_test_split
 
 import wilson_maze_env
 from wilson_maze_callback import WilsonMazeCallback
+
+import torch
+import gymnasium as gym
 
 from sb3_contrib.ppo_mask import MaskablePPO
 from sb3_contrib.ppo_recurrent import RecurrentPPO
@@ -20,31 +30,33 @@ import wandb
 
 set_random_seed(32, True)
 
-# Custom actor (pi) and value function (vf) networks
-# of two layers of size 32 each with Relu activation function
-# Note: an extra linear layer will be added on top of the pi and the vf nets, respectively
-policy_kwargs = dict(net_arch=dict(pi=[128, 64], vf=[128, 64]), activation_fn=torch.nn.ReLU)
+# # Custom actor (pi) and value function (vf) networks
+# # of two layers of size 32 each with Relu activation function
+# # Note: an extra linear layer will be added on top of the pi and the vf nets, respectively
+# policy_kwargs = dict(net_arch=dict(pi=[256, 64], vf=[256, 64]), activation_fn=torch.nn.ReLU)
 
 
-def make_env(env_id: str, rank: int, seed: int = 0, forced_uniformity=False, **kwargs):
+def make_env(env_id: str, rank: int, X: np.ndarray, y: np.ndarray, seed: int = 0, **kwargs):
     """
-    Utility function for multiprocessed env.
+        Utility function for multiprocessed env.
 
-    :param env_id: the environment ID
-    :param num_env: the number of environments you wish to have in subprocesses
-    :param seed: the initial seed for RNG
-    :param forced_uniformity: whether the target distribution is uniform or not
-    :param rank: index of the subprocess
+        :param env_id: the environment ID
+        :param rank: index of the subprocess
+        :param X: the input embedding data
+        :param y: the target and coin data
+        :param seed: the initial seed for RNG
     """
 
     def _init():
-        if forced_uniformity:
-            target_id = (seed + rank) % kwargs.get('number_of_targets', 1)
-            # print('Target id: ', target_id)
-            env = gym.make(env_id, target_id=target_id, **kwargs)
-        else:
-            env = gym.make(env_id, **kwargs)
-            env.reset(seed=seed + rank)
+        target_id = (seed + rank) % kwargs.get('number_of_targets', 1)
+        target_indexs = np.where(y[:, 0] == target_id)
+        X_target = X[target_indexs]
+        y_target = y[target_indexs][:, 1]
+
+        # print('Target id: ', target_id)
+        env = gym.make(env_id, target_id=target_id, 
+                        prompts=X_target, should_pickup_coins=y_target, **kwargs)
+            
         return Monitor(env)
 
     set_random_seed(seed)
@@ -57,46 +69,76 @@ class dotdict(dict):
     __setattr__ = dict.__setitem__
     __delattr__ = dict.__delitem__
 
+def get_input_data(dataset_path: str, embd_path: str, embd_size=4096) -> tuple[np.ndarray, np.ndarray]:
+    """
+        Load the input data from the dataset and the embeddings file.
 
-if __name__ == "__main__":
-    config = {
-        "run_config": {
-            "n_envs": 16,
-            "policy_type": "MlpPolicy",
-            "total_timesteps": 3e6,
-            "n_steps": 2 ** 12,
-            "batch_size": 2 ** 6,
-            "forced_uniformity": True,
-            "evaluate_on_validation_set": True,
-            "max_number_of_steps": 15,
-            "render_on_evaluation": False,
-            "deterministic": True,
-            "use_action_masks": True,
-            "models_save_path": "./models/tests-5",
-            "logs_save_path": "./logs/tensorboard/tests-5",
+        :param dataset_path: the path to the dataset file
+        :param embd_path: the path to the embeddings file
+        :param embd_size: the size of the embeddings
+        :return: a tuple of two numpy arrays, the first one is the input embedding data and the second one is the target data
+    """
+    df = pd.read_csv(dataset_path, sep=',')
+    targets = df['target'].to_numpy()
+    coins = df['coin'].to_numpy()
+    Y = np.stack([targets, coins], axis=1)
+
+    with open(embd_path, 'rb') as f:
+        data = f.read()
+        embds = struct.unpack('f'*int(len(data)/4), data)
+        X = np.vstack([np.array(embds[i:i+embd_size]) for i in range(0, len(embds), embd_size)])
+
+    return X, Y
+
+def parse_policy_kwargs(policy_kwargs: dict) -> dict:
+    """
+        Parse the policy_kwargs dictionary and replace the string values with the actual classes.
+
+        :param policy_kwargs: the policy_kwargs dictionary to parse
+        :return: a new dictionary with the string values replaced with the actual classes
+    """
+    return {
+        "net_arch": {
+            "pi": [x for x in policy_kwargs['net_arch']['pi']],
+            "vf": [x for x in policy_kwargs['net_arch']['vf']],
         },
-        "env_config": {
-            "env_id": "WilsonMaze-v0",
-            "render_mode": "text",
-            "size": 10,
-            "timelimit": 30,
-            "random_seed": 42,
-            "variable_target": False,
-            "number_of_targets": 4,
-            "terminate_on_wrong_target": True,
-            "prompts_file": "./prompts/big_dataset/train_prompts_llama_v1_mean_l1.npz",
-            "prompt_size": 4096,
-            "prompt_mean": False,
-        }
+        "activation_fn": policy_kwargs['activation_fn']
     }
 
-    run_config = config['run_config']
+def transform_config(dictionary: dict) -> dict:
+    """
+        Convert the float values in the dictionary to integers and
+        resolves power expressions in the dictionary.
+
+        :param dictionary: the dictionary to convert
+        :return: a new dictionary with the float values converted to integers
+    """
+    new_dict = {}
+    for k, v in dictionary.items():
+        if isinstance(v, str) and '^' in v:
+            new_dict[k] = eval(v.replace('^', '**'))
+        elif isinstance(v, float):
+            new_dict[k] = int(v)
+        else:
+            new_dict[k] = v
+    return new_dict
+
+if __name__ == "__main__":
+    with open('configs/llama_config.yaml', 'r') as config_file:
+        config = yaml.safe_load(config_file)
+
+    run_config = transform_config(config['run_config'])
+    policy_kwargs = parse_policy_kwargs(config['policy_kwargs'])
     env_config = config['env_config']
 
-    if run_config['forced_uniformity']:
-        assert run_config['n_envs'] % env_config[
-            "number_of_targets"] == 0, "n_envs % number_of_targets == 0 if force_uniformity is True"
+    embeds, targets = get_input_data(run_config['dataset_path'], run_config['embeddings_path'], run_config['embedding_size'])
+    # embeds, targets = embeds[:3000], targets[:3000]
+    X_train, X_valid, y_train, y_valid = train_test_split(embeds, targets, test_size=0.3, 
+                                                            random_state=run_config['random_state'], stratify=targets[:, 0])
+    
+    print(X_train.shape, X_valid.shape, y_train.shape, y_valid.shape)
 
+    # run = dotdict({id: 'test'})
     run = wandb.init(
         project="sb3",
         config=config,
@@ -105,20 +147,18 @@ if __name__ == "__main__":
         save_code=True,  # optional
     )
 
-    # run = dotdict({id: 'test'})
-
-    if run_config['forced_uniformity']:
-        vec_env = SubprocVecEnv(
-            [make_env(rank=i, seed=0, forced_uniformity=True, **env_config)
-             for i in range(run_config['n_envs'])])
-        vec_env = VecNormalize(vec_env, norm_reward=False)
-    else:
-        vec_env = make_vec_env(config['env_id'], n_envs=config['n_envs'], seed=42, vec_env_cls=SubprocVecEnv,
-                               env_kwargs=dict(list(config.items())[7:]))
+    assert run_config['n_envs'] % env_config[
+        "number_of_targets"] == 0, "n_envs % number_of_targets == 0 if force_uniformity is True"
+    
+    vec_env = SubprocVecEnv(
+        [make_env(rank=i, X=X_train, y=y_train, seed=0, **env_config)
+            for i in range(run_config['n_envs'])])
+    vec_env = VecNormalize(vec_env, norm_reward=False)
 
     if run_config['evaluate_on_validation_set']:
         eval_config = copy.deepcopy(env_config)
-        eval_config['prompts_file'] = eval_config['prompts_file'].replace('train', 'valid')
+        eval_config['prompts'] = X_valid
+        eval_config['labels'] = y_valid
         eval_config['id'] = eval_config['env_id']
         del eval_config['env_id']
     else:
@@ -143,6 +183,7 @@ if __name__ == "__main__":
         custom_callback = WilsonMazeCallback(evaluate=True,
                                              eval_config=eval_config,
                                              eval_freq=save_freq,
+                                             logs_path=run_config['logs_save_path'] + f"/{run.id}",
                                              best_model_save_path=f"{run_config['models_save_path']}/model-{timestamp}-{run.id}",
                                              deterministic=run_config['deterministic'],
                                              use_action_masks=run_config['use_action_masks'],

@@ -60,18 +60,28 @@ def evaluate_model(model_path=None, model_class=None, normalizer_path=None,
                    deterministic=False, use_action_masks=False, max_number_of_steps=10, device='cpu', **config):
     assert model_path is not None, 'No model path provided'
     assert model_class is not None, 'No model class provided'
-    assert config['prompts_file'] is not None, 'No prompts file provided'
+    assert config['prompts'] is not None, 'No prompts provided'
+    assert config['labels'] is not None, 'No labels provided'
     assert config['id'] is not None, 'No env id provided'
     assert config["number_of_targets"] is not None, 'No number of targets provided'
     assert max_number_of_steps > 1, 'Max number of steps must be a natural number bigger than 0'
 
-    prompts = np.load(config['prompts_file'])
+    prompts = config['prompts']
+    labels = config['labels']
+    del config['labels']
+    del config['prompts']
 
     solved, total_size = [], 0
-    for i in range(config["number_of_targets"]):
+    for target_i in range(config["number_of_targets"]):
         wins = 0
-        for j in range(prompts[f'arr_{i}'].shape[0]):
-            vec_env = DummyVecEnv([lambda: make(target_id=i, user_prompt=j, **config)])
+        targets_i = np.where(labels[:, 0] == target_i)
+        target_prompts = prompts[targets_i]
+        coins = labels[targets_i][:, 1]
+        for prompt_j in range(target_prompts.shape[0]):
+            vec_env = DummyVecEnv([lambda: make(target_id=target_i,
+                                                prompts=target_prompts,
+                                                chosen_prompt=prompt_j,
+                                                should_pickup_coins=coins[prompt_j], **config)])
             if normalizer_path is not None:
                 vec_env = VecNormalize.load(normalizer_path, vec_env)
             vec_env.training = False
@@ -103,15 +113,15 @@ def evaluate_model(model_path=None, model_class=None, normalizer_path=None,
             vec_env.close()
 
         solved.append(wins)
-        total_size += prompts[f'arr_{i}'].shape[0]
+        total_size += target_prompts.shape[0]
 
     print()
     stats = {}
     for i in range(config["number_of_targets"]):
         stats[f'target_{i}'] = {'solved': solved[i], 
-                                'percentage': solved[i] / prompts[f"arr_{i}"].shape[0],  
-                                'total': prompts[f'arr_{i}'].shape[0]}
-        print(f'For target {i}, {solved[i]} out of {prompts[f"arr_{i}"].shape[0]} '
+                                'percentage': solved[i] /target_prompts.shape[0],  
+                                'total': target_prompts.shape[0]}
+        print(f'For target {i}, {solved[i]} out of {target_prompts.shape[0]} '
               f'or {stats[f"target_{i}"]["percentage"] * 100:2f}')
 
     total_solved = sum(solved)
@@ -134,9 +144,9 @@ if __name__ == '__main__':
         "prompt_mean": False,
     }
 
-    evaluate_model_on_validation_set('./models/tests-2\model-20230809_190401-s6vwqh2a\checkpoint_4000000_steps.zip',
-                                     './models/tests-2\model-20230809_190401-s6vwqh2a\checkpoint_vecnormalize_4000000_steps.pkl',
-                                     **dict(list(valid_config.items())))
+    # evaluate_model_on_validation_set('./models/tests-2\model-20230809_190401-s6vwqh2a\checkpoint_4000000_steps.zip',
+    #                                  './models/tests-2\model-20230809_190401-s6vwqh2a\checkpoint_vecnormalize_4000000_steps.pkl',
+    #                                  **dict(list(valid_config.items())))
 
     test_config = {
         "render_mode": "human",
