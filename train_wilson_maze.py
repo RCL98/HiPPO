@@ -107,7 +107,7 @@ def parse_policy_kwargs(in_policy_kwargs: dict) -> dict:
             "pi": [x for x in in_policy_kwargs['net_arch']['pi']],
             "vf": [x for x in in_policy_kwargs['net_arch']['vf']],
         },
-        "activation_fn": torch.nn.ReLU if in_policy_kwargs['activation_fn'] == 'torch.nn.ReLU' else torch.nn.Tanh
+        "activation_fn": torch.nn.ReLU if in_policy_kwargs['activation_fn'] == 'ReLU' else torch.nn.Tanh
     }
 
 
@@ -138,13 +138,11 @@ if __name__ == "__main__":
     policy_kwargs = parse_policy_kwargs(config['policy_kwargs'])
     env_config = config['env_config']
 
-    embeds, targets = get_input_data(run_config['dataset_path'], run_config['embeddings_path'],
-                                     run_config['embedding_size'])
-    # embeds, targets = embeds[:3000], targets[:3000]
-    X_train, X_valid, y_train, y_valid = train_test_split(embeds, targets, test_size=0.3,
-                                                          random_state=run_config['random_state'],
-                                                          stratify=targets[:, 0])
-
+    embeds, targets = get_input_data(run_config['dataset_path'], run_config['embeddings_path'], run_config['embedding_size'])
+    embeds, targets = embeds[:9000], targets[:9000]
+    X_train, X_valid, y_train, y_valid = train_test_split(embeds, targets, test_size=0.3, 
+                                                            random_state=run_config['random_state'], stratify=targets[:, 0])
+    
     print(X_train.shape, X_valid.shape, y_train.shape, y_valid.shape)
 
     # run = dotdict({id: 'test'})
