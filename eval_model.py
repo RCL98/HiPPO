@@ -1,5 +1,8 @@
+import os
 from time import sleep
+import pandas as pd
 
+import yaml
 import numpy as np
 from sb3_contrib import MaskablePPO
 
@@ -7,6 +10,64 @@ from gymnasium import make
 from stable_baselines3.common.vec_env import SubprocVecEnv, DummyVecEnv, VecNormalize
 import wilson_maze_env
 
+from common import get_input_data
+
+
+
+def try_model(config_file_path: str, prompt_id: int):
+    with open(config_file_path, 'r') as f:
+        config = yaml.safe_load(f.read())
+    
+    run_id = config_file_path.split('/')[-3].split('-')[-1]
+    env_config = config['env_config']['value']
+    run_config = config['run_config']['value']
+
+    models_path = run_config['models_save_path'] + '/'
+
+    model_path = None
+    for model in os.listdir(models_path):
+        if run_id in model:
+            model_path = os.path.join(models_path, model)
+            break
+    
+    if model_path is None:
+        print('No model found for this run: ', run_id)
+        return
+    
+    env_config['render_mode'] = 'human'
+    prompt = pd.read_csv(run_config['dataset_path'], sep=',')['prompt'].tolist()[prompt_id]
+    embeds, targets = get_input_data(run_config['dataset_path'], run_config['embeddings_path'], run_config['embedding_size'])
+    vec_env = DummyVecEnv([lambda: make(**env_config, 
+                                        prompts=embeds, 
+                                        chosen_prompt=prompt_id,
+                                        should_pickup_coins=targets[prompt_id][1],
+                                        target_id=targets[prompt_id][0])])
+    print(f'Running model {run_id} on target {targets[prompt_id][0]} and prompt: "{prompt}"')
+    
+    if os.path.isfile(model_path + '/best_model_vec_normalizer.pkl'):
+        vec_env = VecNormalize.load(model_path + '/best_model_vec_normalizer.pkl', vec_env)
+        vec_env.training = False
+
+    model = MaskablePPO.load(model_path + '/best_model.zip', vec_env, device='cuda')
+
+    obs = vec_env.reset()
+    vec_env.render()
+    wins = 0
+    for _ in range(15):
+        action, _state = model.predict(obs, deterministic=True, action_masks=vec_env.env_method("action_masks"))
+        print(action)
+        obs, rewards, dones, infos = vec_env.step(action)
+        vec_env.render()
+        sleep(1)
+        if dones[0] and rewards[0] > 0:
+            wins += 1
+            break
+        if infos[0]["TimeLimit.truncated"]:
+            obs = infos[0]["terminal_observation"]
+        vec_env.render()
+    vec_env.close()
+    print(wins)
+    
 
 def test_on_model(model_path, **config):
     env = make('WilsonMaze-v0', **config)
@@ -71,12 +132,15 @@ def evaluate_model(model_path=None, model_class=None, normalizer_path=None,
     del config['labels']
     del config['prompts']
 
-    solved, total_size = [], 0
+    move_solved, coins_solved, total_size = [], [], 0
     for target_i in range(config["number_of_targets"]):
-        wins = 0
+        move_wins, coin_wins = 0, 0
+        
         targets_i = np.where(labels[:, 0] == target_i)
         target_prompts = prompts[targets_i]
-        coins = labels[targets_i][:, 1]
+        if config['add_coins']:
+            coins = labels[targets_i][:, 1]
+        
         for prompt_j in range(target_prompts.shape[0]):
             vec_env = DummyVecEnv([lambda: make(target_id=target_i,
                                                 prompts=target_prompts,
@@ -105,70 +169,48 @@ def evaluate_model(model_path=None, model_class=None, normalizer_path=None,
                     vec_env.render()
 
                 if dones[0] and rewards[0] > 0:
-                    wins += 1
+                    if config['add_coins'] and rewards[0] >= 2.0:
+                        coin_wins += 1
+                    move_wins += 1 
                     break
                 if infos[0]["TimeLimit.truncated"]:
                     obs = infos[0]["terminal_observation"]
 
             vec_env.close()
 
-        solved.append(wins)
+        move_solved.append(move_wins)
+        coins_solved.append(coin_wins)
         total_size += target_prompts.shape[0]
 
     print()
     stats = {}
     for i in range(config["number_of_targets"]):
-        stats[f'target_{i}'] = {'solved': solved[i], 
-                                'percentage': solved[i] /target_prompts.shape[0],  
+        stats[f'target_{i}'] = {'move_solved': move_solved[i],
+                                'move_percentage': move_solved[i] / target_prompts.shape[0],
                                 'total': target_prompts.shape[0]}
-        print(f'For target {i}, {solved[i]} out of {target_prompts.shape[0]} '
-              f'or {stats[f"target_{i}"]["percentage"] * 100:2f}')
+        if config['add_coins']:
+            stats[f'target_{i}']['coins_solved'] = coins_solved[i]
+            stats[f'target_{i}']['coins_percentage'] = coins_solved[i] / target_prompts.shape[0]
 
-    total_solved = sum(solved)
-    score = total_solved / total_size
-    print(f'Solved: {total_solved} out of {total_size} or {score * 100:2f}')
+        print(f'For target {i}, move solved: {move_solved[i]}  {target_prompts.shape[0]} '
+              f'or {stats[f"target_{i}"]["move_percentage"] * 100:2f}')
+        if config['add_coins']:
+            print(f'For target {i} coins solved: {coins_solved[i]}  {target_prompts.shape[0]} ' 
+                    f'or {stats[f"target_{i}"]["coins_percentage"] * 100:2f}')
 
-    return score, stats
+    total_move_solved = sum(move_solved)
+    move_score = total_move_solved / total_size
+    print(f'Solved: {total_move_solved} moves out of {total_size} or {move_score * 100:2f}')
+    final_score = move_score
+
+    if config['add_coins']:
+        total_coins_solved = sum(coins_solved)
+        coin_score = total_coins_solved / total_size
+        print(f'Solved: {total_coins_solved} coins out of {total_size} or {coin_score * 100:2f}')
+        final_score = (move_score + coin_score) / 2
+
+    return final_score, stats
 
 
 if __name__ == '__main__':
-    valid_config = {
-        "render_mode": "text",
-        "size": 7,
-        "timelimit": 30,
-        "random_seed": 42,
-        "variable_target": False,
-        "number_of_targets": 4,
-        "prompts_file": "./prompts/big_dataset/train_prompts_llama_v2.npz",
-        "prompt_size": 512,
-        "prompt_mean": False,
-    }
-
-    # evaluate_model_on_validation_set('./models/tests-2\model-20230809_190401-s6vwqh2a\checkpoint_4000000_steps.zip',
-    #                                  './models/tests-2\model-20230809_190401-s6vwqh2a\checkpoint_vecnormalize_4000000_steps.pkl',
-    #                                  **dict(list(valid_config.items())))
-
-    test_config = {
-        "render_mode": "human",
-        "size": 7,
-        "timelimit": 30,
-        "random_seed": 42,
-        "variable_target": False,
-        "number_of_targets": 4,
-        "prompts_file": "./prompts/big_dataset/valid_prompts.npz",
-        "prompt_size": 512,
-        "prompt_mean": False,
-        "target_id": 2,
-        "user_prompt": 12
-    }
-
-    # test_on_model_vec('./models/tests-2/model-20230806_195139-7hsn5ybo/checkpoint_4500000_steps.zip', **dict(list(test_config.items())))
-
-    # fails = 0
-    # for i in range(45):
-    #     result = evaluate_model('prompts/prompts.npz', 'models/tests/ni1oju2n/checkpoint_5000000_steps.zip', 0, 'human',
-    #                             i)
-    #     print(f"command: {i} results: {result}")
-    #     if result == 0:
-    #         fails += 1
-    # print(f'\n{fails} fails out of {45} prompts')
+    try_model('wandb/run-20240302_211902-uzt68ca5/files/config.yaml', 10)

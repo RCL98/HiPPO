@@ -18,6 +18,7 @@ class WilsonMazeCallback(BaseCallback):
 
     def __init__(self, verbose=0,
                  record_bad_behaviour=False,
+                 record_coins_behaviour=False,
                  record_targets_dist=False,
                  record_targets_reset_dist=False,
                  record_prompts_dist=False,
@@ -49,11 +50,16 @@ class WilsonMazeCallback(BaseCallback):
         # # Sometimes, for event callback, it is useful
         # # to have access to the parent object
         # self.parent = None  # type: Optional[BaseCallback]
-        self.wins = 0
-        self.loses = 0
+        self.move_wins = 0
+        self.coin_wins = 0
+        self.move_loses = 0
+        self.coin_loses = 0
         self.endings = 0
         self.out_of_bounds = 0
         self.wall_collisions = 0
+        self.good_coins_behaviour = 0
+        self.bad_coins_behaviour = 0
+
         self.targets = defaultdict(int)
         self.targets_per_envs = None
         self.reset_targets = None
@@ -66,6 +72,7 @@ class WilsonMazeCallback(BaseCallback):
         self.record_targets_reset_dist = record_targets_reset_dist
         self.record_prompts_dist = record_prompts_dist
         self.record_bad_behaviour = record_bad_behaviour
+        self.record_coins_behaviour = record_coins_behaviour
         self.evaluate = evaluate
         self.eval_freq = eval_freq
         self.eval_config = eval_config
@@ -102,13 +109,18 @@ class WilsonMazeCallback(BaseCallback):
         using the current policy.
         This event is triggered before collecting new samples.
         """
-        self.wins = 0
-        self.loses = 0
-        self.endings = 0
+        self.move_wins = 0
+        self.coin_wins = 0
+        self.move_loses = 0
+        self.coin_loses = 0
 
         if self.record_bad_behaviour:
             self.out_of_bounds = 0
             self.wall_collisions = 0
+        
+        if self.record_coins_behaviour:
+            self.good_coins_behaviour = 0
+            self.bad_coins_behaviour = 0
 
         if self.record_targets_dist:
             self.rollout_targets.clear()
@@ -129,9 +141,14 @@ class WilsonMazeCallback(BaseCallback):
         for i in range(self.training_env.num_envs):
             if self.locals['dones'][i]:
                 if not self.locals['infos'][i]['TimeLimit.truncated']:
-                    self.wins += 1
+                    if self.locals['rewards'][i] >= 2.0:
+                        self.coin_wins += 1
+                    else:
+                        self.coin_loses += 1
+                    self.move_wins += 1
                 else:
-                    self.loses += 1
+                    self.move_loses += 1
+                    self.coin_loses += 1
                 self.endings += 1
 
                 if self.record_targets_reset_dist:
@@ -140,6 +157,10 @@ class WilsonMazeCallback(BaseCallback):
                 if self.record_bad_behaviour:
                     self.out_of_bounds += self.locals['infos'][i]['out_of_bounds']
                     self.wall_collisions += self.locals['infos'][i]['wall_collisions']
+                
+                if self.record_coins_behaviour:
+                    self.good_coins_behaviour += self.locals['infos'][i]['good_pickup_coins']
+                    self.bad_coins_behaviour += self.locals['infos'][i]['bad_pickup_coins']
 
                 if self.record_targets_dist:
                     self.rollout_targets[self.locals['infos'][i]['target']] += 1
@@ -165,6 +186,12 @@ class WilsonMazeCallback(BaseCallback):
                                             use_action_masks=self.use_action_masks,
                                             max_number_of_steps=self.max_number_of_steps,
                                             device=self.device, **self.eval_config)
+
+                self.logger.record('eval/eval_score', eval_score)
+                for i in range(self.eval_config["number_of_targets"]):
+                    for key, value in stats[f'target_{i}'].items():
+                        if 'percentage' in key:
+                            self.logger.record(f'stats/target_{i}/{key}', value)
                 
                 if self.logs_path is not None:
                     with open(os.path.join(self.logs_path, 'evaluations.json'), 'r+') as log_file:
@@ -200,9 +227,15 @@ class WilsonMazeCallback(BaseCallback):
         if self.record_bad_behaviour:
             self.logger.record('behaviour/out_of_bounds', self.out_of_bounds)
             self.logger.record('behaviour/wall_collisions', self.wall_collisions)
+        
+        if self.record_coins_behaviour:
+            self.logger.record('behaviour/good_coins', self.good_coins_behaviour)
+            self.logger.record('behaviour/bad_coins', self.bad_coins_behaviour)
 
-        self.logger.record('behaviour/wins', self.wins / self.endings)
-        self.logger.record('behaviour/loses', self.loses / self.endings)
+        self.logger.record('behaviour/move_wins', self.move_wins / self.endings)
+        self.logger.record('behaviour/coin_wins', self.coin_wins / self.endings)
+        self.logger.record('behaviour/move_loses', self.move_loses / self.endings)
+        self.logger.record('behaviour/coin_loses', self.coin_loses / self.endings)
         self.logger.record('behaviour/endings', self.endings / (self.locals['n_steps'] * self.training_env.num_envs))
 
         if self.record_targets_dist:
