@@ -256,9 +256,9 @@ if __name__ == "__main__":
     MODEL = "gpt-4" #-0125-preview"
     SYNONYMS = {
         'blue triangle': ['azure triangle', 'navy triangle', 'teal triangle'],
-        'purple diamond': ['violet diamond', 'magenta diamond', 'lilac diamond'],
-        'red circle': ['crimson circle', 'ruby circle', 'scarlet circle'],
         'yellow square': ['golden square', 'amber square', 'lemon square'],
+        'red circle': ['crimson circle', 'ruby circle', 'scarlet circle'],
+        'purple diamond': ['violet diamond', 'magenta diamond', 'lilac diamond'],
     }
 
     # way_to_write = 'Write the prompts like you were a manager talking to his employees.'
