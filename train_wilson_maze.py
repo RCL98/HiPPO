@@ -1,6 +1,6 @@
 import warnings
 
-from common import get_input_data, parse_policy_kwargs, transform_config
+from common import get_input_data, parse_policy_kwargs, simplify_data, transform_config
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -76,8 +76,9 @@ if __name__ == "__main__":
     env_config = config['env_config']
 
     embeds, targets = get_input_data(run_config['dataset_path'], run_config['embeddings_path'], run_config['embedding_size'])
-    embeds, targets = embeds[:9000], targets[:9000]
-    X_train, X_valid, y_train, y_valid = train_test_split(embeds, targets, test_size=0.3, 
+    embeds, targets =  embeds[:12800], targets[:12800] #  embeds[:3000], targets[:3000]
+    # embeds, targets = simplify_data(embeds, targets)
+    X_train, X_valid, y_train, y_valid = train_test_split(embeds, targets, test_size=0.20, 
                                                             random_state=run_config['random_state'], stratify=targets[:, 0])
     
     print(X_train.shape, X_valid.shape, y_train.shape, y_valid.shape)

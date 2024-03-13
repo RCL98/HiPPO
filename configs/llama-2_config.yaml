@@ -1,0 +1,45 @@
+
+---
+run_config:
+ n_envs: 8
+ policy_type: MlpPolicy
+ total_timesteps: 1.0e+6
+ n_steps: 2^11
+ batch_size: 2^6
+ vf_coef: 0.5,
+ ent_coef: 0.75,
+ gamma: 0.8,
+ evaluate_on_validation_set: True
+ max_number_of_steps: 50
+ render_on_evaluation: False
+ deterministic: True
+ use_action_masks: True
+ dataset_path: prompts/big_dataset/prompts.csv
+ embeddings_path: prompts/big_dataset/llama/llama-2/llama-2-7b-f16.bin
+ embedding_size: 4096
+ random_state: 42
+ models_save_path: ./models/tests
+ logs_save_path: ./logs/tests
+
+policy_kwargs:
+ net_arch:
+    pi:
+    - 128
+    - 64
+    vf:
+    - 128
+    - 64
+ activation_fn: ReLU
+
+env_config:
+ env_id: WilsonMaze-v0
+ render_mode: text
+ size: 7
+ timelimit: 30
+ random_seed: 42
+ number_of_targets: 4
+ add_coins: True
+ terminate_on_wrong_target: True
+ prompt_size: 512
+ prompt_mean: False
+...

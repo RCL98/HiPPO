@@ -3,40 +3,43 @@
 run_config:
  n_envs: 8
  policy_type: MlpPolicy
- total_timesteps: 1.0e+6
- n_steps: 2^12
+ total_timesteps: 1.5e+6
+ n_steps: 2^11
  batch_size: 2^6
+ vf_coef: 0.5,
+ ent_coef: 0.75,
+ gamma: 0.8,
  evaluate_on_validation_set: True
  max_number_of_steps: 15
  render_on_evaluation: False
  deterministic: True
  use_action_masks: True
- dataset_path: prompts/big_dataset/prompts.csv
- embeddings_path: prompts/big_dataset/llama/llama-2-7b-f16-mean-out.bin
+ dataset_path: /Users/cranete/_workspace/_HiPPO/prompts/big_dataset/full_prompts.csv
+ embeddings_path: /Users/cranete/_workspace/_HiPPO/prompts/big_dataset/full_prompts_embeds_mean.bin
  embedding_size: 4096
  random_state: 42
- models_save_path: ./models/tests-3
- logs_save_path: ./logs/tests-3
+ models_save_path: ./models/tests-old
+ logs_save_path: ./logs/tests-old
 
 policy_kwargs:
  net_arch:
     pi:
-    - 256
     - 128
+    - 64
     vf:
-    - 256
     - 128
+    - 64
  activation_fn: ReLU
 
 env_config:
- id: WilsonMaze-v0
+ env_id: WilsonMaze-v0
  render_mode: text
  size: 7
  timelimit: 30
  random_seed: 42
  number_of_targets: 4
- add_coins: True
+ add_coins: False
  terminate_on_wrong_target: True
- prompt_size: 1024
+ prompt_size: 512
  prompt_mean: False
 ...

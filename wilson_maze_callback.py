@@ -1,6 +1,5 @@
 import json
 import os
-import numpy as np
 from stable_baselines3.common.callbacks import BaseCallback
 from collections import defaultdict
 
@@ -141,11 +140,11 @@ class WilsonMazeCallback(BaseCallback):
         for i in range(self.training_env.num_envs):
             if self.locals['dones'][i]:
                 if not self.locals['infos'][i]['TimeLimit.truncated']:
+                    self.move_wins += 1
                     if self.locals['rewards'][i] >= 2.0:
                         self.coin_wins += 1
                     else:
                         self.coin_loses += 1
-                    self.move_wins += 1
                 else:
                     self.move_loses += 1
                     self.coin_loses += 1

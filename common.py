@@ -3,7 +3,36 @@ import struct
 import numpy as np
 import pandas as pd
 
+def simplify_data(embeds: np.ndarray, targets: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """
+        Simplify the embeddings and targets by using only a single embedding for each target.
 
+        :param embeds: the input embeddings data
+        :param targets: the target and coin data
+        :return: a tuple of two numpy arrays, the first one is the simplified input embeddings data and the second one is the simplified target data
+    """
+    chosen_embds = []
+    uniqe_targets = set(targets[:,0].tolist())
+
+    for target in uniqe_targets:
+        for i in range(len(targets)):
+            if targets[i][0] == target:
+                chosen_embds.append(embeds[i])
+                break
+
+    for idx, target in enumerate(uniqe_targets):
+        embeds[np.where(targets[:,0] == target)] = chosen_embds[idx]
+
+    return embeds, targets
+
+def get_np_input_data(data_path: str) -> tuple[np.ndarray, np.ndarray]:
+    X = np.load(data_path)
+    a, b, c, d = X['arr_0'], X['arr_1'], X['arr_2'], X['arr_3']
+
+    X = np.concatenate((a, b, c, d), axis=0)
+    Y = np.concatenate((np.zeros(a.shape[0]), np.ones(b.shape[0]), np.ones(c.shape[0]) * 2, np.ones(d.shape[0]) * 3))
+
+    return X, Y
 
 def get_input_data(dataset_path: str, embd_path: str, embd_size=4096) -> tuple[np.ndarray, np.ndarray]:
     """
