@@ -1,5 +1,7 @@
 import json
 import os
+import time
+import numpy as np
 from stable_baselines3.common.callbacks import BaseCallback
 from collections import defaultdict
 
@@ -178,16 +180,19 @@ class WilsonMazeCallback(BaseCallback):
 
                 save_model_path = os.path.join(self.best_model_save_path, "best_model_temp.zip")
                 self.model.save(save_model_path)
-
+                
+                t0 = time.time()
                 eval_score, stats = evaluate_model(save_model_path, self.model.__class__,
                                             save_vec_normalize_path if save_vec_normalize_path else None,
                                             deterministic=self.deterministic,
                                             use_action_masks=self.use_action_masks,
                                             max_number_of_steps=self.max_number_of_steps,
                                             device=self.device, **self.eval_config)
+                print(f'Evaluation took {time.time() - t0:2f} seconds')
 
                 self.logger.record('eval/eval_score', eval_score)
-                for i in range(self.eval_config["number_of_targets"]):
+                number_of_targets = len(np.unique(self.eval_config['labels'][:, 0]))
+                for i in range(number_of_targets):
                     for key, value in stats[f'target_{i}'].items():
                         if 'percentage' in key:
                             self.logger.record(f'stats/target_{i}/{key}', value)

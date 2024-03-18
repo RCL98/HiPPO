@@ -49,9 +49,7 @@ def try_model(config_file_path: str, prompt_id: int):
         vec_env = DummyVecEnv([lambda: make(**env_config, 
                                             prompts=embeds, 
                                             chosen_prompt=prompt_id,
-                                            should_pickup_coins=False, #targets[prompt_id][1],
-                                            target_id=targets[prompt_id])])
-        # print(f'Running model {run_id} on target {targets[prompt_id]} and prompt: "{prompt_id}"')
+                                            labels=np.array([[i, 0]]))])
         
         if os.path.isfile(model_path + '/best_model_vec_normalizer.pkl'):
             vec_env = VecNormalize.load(model_path + '/best_model_vec_normalizer.pkl', vec_env)
@@ -136,7 +134,6 @@ def evaluate_model(model_path=None, model_class=None, normalizer_path=None,
     assert config['prompts'] is not None, 'No prompts provided'
     assert config['labels'] is not None, 'No labels provided'
     assert config['id'] is not None, 'No env id provided'
-    assert config["number_of_targets"] is not None, 'No number of targets provided'
     assert max_number_of_steps > 1, 'Max number of steps must be a natural number bigger than 0'
 
     prompts = config['prompts']
@@ -146,21 +143,22 @@ def evaluate_model(model_path=None, model_class=None, normalizer_path=None,
 
     data_sizes = []
     move_solved, coins_solved, total_size = [], [], 0
-    for target_i in range(config["number_of_targets"]):
+    number_of_targets = len(np.unique(labels[:, 0]))
+    for target_i in range(number_of_targets):
         move_wins, coin_wins = 0, 0
         
-        targets_i = np.where(labels[:, 0] == target_i)
-        target_prompts = prompts[targets_i]
+        targets_idx = np.where(labels[:, 0] == target_i)
+        target_prompts = prompts[targets_idx]
         if config['add_coins']:
-            coins = labels[targets_i][:, 1]
+            coins = labels[targets_idx][:, 1]
         
         data_sizes.append(target_prompts.shape[0])
         
         for prompt_j in range(target_prompts.shape[0]):
-            vec_env = DummyVecEnv([lambda: make(target_id=target_i,
-                                                prompts=target_prompts,
-                                                chosen_prompt=prompt_j,
-                                                should_pickup_coins=coins[prompt_j] if config['add_coins'] else False,
+            _labels = [target_i, coins[prompt_j]] if config['add_coins'] else [target_i, 0]
+            _user_prompt = target_prompts[prompt_j]
+            vec_env = DummyVecEnv([lambda: make(user_prompt=_user_prompt,
+                                                labels=np.array([_labels]),
                                                 **config)])
             if normalizer_path is not None:
                 vec_env = VecNormalize.load(normalizer_path, vec_env)
@@ -200,7 +198,7 @@ def evaluate_model(model_path=None, model_class=None, normalizer_path=None,
 
     print()
     stats = {}
-    for i in range(config["number_of_targets"]):
+    for i in range(number_of_targets):
         stats[f'target_{i}'] = {'move_solved': move_solved[i],
                                 'move_percentage': move_solved[i] / data_sizes[i],
                                 'total': data_sizes[i]}

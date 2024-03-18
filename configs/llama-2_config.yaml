@@ -15,7 +15,7 @@ run_config:
  deterministic: True
  use_action_masks: True
  dataset_path: prompts/big_dataset/prompts.csv
- embeddings_path: prompts/big_dataset/llama/llama-2/llama-2-7b-f16.bin
+ embeddings_path: prompts/big_dataset/embeds/llama/llama-2/llama-2-7b-f16.bin
  embedding_size: 4096
  random_state: 42
  models_save_path: ./models/tests
@@ -37,7 +37,7 @@ env_config:
  size: 7
  timelimit: 30
  random_seed: 42
- number_of_targets: 4
+ variable_target: False
  add_coins: True
  terminate_on_wrong_target: True
  prompt_size: 512

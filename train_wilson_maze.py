@@ -7,6 +7,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 import yaml
 import time
 import copy
+from types import SimpleNamespace
 import numpy as np
 
 from sklearn.model_selection import train_test_split
@@ -16,6 +17,7 @@ from wilson_maze_callback import WilsonMazeCallback
 import gymnasium as gym
 
 from sb3_contrib.ppo_mask import MaskablePPO
+from stable_baselines3.ppo import PPO
 from stable_baselines3.common.callbacks import CheckpointCallback
 from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.vec_env import SubprocVecEnv, VecNormalize
@@ -25,12 +27,6 @@ from wandb.integration.sb3 import WandbCallback
 import wandb
 
 set_random_seed(32, True)
-
-
-# # Custom actor (pi) and value function (vf) networks
-# # of two layers of size 32 each with Relu activation function
-# # Note: an extra linear layer will be added on top of the pi and the vf nets, respectively
-# policy_kwargs = dict(net_arch=dict(pi=[256, 64], vf=[256, 64]), activation_fn=torch.nn.ReLU)
 
 
 def make_env(env_id: str, rank: int, x: np.ndarray, y: np.ndarray, seed: int = 0, **kwargs):
@@ -45,14 +41,19 @@ def make_env(env_id: str, rank: int, x: np.ndarray, y: np.ndarray, seed: int = 0
     """
 
     def _init():
-        target_id = (seed + rank) % kwargs.get('number_of_targets', 1)
-        target_indexes = np.where(y[:, 0] == target_id)
-        x_target = x[target_indexes]
-        y_target = y[target_indexes][:, 1]
+        prompts = x
+        labels = y
+        
+        if not kwargs.get('variable_target', False):
+            number_of_targets = len(np.unique(y[:, 0]))
+            target_id = (seed + rank) % number_of_targets
+            target_indexes = np.where(y[:, 0] == target_id)
+            prompts = x[target_indexes]
+            labels = y[target_indexes]
+            
 
         # print('Target id: ', target_id)
-        env = gym.make(env_id, target_id=target_id,
-                       prompts=x_target, should_pickup_coins=y_target, **kwargs)
+        env = gym.make(env_id, prompts=prompts, labels=labels, **kwargs)
 
         return Monitor(env)
 
@@ -60,15 +61,8 @@ def make_env(env_id: str, rank: int, x: np.ndarray, y: np.ndarray, seed: int = 0
     return _init
 
 
-class dotdict(dict):
-    """dot.notation access to dictionary attributes"""
-    __getattr__ = dict.get
-    __setattr__ = dict.__setitem__
-    __delattr__ = dict.__delitem__
-
-
 if __name__ == "__main__":
-    with open('configs/llama_config.yaml', 'r') as config_file:
+    with open('configs/llama-2_config.yaml', 'r') as config_file:
         config = yaml.safe_load(config_file)
 
     run_config = transform_config(config['run_config'])
@@ -76,14 +70,15 @@ if __name__ == "__main__":
     env_config = config['env_config']
 
     embeds, targets = get_input_data(run_config['dataset_path'], run_config['embeddings_path'], run_config['embedding_size'])
-    embeds, targets =  embeds[:12800], targets[:12800] #  embeds[:3000], targets[:3000]
+    embeds, targets = embeds[:9000], targets[:9000]  # embeds[:12800], targets[:12800]  
     # embeds, targets = simplify_data(embeds, targets)
     X_train, X_valid, y_train, y_valid = train_test_split(embeds, targets, test_size=0.20, 
                                                             random_state=run_config['random_state'], stratify=targets[:, 0])
     
     print(X_train.shape, X_valid.shape, y_train.shape, y_valid.shape)
 
-    # run = dotdict({id: 'test'})
+    #run = SimpleNamespace(**({'id': 'test'}))
+    #print(run.id)
     run = wandb.init(
         project="sb3",
         config=config,
@@ -91,9 +86,6 @@ if __name__ == "__main__":
         monitor_gym=True,  # auto-upload the videos of agents playing the game
         save_code=True,  # optional
     )
-
-    assert run_config['n_envs'] % env_config[
-        "number_of_targets"] == 0, "n_envs % number_of_targets == 0 if force_uniformity is True"
 
     vec_env = SubprocVecEnv(
         [make_env(rank=i, x=X_train, y=y_train, seed=0, **env_config)
@@ -105,6 +97,7 @@ if __name__ == "__main__":
         eval_config['prompts'] = X_valid
         eval_config['labels'] = y_valid
         eval_config['id'] = eval_config['env_id']
+        eval_config['variable_target'] = False
         del eval_config['env_id']
     else:
         eval_config = None
@@ -147,7 +140,6 @@ if __name__ == "__main__":
                         tensorboard_log=f"{run_config['logs_save_path']}/{run.id}",
                         policy_kwargs=policy_kwargs)
 
-    model.learn(total_timesteps=run_config['total_timesteps'], progress_bar=True,
-                callback=callbacks)
+    model.learn(total_timesteps=run_config['total_timesteps'], progress_bar=True, callback=callbacks)
 
     run.finish()
