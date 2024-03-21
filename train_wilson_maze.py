@@ -135,9 +135,9 @@ if __name__ == "__main__":
         verbose=2)
     callbacks.append(wandb_callback)
 
-    model = MaskablePPO("MlpPolicy", vec_env, n_steps=run_config['n_steps'], batch_size=run_config['batch_size'],
-                        vf_coef=0.5, ent_coef=0.1, verbose=1, device='cuda:0',
-                        tensorboard_log=f"{run_config['logs_save_path']}/{run.id}",
+    model = PPO("MlpPolicy", vec_env, n_steps=run_config['n_steps'], batch_size=run_config['batch_size'],
+                        vf_coef=run_config['vf_coef'], ent_coef=run_config['ent_coef'], gamma=run_config['gamma'],
+                        verbose=1, device='auto', tensorboard_log=f"{run_config['logs_save_path']}/{run.id}",
                         policy_kwargs=policy_kwargs)
 
     model.learn(total_timesteps=run_config['total_timesteps'], progress_bar=True, callback=callbacks)

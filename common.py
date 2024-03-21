@@ -86,7 +86,7 @@ def transform_config(dictionary: dict) -> dict:
     for k, v in dictionary.items():
         if isinstance(v, str) and '^' in v:
             new_dict[k] = eval(v.replace('^', '**'))
-        elif isinstance(v, float):
+        elif isinstance(v, float) and v.is_integer():
             new_dict[k] = int(v)
         else:
             new_dict[k] = v
