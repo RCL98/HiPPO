@@ -142,10 +142,10 @@ def evaluate_model(model_path=None, model_class=None, normalizer_path=None,
     del config['prompts']
 
     data_sizes = []
-    move_solved, coins_solved, total_size = [], [], 0
+    move_solved, coins_solved, partial_coins, total_size = [], [], [], 0
     number_of_targets = len(np.unique(labels[:, 0]))
     for target_i in range(number_of_targets):
-        move_wins, coin_wins = 0, 0
+        move_wins, coin_wins, partial_coin_wins = 0, 0, 0
         
         targets_idx = np.where(labels[:, 0] == target_i)
         target_prompts = prompts[targets_idx]
@@ -189,11 +189,16 @@ def evaluate_model(model_path=None, model_class=None, normalizer_path=None,
                     break
                 if infos[0]["TimeLimit.truncated"]:
                     obs = infos[0]["terminal_observation"]
+            
+            if config['add_coins']:
+                partial_coin_wins += infos[0]['coins_wins']
 
             vec_env.close()
 
         move_solved.append(move_wins)
-        coins_solved.append(coin_wins)
+        if config['add_coins']:
+            coins_solved.append(coin_wins)
+            partial_coins.append(partial_coin_wins / target_prompts.shape[0])
         total_size += target_prompts.shape[0]
 
     print()
@@ -205,25 +210,31 @@ def evaluate_model(model_path=None, model_class=None, normalizer_path=None,
         if config['add_coins']:
             stats[f'target_{i}']['coins_solved'] = coins_solved[i]
             stats[f'target_{i}']['coins_percentage'] = coins_solved[i] / data_sizes[i]
+            stats[f'target_{i}']['partial_coins'] = partial_coins[i]
 
         print(f'For target {i}, move solved: {move_solved[i]}  {data_sizes[i]} '
               f'or {stats[f"target_{i}"]["move_percentage"] * 100:2f}')
         if config['add_coins']:
-            print(f'For target {i} coins solved: {coins_solved[i]} out of {data_sizes[i]} ' 
+            print(f'For target {i} full coins solved: {coins_solved[i]} out of {data_sizes[i]} ' 
                     f'or {stats[f"target_{i}"]["coins_percentage"] * 100:2f}')
+            print(f'For target {i} partial coins solved: {partial_coins[i] * 100:2f}')
 
     total_move_solved = sum(move_solved)
     move_score = total_move_solved / total_size
-    print(f'Solved: {total_move_solved} moves out of {total_size} or {move_score * 100:2f}')
-    final_score = move_score
+    print(f'\nSolved: {total_move_solved} moves out of {total_size} or {move_score * 100:2f}')
+    final_full_score = move_score
+    final_partial_score = move_score
 
     if config['add_coins']:
         total_coins_solved = sum(coins_solved)
         coin_score = total_coins_solved / total_size
+        partial_coins_score = sum(partial_coins) / number_of_targets
         print(f'Solved: {total_coins_solved} coins out of {total_size} or {coin_score * 100:2f}')
-        final_score = (move_score + coin_score) / 2
+        print(f'Partial coins solved: {partial_coins_score * 100:2f}\n')
+        final_full_score = (move_score + coin_score) / 2
+        final_partial_score = (move_score + partial_coins_score) / 2
 
-    return final_score, stats
+    return final_full_score, final_partial_score, stats
 
 
 if __name__ == '__main__':

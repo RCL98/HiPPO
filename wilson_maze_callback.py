@@ -182,13 +182,15 @@ class WilsonMazeCallback(BaseCallback):
                 self.model.save(save_model_path)
                 
                 t0 = time.time()
-                eval_score, stats = evaluate_model(save_model_path, self.model.__class__,
+                eval_full_score, eval_partial_score, stats = evaluate_model(save_model_path, self.model.__class__,
                                             save_vec_normalize_path if save_vec_normalize_path else None,
                                             deterministic=self.deterministic,
                                             use_action_masks=self.use_action_masks,
                                             max_number_of_steps=self.max_number_of_steps,
                                             device=self.device, **self.eval_config)
                 print(f'Evaluation took {time.time() - t0:2f} seconds')
+
+                eval_score = max(eval_full_score, eval_partial_score)
 
                 self.logger.record('eval/eval_score', eval_score)
                 number_of_targets = len(np.unique(self.eval_config['labels'][:, 0]))

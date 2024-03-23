@@ -8,6 +8,7 @@ import yaml
 import time
 import copy
 from types import SimpleNamespace
+import os
 import numpy as np
 
 from sklearn.model_selection import train_test_split
@@ -26,7 +27,9 @@ from stable_baselines3.common.utils import set_random_seed
 from wandb.integration.sb3 import WandbCallback
 import wandb
 
-set_random_seed(32, True)
+rd_seed = 32
+set_random_seed(rd_seed, True)
+os.environ['PYTHONASHSEED'] = f'{rd_seed}'
 
 
 def make_env(env_id: str, rank: int, x: np.ndarray, y: np.ndarray, seed: int = 0, **kwargs):
@@ -138,7 +141,7 @@ if __name__ == "__main__":
     model = PPO("MlpPolicy", vec_env, n_steps=run_config['n_steps'], batch_size=run_config['batch_size'],
                         vf_coef=run_config['vf_coef'], ent_coef=run_config['ent_coef'], gamma=run_config['gamma'],
                         verbose=1, device='auto', tensorboard_log=f"{run_config['logs_save_path']}/{run.id}",
-                        policy_kwargs=policy_kwargs)
+                        policy_kwargs=policy_kwargs, seed=run_config['random_state'],)
 
     model.learn(total_timesteps=run_config['total_timesteps'], progress_bar=True, callback=callbacks)
 
