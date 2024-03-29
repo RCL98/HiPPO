@@ -1,3 +1,4 @@
+from typing import Union
 import warnings
 
 warnings.simplefilter("ignore", UserWarning)
@@ -10,8 +11,9 @@ import yaml
 import numpy as np
 from sb3_contrib import MaskablePPO
 
-from gymnasium import make
-from stable_baselines3.common.vec_env import SubprocVecEnv, DummyVecEnv, VecNormalize
+import gymnasium as gym
+from stable_baselines3.common import type_aliases
+from stable_baselines3.common.vec_env import SubprocVecEnv, DummyVecEnv, VecEnv, VecNormalize, sync_envs_normalization
 import wilson_maze_env
 
 from common import get_input_data, get_np_input_data
@@ -46,7 +48,7 @@ def try_model(config_file_path: str, prompt_id: int):
     wins = 0
     for i in range(len(embeds)):
         prompt_id = i
-        vec_env = DummyVecEnv([lambda: make(**env_config, 
+        vec_env = DummyVecEnv([lambda: gym.make(**env_config, 
                                             prompts=embeds, 
                                             chosen_prompt=prompt_id,
                                             labels=np.array([[i, 0]]))])
@@ -79,58 +81,10 @@ def try_model(config_file_path: str, prompt_id: int):
     print(f'Wins: {wins} out of {len(embeds)} or {wins / len(embeds) * 100:2f}%')
     
 
-def test_on_model(model_path, **config):
-    env = make('WilsonMaze-v0', **config)
-    env.training = False
-    model = MaskablePPO.load(model_path, env, device='cuda')
-
-    obs, info = env.reset()
-    env.render()
-    wins = 0
-    for _ in range(15):
-        action, _state = model.predict(obs, deterministic=True, action_masks=env.action_masks())
-        print(action)
-        obs, reward, terminated, truncated, info = env.step(action.item())
-        env.render()
-        if terminated and reward > 0:
-            wins += 1
-            break
-        if truncated:
-            obs, info = env.reset()
-        env.render()
-    env.close()
-    print(wins)
-
-
-def test_on_model_vec(model_path, **config):
-    vec_env = DummyVecEnv([lambda: make('WilsonMaze-v0', **config)])
-    vec_env = VecNormalize.load(
-        './models/tests-2/model-20230806_195139-7hsn5ybo/checkpoint_vecnormalize_4500000_steps.pkl', vec_env)
-    vec_env.training = False
-    model = MaskablePPO.load(model_path, vec_env, device='cuda')
-
-    obs = vec_env.reset()
-    vec_env.render()
-    wins = 0
-    for _ in range(15):
-        action, _state = model.predict(obs, deterministic=True, action_masks=vec_env.env_method("action_masks"))
-        print(action)
-        obs, rewards, dones, infos = vec_env.step(action)
-        vec_env.render()
-        if dones[0] and rewards[0] > 0:
-            wins += 1
-            break
-        if infos[0]["TimeLimit.truncated"]:
-            obs = infos[0]["terminal_observation"]
-        vec_env.render()
-    vec_env.close()
-    print(wins)
-
-
-def evaluate_model(model_path=None, model_class=None, normalizer_path=None,
-                   deterministic=False, use_action_masks=False, max_number_of_steps=10, device='cpu', **config):
-    assert model_path is not None, 'No model path provided'
-    assert model_class is not None, 'No model class provided'
+def evaluate_model(model: "type_aliases.PolicyPredictor",
+                   training_env: Union[gym.Env, VecEnv],
+                   deterministic=False, use_action_masks=False, 
+                   max_number_of_steps=10, **config):
     assert config['prompts'] is not None, 'No prompts provided'
     assert config['labels'] is not None, 'No labels provided'
     assert config['id'] is not None, 'No env id provided'
@@ -157,14 +111,22 @@ def evaluate_model(model_path=None, model_class=None, normalizer_path=None,
         for prompt_j in range(target_prompts.shape[0]):
             _labels = [target_i, coins[prompt_j]] if config['add_coins'] else [target_i, 0]
             _user_prompt = target_prompts[prompt_j]
-            vec_env = DummyVecEnv([lambda: make(user_prompt=_user_prompt,
+            vec_env = DummyVecEnv([lambda: gym.make(user_prompt=_user_prompt,
                                                 labels=np.array([_labels]),
                                                 **config)])
-            if normalizer_path is not None:
-                vec_env = VecNormalize.load(normalizer_path, vec_env)
+            
+            if model.get_vec_normalize_env() is not None:
+                vec_env = VecNormalize(vec_env, norm_reward=False)
+                try:
+                    sync_envs_normalization(training_env, vec_env)
+                except AttributeError as e:
+                    raise AssertionError(
+                        "Training and eval env are not wrapped the same way, "
+                        "see https://stable-baselines3.readthedocs.io/en/master/guide/callbacks.html#evalcallback "
+                        "and warning above."
+                    ) from e
+            
             vec_env.training = False
-            if model_path is not None:
-                model = model_class.load(model_path, vec_env, device=device)
 
             obs = vec_env.reset()
             if config['render_mode'] == 'human':

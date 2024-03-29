@@ -171,23 +171,13 @@ class WilsonMazeCallback(BaseCallback):
                     self.rollout_prompts[self.locals['infos'][i]['target']][self.locals['infos'][i]['prompt']] += 1
 
         if self.evaluate:
-            if self.eval_freq > 0 and self.n_calls % self.eval_freq == 0:
-                vec_normalizer = self.model.get_vec_normalize_env()
-                save_vec_normalize_path = None
-                if vec_normalizer is not None:
-                    save_vec_normalize_path = os.path.join(self.best_model_save_path, "model_vec_normalizer_temp.pkl")
-                    vec_normalizer.save(save_vec_normalize_path)
-
-                save_model_path = os.path.join(self.best_model_save_path, "best_model_temp.zip")
-                self.model.save(save_model_path)
-                
+            if self.eval_freq > 0 and self.n_calls % self.eval_freq == 0:                
                 t0 = time.time()
-                eval_full_score, eval_partial_score, stats = evaluate_model(save_model_path, self.model.__class__,
-                                            save_vec_normalize_path if save_vec_normalize_path else None,
+                eval_full_score, eval_partial_score, stats = evaluate_model(self.model, self.training_env,
                                             deterministic=self.deterministic,
                                             use_action_masks=self.use_action_masks,
                                             max_number_of_steps=self.max_number_of_steps,
-                                            device=self.device, **self.eval_config)
+                                            **self.eval_config)
                 print(f'Evaluation took {time.time() - t0:2f} seconds')
 
                 eval_score = max(eval_full_score, eval_partial_score)
@@ -211,7 +201,8 @@ class WilsonMazeCallback(BaseCallback):
 
                 if eval_score > self.best_eval_score:
                     self.best_eval_score = eval_score
-
+                    
+                    vec_normalizer = self.model.get_vec_normalize_env()
                     if vec_normalizer:
                         vec_normalizer.save(os.path.join(self.best_model_save_path, "best_model_vec_normalizer.pkl"))
                     self.model.save(os.path.join(self.best_model_save_path, "best_model.zip"))
@@ -219,10 +210,6 @@ class WilsonMazeCallback(BaseCallback):
                     print(f'New best model saved with score {self.best_eval_score:2f}')
                 else:
                     print(f'Eval score: {eval_score:2f}. Last best score: {self.best_eval_score:2f}')
-
-                if vec_normalizer:
-                    os.remove(save_vec_normalize_path)
-                os.remove(save_model_path)
 
         return True
 
