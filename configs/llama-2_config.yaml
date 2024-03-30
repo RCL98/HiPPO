@@ -24,11 +24,11 @@ run_config:
 policy_kwargs:
  net_arch:
     pi:
-    - 128
-    - 64
+    - 256
+    - 256
     vf:
-    - 128
-    - 64
+    - 256
+    - 256
  activation_fn: ReLU
 
 env_config:
@@ -40,6 +40,6 @@ env_config:
  variable_target: False
  add_coins: True
  terminate_on_wrong_target: True
- prompt_size: 512
+ prompt_size: 1024
  prompt_mean: True
 ...

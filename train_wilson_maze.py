@@ -21,7 +21,7 @@ from sb3_contrib.ppo_mask import MaskablePPO
 from stable_baselines3.ppo import PPO
 from stable_baselines3.common.callbacks import CheckpointCallback
 from stable_baselines3.common.monitor import Monitor
-from stable_baselines3.common.vec_env import SubprocVecEnv, VecNormalize
+from stable_baselines3.common.vec_env import SubprocVecEnv, VecNormalize, DummyVecEnv
 from stable_baselines3.common.utils import set_random_seed
 
 from wandb.integration.sb3 import WandbCallback
@@ -90,7 +90,7 @@ if __name__ == "__main__":
         save_code=True,  # optional
     )
 
-    vec_env = SubprocVecEnv(
+    vec_env = DummyVecEnv(
         [make_env(rank=i, x=X_train, y=y_train, seed=0, **env_config)
          for i in range(run_config['n_envs'])])
     vec_env = VecNormalize(vec_env, norm_reward=False)
@@ -105,7 +105,7 @@ if __name__ == "__main__":
     else:
         eval_config = None
 
-    save_freq = max(int(run_config['total_timesteps'] // 10 // run_config['n_envs']), 1)
+    save_freq = max(int(run_config['total_timesteps'] // 4 // run_config['n_envs']), 1)
     timestamp = time.strftime("%Y%m%d_%H%M%S")
 
     callbacks = []
