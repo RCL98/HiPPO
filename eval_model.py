@@ -84,7 +84,7 @@ def try_model(config_file_path: str, prompt_id: int):
 def evaluate_model(model: "type_aliases.PolicyPredictor",
                    training_env: Union[gym.Env, VecEnv],
                    deterministic=False, use_action_masks=False, 
-                   max_number_of_steps=10, **config):
+                   max_number_of_steps=10, verbose=0, **config):
     assert config['prompts'] is not None, 'No prompts provided'
     assert config['labels'] is not None, 'No labels provided'
     assert config['id'] is not None, 'No env id provided'
@@ -174,16 +174,19 @@ def evaluate_model(model: "type_aliases.PolicyPredictor",
             stats[f'target_{i}']['coins_percentage'] = coins_solved[i] / data_sizes[i]
             stats[f'target_{i}']['partial_coins'] = partial_coins[i]
 
-        print(f'For target {i}, move solved: {move_solved[i]}  {data_sizes[i]} '
-              f'or {stats[f"target_{i}"]["move_percentage"] * 100:2f}')
-        if config['add_coins']:
-            print(f'For target {i} full coins solved: {coins_solved[i]} out of {data_sizes[i]} ' 
-                    f'or {stats[f"target_{i}"]["coins_percentage"] * 100:2f}')
-            print(f'For target {i} partial coins solved: {partial_coins[i] * 100:2f}')
+        if verbose:
+            print(f'For target {i}, move solved: {move_solved[i]}  {data_sizes[i]} '
+                f'or {stats[f"target_{i}"]["move_percentage"] * 100:2f}')
+            if config['add_coins']:
+                print(f'For target {i} full coins solved: {coins_solved[i]} out of {data_sizes[i]} ' 
+                        f'or {stats[f"target_{i}"]["coins_percentage"] * 100:2f}')
+                print(f'For target {i} partial coins solved: {partial_coins[i] * 100:2f}')
 
     total_move_solved = sum(move_solved)
     move_score = total_move_solved / total_size
-    print(f'\nSolved: {total_move_solved} moves out of {total_size} or {move_score * 100:2f}')
+    if verbose:
+        print(f'\nSolved: {total_move_solved} moves out of {total_size} or {move_score * 100:2f}')
+    
     final_full_score = move_score
     final_partial_score = move_score
 
@@ -191,8 +194,11 @@ def evaluate_model(model: "type_aliases.PolicyPredictor",
         total_coins_solved = sum(coins_solved)
         coin_score = total_coins_solved / total_size
         partial_coins_score = sum(partial_coins) / number_of_targets
-        print(f'Solved: {total_coins_solved} coins out of {total_size} or {coin_score * 100:2f}')
-        print(f'Partial coins solved: {partial_coins_score * 100:2f}\n')
+        
+        if verbose:
+            print(f'Solved: {total_coins_solved} coins out of {total_size} or {coin_score * 100:2f}')
+            print(f'Partial coins solved: {partial_coins_score * 100:2f}\n')
+        
         final_full_score = (move_score + coin_score) / 2
         final_partial_score = (move_score + partial_coins_score) / 2
 

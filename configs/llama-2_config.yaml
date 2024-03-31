@@ -7,8 +7,8 @@ run_config:
  n_steps: 2^11
  batch_size: 2^6
  vf_coef: 0.5
- ent_coef: 0.25
- gamma: 0.8
+ ent_coef: 0.3
+ gamma: 0.9
  evaluate_on_validation_set: True
  max_number_of_steps: 50
  render_on_evaluation: False

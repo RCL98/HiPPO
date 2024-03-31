@@ -3,6 +3,39 @@ import struct
 import numpy as np
 import pandas as pd
 
+import gymnasium as gym
+from stable_baselines3.common.monitor import Monitor
+
+def make_env(env_id: str, rank: int, x: np.ndarray, y: np.ndarray, seed: int = 0, **kwargs):
+    """
+        Utility function for multiprocessed env.
+
+        :param env_id: the environment ID
+        :param rank: index of the subprocess
+        :param x: the input embedding data
+        :param y: the target and coin data
+        :param seed: the initial seed for RNG
+    """
+
+    def _init():
+        prompts = x
+        labels = y
+        
+        if not kwargs.get('variable_target', False):
+            number_of_targets = len(np.unique(y[:, 0]))
+            target_id = (seed + rank) % number_of_targets
+            target_indexes = np.where(y[:, 0] == target_id)
+            prompts = x[target_indexes]
+            labels = y[target_indexes]
+            
+
+        # print('Target id: ', target_id)
+        env = gym.make(env_id, prompts=prompts, labels=labels, **kwargs)
+
+        return Monitor(env)
+
+    return _init
+
 def simplify_data(embeds: np.ndarray, targets: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """
         Simplify the embeddings and targets by using only a single embedding for each target.
@@ -53,6 +86,24 @@ def get_input_data(dataset_path: str, embd_path: str, embd_size=4096) -> tuple[n
         embds = struct.unpack('f' * int(len(data) / 4), data)
         X = np.vstack([np.array(embds[i:i + embd_size])
                       for i in range(0, len(embds), embd_size)])
+
+    return X, Y
+
+def get_npz_input_data(embd_path: str, dataset_path: str) -> tuple[np.ndarray, np.ndarray]:
+    """
+        Load the input data from the dataset and the embeddings file.
+
+        :param dataset_path: the path to the dataset file
+        :param embd_path: the path to the embeddings file
+        :param embd_size: the size of the embeddings
+        :return: a tuple of two numpy arrays, the first one is the input embedding data and the second one is the target data
+    """
+    df = pd.read_csv(dataset_path, sep=',')
+    targets = df['target'].to_numpy()
+    coins = df['coin'].to_numpy()
+    Y = np.stack([targets, coins], axis=1)
+
+    X = np.load(embd_path)['X']
 
     return X, Y
 
