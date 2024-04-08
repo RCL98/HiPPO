@@ -177,6 +177,7 @@ class WilsonMazeCallback(BaseCallback):
                                             deterministic=self.deterministic,
                                             use_action_masks=self.use_action_masks,
                                             max_number_of_steps=self.max_number_of_steps,
+                                            verbose=1,
                                             **self.eval_config)
                 print(f'Evaluation took {time.time() - t0:2f} seconds')
 

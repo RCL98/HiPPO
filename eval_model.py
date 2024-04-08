@@ -1,6 +1,9 @@
 from typing import Union
 import warnings
 
+from sklearn.model_selection import train_test_split
+from stable_baselines3 import PPO
+
 warnings.simplefilter("ignore", UserWarning)
 
 import os
@@ -13,10 +16,11 @@ from sb3_contrib import MaskablePPO
 
 import gymnasium as gym
 from stable_baselines3.common import type_aliases
+from stable_baselines3.common.utils import set_random_seed
 from stable_baselines3.common.vec_env import SubprocVecEnv, DummyVecEnv, VecEnv, VecNormalize, sync_envs_normalization
 import wilson_maze_env
 
-from common import get_input_data, get_np_input_data
+from common import get_input_data, get_np_input_data, get_npz_input_data, set_common_seed
 
 
 def try_model(config_file_path: str, prompt_id: int):
@@ -79,6 +83,78 @@ def try_model(config_file_path: str, prompt_id: int):
             print('Done with ', i, ' out of ', len(embeds), ' or ', i / len(embeds) * 100, '%')
     
     print(f'Wins: {wins} out of {len(embeds)} or {wins / len(embeds) * 100:2f}%')
+
+def test_model(config_file_path: str, model_path: str):
+    with open(config_file_path, 'r') as f:
+        config = yaml.safe_load(f.read())
+    
+    run_id = 'test' #config_file_path.split('/')[-3].split('-')[-1]
+    env_config = config['env_config']
+    run_config = config['run_config']
+    
+    # env_config['render_mode'] = 'human'
+    env_config['id'] = env_config['env_id']
+    del env_config['env_id']
+    # prompt = pd.read_csv(run_config['dataset_path'], sep=',')['prompt'].tolist()[prompt_id]
+    #embeds, targets = get_input_data(run_config['dataset_path'], run_config['embeddings_path'], run_config['embedding_size'])
+    X, Y = get_npz_input_data(run_config['embeddings_path'], run_config['dataset_path'])
+    X, Y = X[:4960], Y[:4960]
+    X_train, X_valid, y_train, y_valid = train_test_split(X, Y, test_size=0.2, 
+                                                                random_state=42, stratify=Y[:, 0])
+
+    prompts, labels = X_valid, y_valid
+    move_wins, coin_wins, partial_coin_wins = 0, 0, 0 
+    for i in range(len(prompts)):
+        prompt_id = i
+        vec_env = DummyVecEnv([lambda: gym.make(**env_config, 
+                                            prompts=prompts, 
+                                            chosen_prompt=prompt_id,
+                                            labels=np.array([labels[i]]))])
+        
+        if os.path.isfile(model_path + '/best_model_vec_normalizer.pkl'):
+            vec_env = VecNormalize.load(model_path + '/best_model_vec_normalizer.pkl', vec_env)
+            vec_env.training = False
+
+        model = PPO.load(model_path + '/best_model.zip', vec_env, device='cuda')
+
+        obs = vec_env.reset()
+        vec_env.render()
+        for _ in range(15):
+            action, _state = model.predict(obs, deterministic=True)
+            # print(action)
+            obs, rewards, dones, infos = vec_env.step(action)
+            vec_env.render()
+            # sleep(1)
+            if dones[0] and rewards[0] > 0:
+                if env_config['add_coins'] and rewards[0] >= 2.0:
+                    coin_wins += 1
+                move_wins += 1 
+                break
+            if infos[0]["TimeLimit.truncated"]:
+                obs = infos[0]["terminal_observation"]
+            vec_env.render()
+        
+        if env_config['add_coins']:
+            partial_coin_wins += infos[0]['coins_wins']
+
+        vec_env.close()
+
+        if i % 500 == 0 and i > 0:
+            print('Done with ', i, ' out of ', len(prompts), ' or ', i / len(prompts) * 100, '%')
+   
+    move_score = move_wins / prompts.shape[0]
+    coin_score = coin_wins / prompts.shape[0]
+    partial_coin_score = partial_coin_wins / prompts.shape[0]
+    eval_score = move_score
+
+    print(f'\nMove wins: {move_wins} out of {prompts.shape[0]} or {move_score * 100:2f}%')
+    if env_config['add_coins']:
+        print(f'Solved: {coin_wins} coins out of {prompts.shape[0]} or {coin_score * 100:2f}')
+        print(f'Partial coins solved: {partial_coin_score * 100:2f}\n')
+
+        eval_score = (eval_score + max(coin_score, partial_coin_score)) / 2
+    
+    print(f'Final score: ${eval_score * 100:2f}')
     
 
 def evaluate_model(model: "type_aliases.PolicyPredictor",
@@ -206,4 +282,7 @@ def evaluate_model(model: "type_aliases.PolicyPredictor",
 
 
 if __name__ == '__main__':
-    try_model('/Users/cranete/_workspace/_HiPPO/models/experiments/llama-7b/v2/l1/512_7_42/model-20230902_232946-1mhr8lqn/config.yaml', 20)
+    set_common_seed(42)
+
+    # try_model('/Users/cranete/_workspace/_HiPPO/models/experiments/llama-7b/v2/l1/512_7_42/model-20230902_232946-1mhr8lqn/config.yaml', 20)
+    test_model('./configs/llama-2_config.yaml', 'logs/trials-1/trial_202') # 'logs/trials/trial_5')

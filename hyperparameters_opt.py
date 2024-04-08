@@ -18,14 +18,14 @@ from sklearn.model_selection import train_test_split
 
 from sb3_contrib.ppo_mask import MaskablePPO
 from stable_baselines3.ppo import PPO
-from stable_baselines3.common.vec_env import SubprocVecEnv, VecNormalize, DummyVecEnv
+from stable_baselines3.common.vec_env import VecNormalize, DummyVecEnv
 from stable_baselines3.common.callbacks import BaseCallback
 
-from common import get_npz_input_data, make_env
+from common import get_npz_input_data, make_env, set_common_seed
 from eval_model import evaluate_model
 
 
-STUDY_NAME = "ppo-distributed"
+STUDY_NAME = "ppo-1"
 STORAGE = "mysql://root@localhost/example"
 
 PROMPTS_FILE = "prompts/big_dataset/embeds/llama/llama-2/llama-2-7b-f16.npz"
@@ -34,6 +34,9 @@ TARGETS_FILE = "prompts/big_dataset/prompts.csv"
 RANDOM_STATE = 42
 
 class WilsonMazeEvalCallback(BaseCallback):
+    """
+        Inspired from https://github.com/DLR-RM/stable-baselines3 EvalCallback.
+    """
     def __init__(self, eval_config, trial, best_model_save_path=None, logs_path=None, 
                  eval_freq=10000, deterministic=True, max_number_of_steps=15, 
                  use_action_masks=False, verbose=0, kwargs=None):
@@ -61,6 +64,7 @@ class WilsonMazeEvalCallback(BaseCallback):
         # Create folders if needed
         if self.best_model_save_path is not None:
             os.makedirs(self.best_model_save_path, exist_ok=True)
+            self.model.save(os.path.join(self.best_model_save_path, "initial_weights.zip"))
 
         if self.logs_path is not None:
             os.makedirs(self.logs_path, exist_ok=True)
@@ -117,11 +121,21 @@ class WilsonMazeEvalCallback(BaseCallback):
             # Prune trial if need
             if self.trial.should_prune():
                 self.is_pruned = True
+                
+                if os.path.isfile(os.path.join(self.best_model_save_path, "best_model_vec_normalizer.pkl")):
+                    os.remove(os.path.join(self.best_model_save_path, "best_model_vec_normalizer.pkl"))
+                if os.path.isfile(os.path.join(self.best_model_save_path, "best_model.zip")):
+                    os.remove(os.path.join(self.best_model_save_path, "best_model.zip"))
+                os.remove(os.path.join(self.best_model_save_path, "initial_weights.zip"))
+                
                 return False
             
         return True
 
 class Study:
+    """
+        Inspired from https://github.com/DLR-RM/rl-baselines3-zoo
+    """
     def __init__(self, n_timesteps=50000, n_evaluations=4, n_envs=8, verbose=0, logs_path='./logs/trials', 
                  eval_max_number_of_steps=15, use_action_maks=False) -> None:
         
@@ -162,15 +176,15 @@ class Study:
         """
         # batch_size = trial.suggest_categorical("batch_size", [32, 64, 128, 256, 512])
         # n_steps = trial.suggest_categorical("n_steps", [512, 1024, 2048])
-        gamma = trial.suggest_categorical("gamma", [0.75, 0.8, 0.85, 0.9, 0.95, 0.99])
-        # learning_rate = trial.suggest_categorical("learning_rate", [1e-5, 1e-4, 1e-3, 1e-2, 1e-1])
-        ent_coef = trial.suggest_categorical("ent_coef", [0.001, 0.01, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35])
-        # clip_range = trial.suggest_categorical("clip_range", [0.1, 0.2, 0.3, 0.4])
+        gamma = trial.suggest_categorical("gamma", [0.85, 0.9])
+        learning_rate = trial.suggest_categorical("learning_rate", [4 * 1e-5, 3 * 1e-4, 2 * 1e-3])
+        ent_coef = trial.suggest_categorical("ent_coef", [0.15, 0.2, 0.25, 0.3])
+        clip_range = trial.suggest_categorical("clip_range", [0.1, 0.2, 0.3, 0.4])
         # gae_lambda = trial.suggest_categorical("gae_lambda", [0.8, 0.9, 0.92, 0.95, 0.98, 0.99, 1.0])
-        # max_grad_norm = trial.suggest_categorical("max_grad_norm", [0.3, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 2, 5])
-        vf_coef = trial.suggest_categorical("vf_coef", [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1])
-        net_arch_type = trial.suggest_categorical("net_arch", ["tiny", "small", "medium"])
-        activation_fn_name = trial.suggest_categorical("activation_fn", ["tanh", "relu", 'elu'])
+        max_grad_norm = trial.suggest_categorical("max_grad_norm", [0.3, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 2, 5])
+        vf_coef = 0.7 #trial.suggest_categorical("vf_coef", [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1])
+        net_arch_type = trial.suggest_categorical("net_arch", ["small", "medium", "big"])
+        activation_fn_name = 'elu' #trial.suggest_categorical("activation_fn", ["tanh", "relu", 'elu'])
         # lr_schedule = "constant"
         # Uncomment to enable learning rate schedule
         # lr_schedule = trial.suggest_categorical('lr_schedule', ['linear', 'constant'])
@@ -184,9 +198,9 @@ class Study:
         # Independent networks usually work best
         # when not working with images
         net_arch = {
-            "tiny": dict(pi=[64], vf=[64]),
             "small": dict(pi=[128, 64], vf=[128, 64]),
             "medium": dict(pi=[256, 256], vf=[256, 256]),
+            "big": dict(pi=[512, 256], vf=[512, 256]),
         }[net_arch_type]
 
         activation_fn = {"tanh": nn.Tanh, "relu": nn.ReLU, "elu": nn.ELU, "leaky_relu": nn.LeakyReLU}[activation_fn_name]
@@ -195,11 +209,11 @@ class Study:
             "n_steps": 2 ** 11,
             "batch_size": 2 ** 6,
             "gamma": gamma,
-            # "learning_rate": learning_rate,
+            "learning_rate": learning_rate,
             "ent_coef": ent_coef,
-            # "clip_range": clip_range,
+            "clip_range": clip_range,
             # "gae_lambda": gae_lambda,
-            # "max_grad_norm": max_grad_norm,
+            "max_grad_norm": max_grad_norm,
             "vf_coef": vf_coef,
             "policy_kwargs": dict(
                 net_arch=net_arch,
@@ -239,10 +253,10 @@ class Study:
         vec_env = VecNormalize(vec_env, norm_reward=False)
 
         if self.use_action_masks:
-            model = MaskablePPO("MlpPolicy", vec_env, device='auto', tensorboard_log=None, 
+            model = MaskablePPO("MlpPolicy", vec_env, device='cuda', tensorboard_log=None, 
                                 seed=RANDOM_STATE, verbose=self.verbose > 1, **sampled_hyperparams)
         else:
-            model = PPO("MlpPolicy", vec_env, device='auto', tensorboard_log=None, 
+            model = PPO("MlpPolicy", vec_env, device='cuda', tensorboard_log=None, 
                         seed=RANDOM_STATE, verbose=self.verbose > 1, **sampled_hyperparams)
 
         eval_freq = max(int(self.n_timesteps // self.n_evaluations // self.n_envs), 1)
@@ -289,25 +303,6 @@ class Study:
             raise optuna.exceptions.TrialPruned()
 
         return reward
-    
-    # def prune_study(study_path):
-    #     """
-    #         https://medium.com/@vojtechmolek/speeding-up-optuna-sampling-and-objective-computation-1fbb179b5edd
-    #     """
-    #     counter = 0
-    #     study = joblib.load(study_path)
-    #     study = study._study # get vanilla Optuna study from DistributedStudy
-
-    #     for trial in study.get_trials(deepcopy=False): # get all trials from study
-    #         if trial
-    #         trial.state=optuna.trial.TrialState.COMPLETE
-    #         counter += 1
-    #         else:
-    #         trial.state=optuna.trial.TrialState.FAIL
-
-    #     dist_study=opt_dst.from_study(study) # create new DistributedStudy
-    #     print(f"Number of trials used for sampling {counter}")
-    #     joblib.dump(dist_study, study_path)
 
     def optimize(self, n_trials: int, timeout: float = None, n_startup_trials: int = 10, seed: int = RANDOM_STATE):
         """
@@ -319,7 +314,14 @@ class Study:
         if os.path.isfile(f'{STUDY_NAME}_study.pkl'):
             warnings.warn("Study already exists, loading it from file")
             dist_study = joblib.load(f'{STUDY_NAME}_study.pkl')
-            n_trials = n_trials - len(study.trials)
+
+            finished_trials = 0
+            for trial in dist_study.trials:
+                if trial.state != TrialState.RUNNING and trial.state != TrialState.WAITING:
+                    finished_trials += 1
+
+            n_trials = n_trials - finished_trials
+            print('Remaining trials: ', n_trials)
         else:
             sampler = optuna.samplers.TPESampler(n_startup_trials=n_startup_trials, seed=seed, multivariate=True)
             pruner = optuna.pruners.SuccessiveHalvingPruner(min_resource=1, reduction_factor=4)
@@ -338,16 +340,16 @@ class Study:
                     timeout=timeout,
                     show_progress_bar=True, n_jobs=-1)
         
-        pruned_trials = study.get_trials(deepcopy=False, states=[TrialState.PRUNED])
-        complete_trials = study.get_trials(deepcopy=False, states=[TrialState.COMPLETE])
+        pruned_trials = dist_study.get_trials(deepcopy=False, states=[TrialState.PRUNED])
+        complete_trials = dist_study.get_trials(deepcopy=False, states=[TrialState.COMPLETE])
 
         print("Study statistics: ")
-        print("  Number of finished trials: ", len(study.trials))
+        print("  Number of finished trials: ", len(dist_study.trials))
         print("  Number of pruned trials: ", len(pruned_trials))
         print("  Number of complete trials: ", len(complete_trials))
 
         print("Best trial:")
-        trial = study.best_trial
+        trial = dist_study.best_trial
 
         print("Best Value: ", trial.value)
 
@@ -359,9 +361,9 @@ class Study:
         
 
 if __name__ == '__main__':
-    seed = int(sys.argv[1]) if len(sys.argv) > 1 else RANDOM_STATE
+    set_common_seed(RANDOM_STATE)
 
     study = Study(n_timesteps=1e6, n_evaluations=4, n_envs=8, verbose=1, logs_path='./logs/trials', use_action_maks=False)
     study.set_data(PROMPTS_FILE, TARGETS_FILE, limit=4960, test_size=0.2, seed=RANDOM_STATE)
 
-    study.optimize(n_trials=100, timeout=18000, n_startup_trials=5, seed=seed + RANDOM_STATE)
+    study.optimize(n_trials=150, timeout=14400, n_startup_trials=5, seed=RANDOM_STATE)

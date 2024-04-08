@@ -1,10 +1,16 @@
-import torch
+import os
+import torch.nn as nn
 import struct
 import numpy as np
 import pandas as pd
 
 import gymnasium as gym
 from stable_baselines3.common.monitor import Monitor
+from stable_baselines3.common.utils import set_random_seed
+
+def set_common_seed(seed: int):
+    set_random_seed(seed, True)
+    os.environ['PYTHONASHSEED'] = f'{seed}'
 
 def make_env(env_id: str, rank: int, x: np.ndarray, y: np.ndarray, seed: int = 0, **kwargs):
     """
@@ -67,12 +73,12 @@ def get_np_input_data(data_path: str) -> tuple[np.ndarray, np.ndarray]:
 
     return X, Y
 
-def get_input_data(dataset_path: str, embd_path: str, embd_size=4096) -> tuple[np.ndarray, np.ndarray]:
+def get_input_data(embd_path: str, dataset_path: str, embd_size=4096) -> tuple[np.ndarray, np.ndarray]:
     """
         Load the input data from the dataset and the embeddings file.
-
-        :param dataset_path: the path to the dataset file
+        
         :param embd_path: the path to the embeddings file
+        :param dataset_path: the path to the dataset file
         :param embd_size: the size of the embeddings
         :return: a tuple of two numpy arrays, the first one is the input embedding data and the second one is the target data
     """
@@ -121,7 +127,7 @@ def parse_policy_kwargs(in_policy_kwargs: dict) -> dict:
             "pi": [x for x in in_policy_kwargs['net_arch']['pi']],
             "vf": [x for x in in_policy_kwargs['net_arch']['vf']],
         },
-        "activation_fn": torch.nn.ReLU if in_policy_kwargs['activation_fn'] == 'ReLU' else torch.nn.Tanh
+        "activation_fn": {"tanh": nn.Tanh, "relu": nn.ReLU, "elu": nn.ELU, "leaky_relu": nn.LeakyReLU}[in_policy_kwargs['activation_fn']]
     }
 
 
