@@ -56,6 +56,8 @@ class WilsonMazeCallback(BaseCallback):
         self.move_loses = 0
         self.coin_loses = 0
         self.endings = 0
+        self.steps_to_end = 0
+        self.steps_to_end = []
         self.out_of_bounds = 0
         self.wall_collisions = 0
         self.good_coins_behaviour = 0
@@ -114,6 +116,9 @@ class WilsonMazeCallback(BaseCallback):
         self.coin_wins = 0
         self.move_loses = 0
         self.coin_loses = 0
+        self.endings = 0
+        self.steps = [0 for _ in range(self.training_env.num_envs)]
+        self.steps_to_end = {i: [] for i in range(self.training_env.num_envs)}
 
         if self.record_bad_behaviour:
             self.out_of_bounds = 0
@@ -140,9 +145,13 @@ class WilsonMazeCallback(BaseCallback):
         """
         assert "dones" in self.locals, "`dones` variable is not defined, please check your code next to `callback.on_step()`"
         for i in range(self.training_env.num_envs):
+            self.steps[i] += 1
             if self.locals['dones'][i]:
                 if not self.locals['infos'][i]['TimeLimit.truncated']:
                     self.move_wins += 1
+                    self.steps_to_end[i].append(self.steps[i])
+                    self.steps[i] = 0
+                    
                     if self.locals['rewards'][i] >= 2.0:
                         self.coin_wins += 1
                     else:
@@ -154,7 +163,7 @@ class WilsonMazeCallback(BaseCallback):
 
                 if self.record_targets_reset_dist:
                     self.reset_targets[i][self.locals['infos'][i]['target']] += 1
-            else:
+
                 if self.record_bad_behaviour:
                     self.out_of_bounds += self.locals['infos'][i]['out_of_bounds']
                     self.wall_collisions += self.locals['infos'][i]['wall_collisions']
@@ -218,19 +227,23 @@ class WilsonMazeCallback(BaseCallback):
         """
         This event is triggered before updating the policy.
         """
+        total_steps = self.locals['n_steps'] * self.training_env.num_envs
         if self.record_bad_behaviour:
-            self.logger.record('behaviour/out_of_bounds', self.out_of_bounds)
-            self.logger.record('behaviour/wall_collisions', self.wall_collisions)
-        
+            self.logger.record('behaviour/out_of_bounds', self.out_of_bounds / total_steps)
+            self.logger.record('behaviour/wall_collisions', self.wall_collisions / total_steps)
         if self.record_coins_behaviour:
-            self.logger.record('behaviour/good_coins', self.good_coins_behaviour)
-            self.logger.record('behaviour/bad_coins', self.bad_coins_behaviour)
+            self.logger.record('behaviour/good_coins', self.good_coins_behaviour / total_steps)
+            self.logger.record('behaviour/bad_coins', self.bad_coins_behaviour / total_steps)
+
+        avg_steps_to_end = sum([sum(self.steps_to_end[i]) / len(self.steps_to_end[i]) if len(self.steps_to_end[i]) > 0 else 0
+                                 for i in range(self.training_env.num_envs) ]) / self.training_env.num_envs
 
         self.logger.record('behaviour/move_wins', self.move_wins / self.endings)
         self.logger.record('behaviour/coin_wins', self.coin_wins / self.endings)
         self.logger.record('behaviour/move_loses', self.move_loses / self.endings)
         self.logger.record('behaviour/coin_loses', self.coin_loses / self.endings)
-        self.logger.record('behaviour/endings', self.endings / (self.locals['n_steps'] * self.training_env.num_envs))
+        self.logger.record('behaviour/avg_steps_to_end', avg_steps_to_end / (self.eval_config['size'] ** 2))
+        self.logger.record('behaviour/endings', self.endings / total_steps)
 
         if self.record_targets_dist:
             rollout_targets_total = sum(self.rollout_targets.values())
