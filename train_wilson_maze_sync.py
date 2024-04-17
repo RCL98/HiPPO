@@ -1,14 +1,15 @@
+from itertools import repeat
 import warnings
 
-from common import get_input_data, parse_policy_kwargs, simplify_data, transform_config
+from common import get_input_data, make_env, parse_policy_kwargs, set_common_seed, transform_config
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
+import os
 import yaml
 import time
 import copy
 from types import SimpleNamespace
-import os
 import numpy as np
 
 from sklearn.model_selection import train_test_split
@@ -22,74 +23,38 @@ from stable_baselines3.ppo import PPO
 from stable_baselines3.common.callbacks import CheckpointCallback
 from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.vec_env import SubprocVecEnv, VecNormalize, DummyVecEnv
-from stable_baselines3.common.utils import set_random_seed
 
 from wandb.integration.sb3 import WandbCallback
 import wandb
 
-rd_seed = 32
-set_random_seed(rd_seed, True)
-os.environ['PYTHONASHSEED'] = f'{rd_seed}'
 
+def train_model(config_file_path: str, seed: int, eval_episodes=10, verbose=0):
+    set_common_seed(seed)
 
-def make_env(env_id: str, rank: int, x: np.ndarray, y: np.ndarray, seed: int = 0, **kwargs):
-    """
-        Utility function for multiprocessed env.
-
-        :param env_id: the environment ID
-        :param rank: index of the subprocess
-        :param x: the input embedding data
-        :param y: the target and coin data
-        :param seed: the initial seed for RNG
-    """
-
-    def _init():
-        prompts = x
-        labels = y
-        
-        if not kwargs.get('variable_target', False):
-            number_of_targets = len(np.unique(y[:, 0]))
-            target_id = (seed + rank) % number_of_targets
-            target_indexes = np.where(y[:, 0] == target_id)
-            prompts = x[target_indexes]
-            labels = y[target_indexes]
-            
-
-        # print('Target id: ', target_id)
-        env = gym.make(env_id, prompts=prompts, labels=labels, **kwargs)
-
-        return Monitor(env)
-
-    set_random_seed(seed)
-    return _init
-
-
-if __name__ == "__main__":
-    with open('configs/llama-2_config.yaml', 'r') as config_file:
+    with open(config_file_path, 'r') as config_file:
         config = yaml.safe_load(config_file)
 
     run_config = transform_config(config['run_config'])
     policy_kwargs = parse_policy_kwargs(config['policy_kwargs'])
     env_config = config['env_config']
 
-    embeds, targets = get_input_data(run_config['dataset_path'], run_config['embeddings_path'], run_config['embedding_size'])
-    embeds, targets = embeds[:9000], targets[:9000]  # embeds[:12800], targets[:12800]  
-    # embeds, targets = simplify_data(embeds, targets)
-    X_train, X_valid, y_train, y_valid = train_test_split(embeds, targets, test_size=0.20, 
+    embeds, targets = get_input_data(run_config['embeddings_path'], run_config['dataset_path'])
+    X_train, X_valid, y_train, y_valid = train_test_split(embeds, targets, test_size=0.25, 
                                                             random_state=run_config['random_state'], stratify=targets[:, 0])
     
-    print(X_train.shape, X_valid.shape, y_train.shape, y_valid.shape)
+    # print(X_train.shape, X_valid.shape, y_train.shape, y_valid.shape)
 
-    #run = SimpleNamespace(**({'id': 'test'}))
-    #print(run.id)
     run = wandb.init(
-        project="sb3",
+        project="hippo-test",
         config=config,
         sync_tensorboard=True,  # auto-upload sb3's tensorboard metrics
         monitor_gym=True,  # auto-upload the videos of agents playing the game
         save_code=True,  # optional
     )
 
+    print(f'Started training the model with seed: {seed} - run.id: {run.id}')
+
+        
     vec_env = DummyVecEnv(
         [make_env(rank=i, x=X_train, y=y_train, seed=0, **env_config)
          for i in range(run_config['n_envs'])])
@@ -105,7 +70,7 @@ if __name__ == "__main__":
     else:
         eval_config = None
 
-    save_freq = max(int(run_config['total_timesteps'] // 4 // run_config['n_envs']), 1)
+    save_freq = max(int(run_config['total_timesteps'] // eval_episodes // run_config['n_envs']), 1)
     timestamp = time.strftime("%Y%m%d_%H%M%S")
 
     callbacks = []
@@ -124,12 +89,15 @@ if __name__ == "__main__":
         custom_callback = WilsonMazeCallback(evaluate=True,
                                              eval_config=eval_config,
                                              eval_freq=save_freq,
+                                             record_bad_behaviour=True,
                                              record_coins_behaviour=True,
                                              logs_path=run_config['logs_save_path'] + f"/{run.id}",
                                              best_model_save_path=f"{run_config['models_save_path']}/model-{timestamp}-{run.id}",
                                              deterministic=run_config['deterministic'],
                                              use_action_masks=run_config['use_action_masks'],
-                                             max_number_of_steps=run_config['max_number_of_steps'])
+                                             max_number_of_steps=run_config['max_number_of_steps'],
+                                             verbose=verbose
+                                            )
         callbacks.append(custom_callback)
 
     wandb_callback = WandbCallback(
@@ -140,9 +108,25 @@ if __name__ == "__main__":
 
     model = PPO("MlpPolicy", vec_env, n_steps=run_config['n_steps'], batch_size=run_config['batch_size'],
                         vf_coef=run_config['vf_coef'], ent_coef=run_config['ent_coef'], gamma=run_config['gamma'],
-                        verbose=1, device='auto', tensorboard_log=f"{run_config['logs_save_path']}/{run.id}",
-                        policy_kwargs=policy_kwargs, seed=run_config['random_state'],)
+                         max_grad_norm=run_config['max_grad_norm'], clip_range=run_config['clip_range'], 
+                         policy_kwargs=policy_kwargs, seed=seed, verbose=verbose, device='cuda',
+                          tensorboard_log=f"{run_config['logs_save_path']}/{run.id}")
 
-    model.learn(total_timesteps=run_config['total_timesteps'], progress_bar=True, callback=callbacks)
+    model.learn(total_timesteps=run_config['total_timesteps'], progress_bar=False, callback=callbacks)
 
     run.finish()
+
+    print(f'Finished training model with seed: {seed}\n')
+
+    return 0
+
+
+
+if __name__ == "__main__":
+    os.environ["WANDB_SILENT"] = "true"
+
+    config_file_path = 'configs/llama-1_config.yaml'
+    seeds = [42, 16, 201, 67, 1082, 2021, 5, 3255, 7223, 10562]
+    
+    for seed in [7223]:
+        train_model(config_file_path=config_file_path, seed=seed)

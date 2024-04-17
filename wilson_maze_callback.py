@@ -85,6 +85,7 @@ class WilsonMazeCallback(BaseCallback):
         self.use_action_masks = use_action_masks
         self.max_number_of_steps = max_number_of_steps
         self.device = device
+        self.verbose = verbose
 
         assert not self.evaluate or self.eval_config is not None, 'No eval config provided'
 
@@ -186,9 +187,11 @@ class WilsonMazeCallback(BaseCallback):
                                             deterministic=self.deterministic,
                                             use_action_masks=self.use_action_masks,
                                             max_number_of_steps=self.max_number_of_steps,
-                                            verbose=1,
+                                            verbose=self.verbose,
                                             **self.eval_config)
-                print(f'Evaluation took {time.time() - t0:2f} seconds')
+                
+                if self.verbose:
+                    print(f'Evaluation took {time.time() - t0:2f} seconds')
 
                 eval_score = max(eval_full_score, eval_partial_score)
 
@@ -217,9 +220,11 @@ class WilsonMazeCallback(BaseCallback):
                         vec_normalizer.save(os.path.join(self.best_model_save_path, "best_model_vec_normalizer.pkl"))
                     self.model.save(os.path.join(self.best_model_save_path, "best_model.zip"))
 
-                    print(f'New best model saved with score {self.best_eval_score:2f}')
+                    if self.verbose:
+                        print(f'New best model saved with score {self.best_eval_score:2f}')
                 else:
-                    print(f'Eval score: {eval_score:2f}. Last best score: {self.best_eval_score:2f}')
+                    if self.verbose:
+                        print(f'Eval score: {eval_score:2f}. Last best score: {self.best_eval_score:2f}')
 
         return True
 

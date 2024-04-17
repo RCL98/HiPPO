@@ -239,7 +239,9 @@ def evaluate_model(model: "type_aliases.PolicyPredictor",
             partial_coins.append(partial_coin_wins / target_prompts.shape[0])
         total_size += target_prompts.shape[0]
 
-    print()
+    if verbose:
+        print()
+    
     stats = {}
     for i in range(number_of_targets):
         stats[f'target_{i}'] = {'move_solved': move_solved[i],
