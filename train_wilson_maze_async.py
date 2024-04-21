@@ -11,6 +11,7 @@ import time
 import copy
 from types import SimpleNamespace
 import numpy as np
+from datetime import timedelta
 from multiprocessing import Pool, set_start_method, Lock, Manager
 
 from sklearn.model_selection import train_test_split
@@ -40,14 +41,14 @@ def train_model(config_file_path: str, seed: int, lock, eval_episodes=10, verbos
         policy_kwargs = parse_policy_kwargs(config['policy_kwargs'])
         env_config = config['env_config']
 
-        embeds, targets = get_input_data(run_config['embeddings_path'], run_config['dataset_path'])
+        embeds, targets = get_input_data(run_config['embeddings_path'], run_config['dataset_path'], run_config['embedding_size'])
         X_train, X_valid, y_train, y_valid = train_test_split(embeds, targets, test_size=0.25, 
                                                                 random_state=run_config['random_state'], stratify=targets[:, 0])
         
         # print(X_train.shape, X_valid.shape, y_train.shape, y_valid.shape)
 
         run = wandb.init(
-            project="hippo-test",
+            project="hippo",
             config=config,
             sync_tensorboard=True,  # auto-upload sb3's tensorboard metrics
             monitor_gym=True,  # auto-upload the videos of agents playing the game
@@ -127,14 +128,14 @@ if __name__ == "__main__":
     os.environ["WANDB_SILENT"] = "true"
     set_start_method("spawn")
 
-    config_file_path = 'configs/llama-1_config.yaml'
+    config_file_path = 'configs/phi-2_config.yaml'
     seeds = [42, 16, 201, 67, 1082, 2021, 5, 3255, 7223, 10562]
-
     with Manager() as manager:
         lock = manager.Lock()
 
         args = [(config_file_path, seeds[i], lock) for i in range(len(seeds))]
 
+        t0 = time.time()
         with Pool(3, maxtasksperchild=1) as p:
             result = p.starmap(train_model, args)
-        print('Done')
+        print(f'Done in {str(timedelta(seconds=time.time() - t0))}')

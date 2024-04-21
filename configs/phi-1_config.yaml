@@ -17,11 +17,11 @@ run_config:
  deterministic: True
  use_action_masks: False
  dataset_path: prompts/big_dataset/prompts.csv
- embeddings_path: prompts/big_dataset/embeds/llama/llama-2/llama-2-7b-f16.bin
- embedding_size: 4096
+ embeddings_path: prompts/big_dataset/embeds/phi/phi-1/phi-1-f16.bin
+ embedding_size: 2048
  random_state: 42
- models_save_path: ./models/llama/llama-2
- logs_save_path: ./logs/llama/llama-2
+ models_save_path: ./models/phi/phi-1
+ logs_save_path: ./logs/phi/phi-1
 
 policy_kwargs:
  net_arch:
