@@ -103,7 +103,7 @@ def test_model(config_file_path: str, model_path: str):
                                                                 random_state=42, stratify=Y[:, 0])
 
     prompts, labels = X_valid, y_valid
-    move_wins, coin_wins, partial_coin_wins = 0, 0, 0 
+    move_solved, coin_solved, partial_coin_solved = 0, 0, 0 
     for i in range(len(prompts)):
         prompt_id = i
         vec_env = DummyVecEnv([lambda: gym.make(**env_config, 
@@ -127,29 +127,29 @@ def test_model(config_file_path: str, model_path: str):
             # sleep(1)
             if dones[0] and rewards[0] > 0:
                 if env_config['add_coins'] and rewards[0] >= 2.0:
-                    coin_wins += 1
-                move_wins += 1 
+                    coin_solved += 1
+                move_solved += 1 
                 break
             if infos[0]["TimeLimit.truncated"]:
                 obs = infos[0]["terminal_observation"]
             vec_env.render()
         
         if env_config['add_coins']:
-            partial_coin_wins += infos[0]['coins_wins']
+            partial_coin_solved += infos[0]['coins_wins']
 
         vec_env.close()
 
         if i % 500 == 0 and i > 0:
             print('Done with ', i, ' out of ', len(prompts), ' or ', i / len(prompts) * 100, '%')
    
-    move_score = move_wins / prompts.shape[0]
-    coin_score = coin_wins / prompts.shape[0]
-    partial_coin_score = partial_coin_wins / prompts.shape[0]
+    move_score = move_solved / prompts.shape[0]
+    coin_score = coin_solved / prompts.shape[0]
+    partial_coin_score = partial_coin_solved / prompts.shape[0]
     eval_score = move_score
 
-    print(f'\nMove wins: {move_wins} out of {prompts.shape[0]} or {move_score * 100:2f}%')
+    print(f'\nMove wins: {move_solved} out of {prompts.shape[0]} or {move_score * 100:2f}%')
     if env_config['add_coins']:
-        print(f'Solved: {coin_wins} coins out of {prompts.shape[0]} or {coin_score * 100:2f}')
+        print(f'Solved: {coin_solved} coins out of {prompts.shape[0]} or {coin_score * 100:2f}')
         print(f'Partial coins solved: {partial_coin_score * 100:2f}\n')
 
         eval_score = (eval_score + max(coin_score, partial_coin_score)) / 2
@@ -168,77 +168,79 @@ def evaluate_model(model: "type_aliases.PolicyPredictor",
 
     prompts = config['prompts']
     labels = config['labels']
-    del config['labels']
     del config['prompts']
+    del config['labels']
 
-    data_sizes = []
-    move_solved, coins_solved, partial_coins, total_size = [], [], [], 0
     number_of_targets = len(np.unique(labels[:, 0]))
-    for target_i in range(number_of_targets):
-        move_wins, coin_wins, partial_coin_wins = 0, 0, 0
+    total_size = prompts.shape[0]
+
+    move_solved = {i: 0 for i in range(number_of_targets)}
+    coins_solved = {i: 0 for i in range(number_of_targets)}
+    partial_coins = {i: 0 for i in range(number_of_targets)}
+    data_sizes = {i: len(labels[labels[:, 0] == i]) for i in range(number_of_targets)}
+
+    n_eval_envs = 100
+    for i in range(0, total_size, n_eval_envs):
+
+        min_eval_envs = min(n_eval_envs, total_size - i)
+
+        user_prompts = prompts[i:i+min_eval_envs]
+        user_labels = labels[i:i+min_eval_envs]
         
-        targets_idx = np.where(labels[:, 0] == target_i)
-        target_prompts = prompts[targets_idx]
-        if config['add_coins']:
-            coins = labels[targets_idx][:, 1]
         
-        data_sizes.append(target_prompts.shape[0])
+        vec_envs =  DummyVecEnv([lambda: gym.make(user_prompt=user_prompts[j],
+                                                labels=np.array([user_labels[j]]),
+                                                **config) for j in range(min_eval_envs)])
         
-        for prompt_j in range(target_prompts.shape[0]):
-            _labels = [target_i, coins[prompt_j]] if config['add_coins'] else [target_i, 0]
-            _user_prompt = target_prompts[prompt_j]
-            vec_env = DummyVecEnv([lambda: gym.make(user_prompt=_user_prompt,
-                                                labels=np.array([_labels]),
-                                                **config)])
+        if model.get_vec_normalize_env() is not None:
+            vec_env = VecNormalize(vec_envs, norm_reward=False)
+            try:
+                sync_envs_normalization(training_env, vec_env)
+            except AttributeError as e:
+                raise AssertionError(
+                    "Training and eval env are not wrapped the same way, "
+                    "see https://stable-baselines3.readthedocs.io/en/master/guide/callbacks.html#evalcallback "
+                    "and warning above."
+                ) from e
             
-            if model.get_vec_normalize_env() is not None:
-                vec_env = VecNormalize(vec_env, norm_reward=False)
-                try:
-                    sync_envs_normalization(training_env, vec_env)
-                except AttributeError as e:
-                    raise AssertionError(
-                        "Training and eval env are not wrapped the same way, "
-                        "see https://stable-baselines3.readthedocs.io/en/master/guide/callbacks.html#evalcallback "
-                        "and warning above."
-                    ) from e
+        vec_env.training = False
+
+        obs = vec_env.reset()
+        
+        already_done = [False] * min_eval_envs
+        obs = vec_env.reset()
+        for _ in range(max_number_of_steps):
+            if use_action_masks:
+                action, _ = model.predict(obs, deterministic=deterministic, 
+                                            action_masks=vec_env.env_method("action_masks"))
+            else:
+                action, _ = model.predict(obs, deterministic=deterministic)
+
+            obs, rewards, dones, infos = vec_env.step(action)
+
+            for k in range(min_eval_envs):
+                if not already_done[k] and dones[k]:
+                    already_done[k] = True
+
+                    if rewards[k] > 0:
+                        move_solved[user_labels[k][0]] += 1 
+
+                        if config['add_coins'] and rewards[0] >= 2.0:
+                            coins_solved[user_labels[k][0]] += 1
+                        
+
+                    if infos[k]["TimeLimit.truncated"]:
+                        obs = infos[k]["terminal_observation"]
             
-            vec_env.training = False
-
-            obs = vec_env.reset()
-            if config['render_mode'] == 'human':
-                vec_env.render()
-
-            for _ in range(max_number_of_steps):
-                if use_action_masks:
-                    action, _ = model.predict(obs, deterministic=deterministic, 
-                                              action_masks=vec_env.env_method("action_masks"))
-                else:
-                    action, _ = model.predict(obs, deterministic=deterministic)
-
-                obs, rewards, dones, infos = vec_env.step(action)
-
-                if config['render_mode'] == 'human':
-                    vec_env.render()
-
-                if dones[0] and rewards[0] > 0:
-                    if config['add_coins'] and rewards[0] >= 2.0:
-                        coin_wins += 1
-                    move_wins += 1 
-                    break
-                if infos[0]["TimeLimit.truncated"]:
-                    obs = infos[0]["terminal_observation"]
-            
+            if all(already_done):
+                break
+        
+        for k in range(min_eval_envs):
             if config['add_coins']:
-                partial_coin_wins += infos[0]['coins_wins']
+                partial_coins[user_labels[k][0]] += infos[k]['coins_wins']
 
-            vec_env.close()
-
-        move_solved.append(move_wins)
-        if config['add_coins']:
-            coins_solved.append(coin_wins)
-            partial_coins.append(partial_coin_wins / target_prompts.shape[0])
-        total_size += target_prompts.shape[0]
-
+        vec_env.close()
+    
     if verbose:
         print()
     
@@ -248,6 +250,7 @@ def evaluate_model(model: "type_aliases.PolicyPredictor",
                                 'move_percentage': move_solved[i] / data_sizes[i],
                                 'total': data_sizes[i]}
         if config['add_coins']:
+            partial_coins[i] = partial_coins[i] / data_sizes[i]
             stats[f'target_{i}']['coins_solved'] = coins_solved[i]
             stats[f'target_{i}']['coins_percentage'] = coins_solved[i] / data_sizes[i]
             stats[f'target_{i}']['partial_coins'] = partial_coins[i]
@@ -259,8 +262,9 @@ def evaluate_model(model: "type_aliases.PolicyPredictor",
                 print(f'For target {i} full coins solved: {coins_solved[i]} out of {data_sizes[i]} ' 
                         f'or {stats[f"target_{i}"]["coins_percentage"] * 100:2f}')
                 print(f'For target {i} partial coins solved: {partial_coins[i] * 100:2f}')
+            print()
 
-    total_move_solved = sum(move_solved)
+    total_move_solved = sum(move_solved.values())
     move_score = total_move_solved / total_size
     if verbose:
         print(f'\nSolved: {total_move_solved} moves out of {total_size} or {move_score * 100:2f}')
@@ -269,9 +273,9 @@ def evaluate_model(model: "type_aliases.PolicyPredictor",
     final_partial_score = move_score
 
     if config['add_coins']:
-        total_coins_solved = sum(coins_solved)
+        total_coins_solved = sum(coins_solved.values())
         coin_score = total_coins_solved / total_size
-        partial_coins_score = sum(partial_coins) / number_of_targets
+        partial_coins_score = sum(partial_coins.values()) / number_of_targets
         
         if verbose:
             print(f'Solved: {total_coins_solved} coins out of {total_size} or {coin_score * 100:2f}')
